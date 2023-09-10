@@ -21,20 +21,11 @@ export default function App() {
 
     <NavigationContainer>
       <Stack.Navigator initialRouteName='Home'>
-        <Stack.Screen name="Home" component={Home}/>
-        <Stack.Screen name="History" component={History}/>
-        <Stack.Screen name="Notification" component={Notification}/>
-        <Stack.Screen name="Review" component={Review}/>
+        <Stack.Screen name="Home" component={Home} />
+        <Stack.Screen name="History" component={History} />
+        <Stack.Screen name="Notification" component={Notification} />
+        <Stack.Screen name="Review" component={Review} />
       </Stack.Navigator>
     </NavigationContainer>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
