@@ -181,7 +181,7 @@ const styles = StyleSheet.create({
         borderRadius: 5,
         justifyContent: 'center',
         backgroundColor: '#ab1239',
-      },
+    },
 
     textMenu: {
         textAlign: 'center',
