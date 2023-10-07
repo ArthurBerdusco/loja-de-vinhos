@@ -11,6 +11,9 @@ import Review from './src/screens/Review';
 import Cart from './src/screens/Cart';
 import StoreInfo from './src/screens/StoreInfo';
 import Promotion from './src/screens/Promotion';
+import SingUp from './src/screens/SingUp';
+import Login from './src/screens/Login';
+import Checkout from './src/screens/Checkout';
 
 
 const Stack = createNativeStackNavigator();
@@ -19,11 +22,25 @@ export default function App() {
   return (
 
     <NavigationContainer>
-      <Stack.Navigator initialRouteName='Home'>
+      <Stack.Navigator initialRouteName='Login'>
+
+        
         <Stack.Screen name="Home" component={Home} />
+        <Stack.Screen name="Review" component={Review} />
+
         <Stack.Screen name="History" component={History} />
         <Stack.Screen name="Notification" component={Notification} />
-        <Stack.Screen name="Review" component={Review} />
+
+        <Stack.Screen name="SingUp" component={SingUp} />
+        <Stack.Screen name="Login" component={Login} />
+
+        <Stack.Screen name="StoreInfo" component={StoreInfo} />
+        <Stack.Screen name="Promotion" component={Promotion} />
+
+        <Stack.Screen name="Cart" component={Cart} />
+        <Stack.Screen name="Checkout" component={Checkout} />
+
+
       </Stack.Navigator>
     </NavigationContainer>
   );
