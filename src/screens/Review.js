@@ -13,6 +13,7 @@ const Review = ({route}) => {
             <Image source={vinho.imagem}/>
 
             
+
             
         </View>
     )
