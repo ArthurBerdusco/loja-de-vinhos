@@ -1,7 +1,7 @@
 import { View, Text, Image } from "react-native"
 
-const Review = ({route}) => {
-    const vinho = route.params.vinho;
+const Review = ({props}) => {
+    const vinho = props.params.vinho;
         
 
 
