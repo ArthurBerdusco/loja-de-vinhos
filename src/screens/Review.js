@@ -11,6 +11,7 @@ const Review = ({route}) => {
             <Text>Preço: {vinho.preco}</Text>
             <Text>Teor: {vinho.teorAlcolico}</Text>
             <Image source={vinho.imagem}/>
+
             
         </View>
     )
