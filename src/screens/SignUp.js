@@ -1,7 +1,7 @@
 import { View, Text, TextInput, TouchableOpacity, Image, StyleSheet, ScrollView } from "react-native"
 import { useState } from "react";
 
-const Login = ({ navigation }) => {
+const SignUp = ({ navigation }) => {
 
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -9,25 +9,31 @@ const Login = ({ navigation }) => {
 
     const handleLogin = (email, password) => {
 
-        if (email.toLowerCase().trim() == 'arthur@gmail.com' && password == '1234') {
+        if (email == 'arthur@gmail.com' && password == '1234') {
             setShowErrorMessage(false);
             navigation.navigate('Home')
         } else {
             setShowErrorMessage(true);
         }
-
+        
     }
 
     return (
 
-        <ScrollView style={{backgroundColor: '#fafafa'}}>
+        <ScrollView>
             <View style={styles.containerTitle}>
-
-                <Image source={require('../assets/img/wineBanner.jpg')}/>
+                <Text style={styles.title}>Criar sua conta</Text>
             </View>
 
 
             <View style={styles.containerLogin}>
+
+                <Text style={styles.text}>Nome completo</Text>
+                <TextInput
+                    style={[styles.input, styles.elevation]}
+                    onChangeText={setEmail}
+                    value={email}
+                />
 
                 <Text style={styles.text}>Email</Text>
                 <TextInput
@@ -44,47 +50,24 @@ const Login = ({ navigation }) => {
                     value={password}
                 />
 
+                <Text style={styles.text}>Confirmar senha</Text>
+                <TextInput
+                    secureTextEntry={true}
+                    style={[styles.input, styles.elevation]}
+                    onChangeText={setPassword}
+                    value={password}
+                />
+
                 {showErrorMessage && (
                     <Text style={{ width: "100%", textAlign: "center", color: 'red', marginTop: 10 }}>
                         Usuário ou senha inválidos
                     </Text>
                 )}
 
-                <TouchableOpacity>
-                    <Text style={{ width: "100%", textAlign: "right", marginTop: 10 }}>Esqueceu sua senha?</Text>
-                </TouchableOpacity>
-
 
                 <TouchableOpacity onPress={() => { handleLogin(email, password) }} style={[styles.customButton, styles.elevation]}>
-                    <Text style={styles.buttonText}>Login</Text>
+                    <Text style={styles.buttonText}>Cadastrar</Text>
                 </TouchableOpacity>
-
-            </View>
-
-
-            <View style={styles.containerIcon}>
-
-                <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-                    <TouchableOpacity style={[styles.icon, { marginRight: 25 }]}>
-                        <Image source={require('../assets/img/google.png')}></Image>
-                    </TouchableOpacity>
-                    <TouchableOpacity style={styles.icon}>
-
-                        <Image source={require('../assets/img/facebook.png')}></Image>
-                    </TouchableOpacity>
-                </View>
-
-            </View>
-
-
-            <View style={styles.containerSingUp}>
-
-                <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-                    <Text>Não tem uma conta? </Text>
-                    <TouchableOpacity
-                        onPress={()=>{navigation.navigate('SignUp')}}
-                    ><Text style={[{ fontSize: 16, color: '#c3b286', fontWeight: 'bold'}]}>Cadastrar</Text></TouchableOpacity>
-                </View>
 
             </View>
 
@@ -93,22 +76,31 @@ const Login = ({ navigation }) => {
 }
 
 const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+    },
     containerTitle: {
-        height: 300,
+        backgroundColor: '#123abc',
+        height: 100,
+        padding: 30,
+        justifyContent: 'center',
+        alignItems: 'center'
     },
 
-    containerLogin: {   
+    containerLogin: {
         padding: 30
     },
 
     containerIcon: {
-        height: 70,
+        marginTop: 25,
+        height: 80,
         padding: 30,
         justifyContent: 'center',
         alignItems: 'center'
 
     },
     containerSingUp: {
+        height: 80,
         padding: 30,
         justifyContent: 'center',
         alignItems: 'center'
@@ -136,7 +128,7 @@ const styles = StyleSheet.create({
         width: '100%',
         height: 50,
         marginTop: 20,
-        backgroundColor: '#c3b286',
+        backgroundColor: '#123abc',
         borderRadius: 20,
         justifyContent: 'center',
         alignItems: 'center'
@@ -162,4 +154,4 @@ const styles = StyleSheet.create({
     }
 })
 
-export default Login
+export default SignUp
