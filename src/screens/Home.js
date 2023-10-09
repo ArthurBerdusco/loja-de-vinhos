@@ -82,17 +82,17 @@ const Home = ({ navigation }) => {
                 </TouchableOpacity>
                 <TouchableOpacity>
                     <View style={styles.menuItem}>
-                    <Image style={styles.icons} source={cartIcon}/>
+                        <Image style={styles.icons} source={cartIcon} />
                     </View>
                 </TouchableOpacity>
                 <TouchableOpacity>
                     <View style={styles.menuItem}>
-                    <Image style={styles.icons} source={orderIcon}/>
+                        <Image style={styles.icons} source={orderIcon} />
                     </View>
                 </TouchableOpacity>
                 <TouchableOpacity>
                     <View style={styles.menuItem}>
-                    <Image style={styles.icons} source={searchIcon}/>
+                        <Image style={styles.icons} source={searchIcon} />
                     </View>
                 </TouchableOpacity>
             </View>
@@ -205,7 +205,7 @@ const styles = StyleSheet.create({
         margin: 5,
         borderRadius: 5,
         justifyContent: 'center',
-        
+
     },
 
     textMenu: {
@@ -213,15 +213,15 @@ const styles = StyleSheet.create({
         color: 'white',
     },
     icons: {
-        
+
         width: 40,
         height: 40,
-        alignSelf:"center",
-        backgroundColor:"black",
-        
-        
-        
-       
+        alignSelf: "center",
+        backgroundColor: "black",
+
+
+
+
     }
 
 })

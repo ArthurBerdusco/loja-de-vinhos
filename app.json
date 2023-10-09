@@ -2,6 +2,7 @@
   "expo": {
     "name": "loja-de-vinhos",
     "slug": "loja-de-vinhos",
+    "scheme": "loja-de-vinhos",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -15,13 +16,15 @@
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.arthursilva.lojadevinhos"
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "package": "com.arthursilva.lojadevinhos"
     },
     "web": {
       "favicon": "./assets/favicon.png"

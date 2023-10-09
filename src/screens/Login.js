@@ -1,7 +1,20 @@
 import { View, Text, TextInput, TouchableOpacity, Image, StyleSheet, ScrollView } from "react-native"
 import { useState } from "react";
 
+import * as WebBrowser from 'expo-web-browser'
+import * as Google from 'expo-auth-session/providers/google'
+import  AsyncStorage from "@react-native-async-storage/async-storage";
+
+// web: 302802416970-0ud1e9puct296j3d01lm2nmuulipmrin.apps.googleusercontent.com
+// android: 302802416970-ba3h146l7pcghcqqlsppgcrsis51h5ei.apps.googleusercontent.com
+
 const Login = ({ navigation }) => {
+
+    const [userInfo, setUserInfo] = useState(null);
+    const [request, response, promptAsync] = Google.useAuthRequest({
+        webClientId: "302802416970-0ud1e9puct296j3d01lm2nmuulipmrin.apps.googleusercontent.com",
+        androidClientId: "302802416970-ba3h146l7pcghcqqlsppgcrsis51h5ei.apps.googleusercontent.com"
+    }) 
 
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -65,7 +78,7 @@ const Login = ({ navigation }) => {
             <View style={styles.containerIcon}>
 
                 <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-                    <TouchableOpacity style={[styles.icon, { marginRight: 25 }]}>
+                    <TouchableOpacity onPress={() => promptAsync()} style={[styles.icon, { marginRight: 25 }]}>
                         <Image source={require('../assets/img/google.png')}></Image>
                     </TouchableOpacity>
                     <TouchableOpacity style={styles.icon}>
