@@ -1,8 +1,10 @@
-import { View, Text, Button, ScrollView, Image, StyleSheet, TouchableOpacity } from "react-native"
+import { View, Text, Button, ScrollView, Image, StyleSheet, TouchableOpacity, ImageBackground } from "react-native"
 import homeIcon from '../assets/img/home_icon.png'
 import cartIcon from '../assets/img/cart_icon.png'
 import orderIcon from '../assets/img/orders_icon.png'
 import searchIcon from '../assets/img/search_icon.png'
+import Background from '../assets/img/Background.svg'
+
 
 
 const vinhos = [
@@ -55,7 +57,7 @@ const Home = ({ navigation }) => {
 
     return (
         <>
-            <ScrollView style={{ backgroundColor: 'white' }}>
+            <ScrollView>
                 <View style={styles.container}>
 
                     <View style={styles.row}>
@@ -104,19 +106,19 @@ const Home = ({ navigation }) => {
 const Vinho = (props) => {
 
     return (
+        <TouchableOpacity title="Comprar" color='black' onPress={() => props.navigation.navigate('Review', { vinho: props })}>
         <View style={styles.card}>
             <View style={styles.imageContainer}>
-                <Image source={(props.imagem)} style={styles.image} resizeMode="contain" />
-
+                <Image source={(props.imagem)} style={styles.image} resizeMode="contain"/>
             </View>
             <Text style={styles.text}>{props.nome}</Text>
             <Text style={styles.text}>Preço: {props.preco}</Text>
             <Text style={styles.text}>Teor: {props.teorAlcool}%</Text>
-            <Image source={(props.bandeira)} style={styles.bandeira} />
-            <View style={styles.button}>
-                <Button title="Comprar" color='black' onPress={() => props.navigation.navigate('Review', { vinho: props })} />
+            <Image source={(props.bandeira)} style={styles.bandeira}/>
+            <View style={styles.button}>       
             </View>
         </View>
+        </TouchableOpacity>
     )
 }
 
@@ -124,7 +126,6 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         justifyContent: 'center',
-        backgroundColor: 'black',
 
     },
     row: {
@@ -180,6 +181,11 @@ const styles = StyleSheet.create({
         left: 30,
 
 
+    },
+
+    background:{
+       
+        
     },
 
 
