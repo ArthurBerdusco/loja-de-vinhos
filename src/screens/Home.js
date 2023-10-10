@@ -3,7 +3,7 @@ import homeIcon from '../assets/img/home_icon.png'
 import cartIcon from '../assets/img/cart_icon.png'
 import orderIcon from '../assets/img/orders_icon.png'
 import searchIcon from '../assets/img/search_icon.png'
-import Background from '../assets/img/Background.svg'
+
 
 
 
@@ -105,7 +105,17 @@ const Home = ({ navigation }) => {
 
 const Vinho = (props) => {
     return (
-        <TouchableOpacity title="Comprar" color='black' onPress={() => props.navigation.navigate('Review', { vinho: props })}>
+        <TouchableOpacity title="Comprar" color='black' onPress={() => props.navigation.navigate('Review', { vinho: 
+            {
+                nome: props.nome,
+                preco: props.preco,
+                teorAlcool: props.teorAlcool,
+                imagem: props.imagem,
+            }
+        
+        
+        
+        })}>
         <View style={styles.card}>
             <View style={styles.imageContainer}>
                 <Image source={(props.imagem)} style={styles.image} resizeMode="contain"/>
@@ -140,7 +150,7 @@ const styles = StyleSheet.create({
         flexDirection: "column",
         height: 177,
         marginBottom: 20,
-        marginTop: 50,
+        marginTop: 30,
 
     },
 
