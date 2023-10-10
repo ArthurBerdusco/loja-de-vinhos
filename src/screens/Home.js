@@ -104,7 +104,6 @@ const Home = ({ navigation }) => {
 }
 
 const Vinho = (props) => {
-
     return (
         <TouchableOpacity title="Comprar" color='black' onPress={() => props.navigation.navigate('Review', { vinho: props })}>
         <View style={styles.card}>
@@ -141,6 +140,7 @@ const styles = StyleSheet.create({
         flexDirection: "column",
         height: 177,
         marginBottom: 20,
+        marginTop: 50,
 
     },
 
