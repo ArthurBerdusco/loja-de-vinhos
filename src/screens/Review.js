@@ -4,6 +4,7 @@ const Review = ({route}) => {
     
     const vinho = route.params.vinho
     return (
+        
         <View>
             <Text>{vinho.nome}</Text>
             <Text>Preço: {vinho.preco}</Text>

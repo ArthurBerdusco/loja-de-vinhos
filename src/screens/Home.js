@@ -14,6 +14,7 @@ const vinhos = [
         teorAlcool: 13.5,
         imagem: require('../assets/img/vinho1.jpg'),
         bandeira: require('../assets/img/china.png'),
+
     },
     {
         nome: 'Vinho Branco Chardonnay',
@@ -57,7 +58,11 @@ const Home = ({ navigation }) => {
 
     return (
         <>
+        <ImageBackground
+        source={require('../assets/img/fundo.png')}
+        style={styles.background}>
             <ScrollView>
+
                 <View style={styles.container}>
 
                     <View style={styles.row}>
@@ -80,24 +85,29 @@ const Home = ({ navigation }) => {
                 <TouchableOpacity>
                     <View style={styles.menuItem}>
                         <Image style={styles.icons} source={homeIcon} />
+                        <Text style={styles.textMenu}>Home</Text>
                     </View>
                 </TouchableOpacity>
                 <TouchableOpacity>
                     <View style={styles.menuItem}>
                         <Image style={styles.icons} source={cartIcon} />
+                        <Text style={styles.textMenu}>Cart</Text>
                     </View>
                 </TouchableOpacity>
                 <TouchableOpacity>
                     <View style={styles.menuItem}>
                         <Image style={styles.icons} source={orderIcon} />
+                        <Text style={styles.textMenu}>Orders</Text>
                     </View>
                 </TouchableOpacity>
                 <TouchableOpacity>
                     <View style={styles.menuItem}>
                         <Image style={styles.icons} source={searchIcon} />
+                        <Text style={styles.textMenu}>Search</Text>
                     </View>
                 </TouchableOpacity>
             </View>
+            </ImageBackground>
         </>
     )
 
@@ -105,28 +115,29 @@ const Home = ({ navigation }) => {
 
 const Vinho = (props) => {
     return (
-        <TouchableOpacity title="Comprar" color='black' onPress={() => props.navigation.navigate('Review', { vinho: 
+        <TouchableOpacity title="Comprar" color='black' onPress={() => props.navigation.navigate('Review', {
+            vinho:
             {
                 nome: props.nome,
                 preco: props.preco,
                 teorAlcool: props.teorAlcool,
                 imagem: props.imagem,
             }
-        
-        
-        
+
+
+
         })}>
-        <View style={styles.card}>
-            <View style={styles.imageContainer}>
-                <Image source={(props.imagem)} style={styles.image} resizeMode="contain"/>
+            <View style={styles.card}>
+                <View style={styles.imageContainer}>
+                    <Image source={(props.imagem)} style={styles.image} resizeMode="contain" />
+                </View>
+                <Text style={styles.text_name}>{props.nome}</Text>
+                <Text style={styles.text}>Preço: {props.preco}</Text>
+                <Text style={styles.text}>Teor: {props.teorAlcool}%</Text>
+                <Image source={(props.bandeira)} style={styles.bandeira} />
+                <View style={styles.button}>
+                </View>
             </View>
-            <Text style={styles.text}>{props.nome}</Text>
-            <Text style={styles.text}>Preço: {props.preco}</Text>
-            <Text style={styles.text}>Teor: {props.teorAlcool}%</Text>
-            <Image source={(props.bandeira)} style={styles.bandeira}/>
-            <View style={styles.button}>       
-            </View>
-        </View>
         </TouchableOpacity>
     )
 }
@@ -172,6 +183,14 @@ const styles = StyleSheet.create({
 
 
     },
+    text_name: {
+        marginLeft: 30,
+        textAlign: "justify",
+        top: 50,
+        fontWeight: "600",
+        fontSize:20,
+
+    },
     imageContainer: {
         alignItems: 'center',
     },
@@ -193,9 +212,11 @@ const styles = StyleSheet.create({
 
     },
 
-    background:{
-       
-        
+    background: {
+
+        flex: 1,
+        width: "100%",
+        height: 844
     },
 
 
@@ -207,7 +228,7 @@ const styles = StyleSheet.create({
 
     },
     menu: {
-        height: 60,
+        height: 63,
         flexDirection: 'row',
         justifyContent: 'space-around',
         backgroundColor: 'black'
@@ -225,13 +246,17 @@ const styles = StyleSheet.create({
     },
 
     textMenu: {
+
         textAlign: 'center',
         color: 'white',
+        fontSize: 10,
+        fontWeight: "500",
+
     },
     icons: {
-
-        width: 40,
-        height: 40,
+        marginTop: 5,
+        width: 32,
+        height: 32,
         alignSelf: "center",
         backgroundColor: "black",
 
