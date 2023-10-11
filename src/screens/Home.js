@@ -1,4 +1,4 @@
-import { View, Text, Button, ScrollView, Image, StyleSheet, TouchableOpacity, ImageBackground } from "react-native"
+import { View, Text, ScrollView, Image, StyleSheet, TouchableOpacity, ImageBackground } from "react-native"
 import homeIcon from '../assets/img/home_icon.png'
 import cartIcon from '../assets/img/cart_icon.png'
 import orderIcon from '../assets/img/orders_icon.png'
@@ -87,7 +87,7 @@ const Home = ({ navigation }) => {
                         <Image style={styles.icons} source={cartIcon} />
                     </View>
                 </TouchableOpacity>
-                <TouchableOpacity>
+                <TouchableOpacity style={{}}>
                     <View style={styles.menuItem}>
                         <Image style={styles.icons} source={orderIcon} />
                     </View>
