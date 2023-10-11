@@ -2,14 +2,9 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 import Home from './src/screens/Home';
-import History from './src/screens/History';
 import Notification from './src/screens/Notification';
 import Review from './src/screens/Review';
 import Cart from './src/screens/Cart';
-import StoreInfo from './src/screens/StoreInfo';
-import Promotion from './src/screens/Promotion';
-import SignUp from './src/screens/SignUp';
-import Login from './src/screens/Login';
 import Checkout from './src/screens/Checkout';
 
 
@@ -23,18 +18,13 @@ export default function App() {
       <Stack.Navigator initialRouteName='Home' screenOptions={{headerShown:false}}>
 
         <Stack.Screen name="Home" component={Home} />
+
         <Stack.Screen name="Review" component={Review} />
 
-        <Stack.Screen name="History" component={History} />
         <Stack.Screen name="Notification" component={Notification} />
 
-        <Stack.Screen name="SignUp" component={SignUp} />
-        <Stack.Screen name="Login" component={Login}  />
-
-        <Stack.Screen name="StoreInfo" component={StoreInfo} />
-        <Stack.Screen name="Promotion" component={Promotion} />
-
         <Stack.Screen name="Cart" component={Cart} />
+
         <Stack.Screen name="Checkout" component={Checkout} />
 
       </Stack.Navigator>
