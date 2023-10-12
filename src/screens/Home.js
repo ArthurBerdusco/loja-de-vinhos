@@ -4,9 +4,6 @@ import cartIcon from '../assets/img/cart_icon.png'
 import orderIcon from '../assets/img/orders_icon.png'
 import searchIcon from '../assets/img/search_icon.png'
 
-
-
-
 const vinhos = [
     {
         nome: 'Vinho Tinto Reserva',
@@ -77,29 +74,25 @@ const Home = ({ navigation }) => {
 
             </ScrollView>
             <View style={styles.menu}>
-                <TouchableOpacity title="Comprar" color='black' onPress={() => navigation.navigate('Home')}>
+                <TouchableOpacity color='black' onPress={() => navigation.navigate('Home')}>
                     <View style={styles.menuItem}>
                         <Image style={styles.icons} source={homeIcon} />
                     </View>
                 </TouchableOpacity>
 
-                <TouchableOpacity title="Comprar" color='black' onPress={() => navigation.navigate('Cart')}>
+                <TouchableOpacity color='black' onPress={() => navigation.navigate('Cart')}>
                     <View style={styles.menuItem}>
                         <Image style={styles.icons} source={cartIcon} />
                     </View>
                 </TouchableOpacity>
-<<<<<<< HEAD
 
-                <TouchableOpacity title="Comprar" color='black' onPress={() => navigation.navigate('Checkout')}>
-=======
-                <TouchableOpacity style={{}}>
->>>>>>> 391eeb20a53b2d8cf05bafe97383cf3e2a2123e6
+                <TouchableOpacity color='black' onPress={() => navigation.navigate('Checkout')}>
                     <View style={styles.menuItem}>
                         <Image style={styles.icons} source={orderIcon} />
                     </View>
                 </TouchableOpacity>
 
-                <TouchableOpacity title="Comprar" color='black' onPress={() => navigation.navigate('Se')}>
+                <TouchableOpacity color='black' onPress={() => navigation.navigate('Search')}>
                     <View style={styles.menuItem}>
                         <Image style={styles.icons} source={searchIcon} />
                     </View>

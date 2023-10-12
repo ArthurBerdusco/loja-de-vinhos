@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
 
-const PaymentScreen = () => {
+const Payment = () => {
   const [selectedPayment, setSelectedPayment] = useState(null);
 
   const handlePaymentSelection = (paymentMethod) => {
@@ -68,4 +68,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default PaymentScreen;
+export default Payment;
