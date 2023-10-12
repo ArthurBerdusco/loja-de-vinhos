@@ -77,22 +77,25 @@ const Home = ({ navigation }) => {
 
             </ScrollView>
             <View style={styles.menu}>
-                <TouchableOpacity>
+                <TouchableOpacity title="Comprar" color='black' onPress={() => navigation.navigate('Home')}>
                     <View style={styles.menuItem}>
                         <Image style={styles.icons} source={homeIcon} />
                     </View>
                 </TouchableOpacity>
-                <TouchableOpacity>
+
+                <TouchableOpacity title="Comprar" color='black' onPress={() => navigation.navigate('Cart')}>
                     <View style={styles.menuItem}>
                         <Image style={styles.icons} source={cartIcon} />
                     </View>
                 </TouchableOpacity>
-                <TouchableOpacity>
+
+                <TouchableOpacity title="Comprar" color='black' onPress={() => navigation.navigate('Checkout')}>
                     <View style={styles.menuItem}>
                         <Image style={styles.icons} source={orderIcon} />
                     </View>
                 </TouchableOpacity>
-                <TouchableOpacity>
+
+                <TouchableOpacity title="Comprar" color='black' onPress={() => navigation.navigate('Se')}>
                     <View style={styles.menuItem}>
                         <Image style={styles.icons} source={searchIcon} />
                     </View>
@@ -105,28 +108,27 @@ const Home = ({ navigation }) => {
 
 const Vinho = (props) => {
     return (
-        <TouchableOpacity title="Comprar" color='black' onPress={() => props.navigation.navigate('Review', { vinho: 
+        <TouchableOpacity title="Comprar" color='black' onPress={() => props.navigation.navigate('Review', {
+            vinho:
             {
                 nome: props.nome,
                 preco: props.preco,
                 teorAlcool: props.teorAlcool,
                 imagem: props.imagem,
             }
-        
-        
-        
+
         })}>
-        <View style={styles.card}>
-            <View style={styles.imageContainer}>
-                <Image source={(props.imagem)} style={styles.image} resizeMode="contain"/>
+            <View style={styles.card}>
+                <View style={styles.imageContainer}>
+                    <Image source={(props.imagem)} style={styles.image} resizeMode="contain" />
+                </View>
+                <Text style={styles.text}>{props.nome}</Text>
+                <Text style={styles.text}>Preço: {props.preco}</Text>
+                <Text style={styles.text}>Teor: {props.teorAlcool}%</Text>
+                <Image source={(props.bandeira)} style={styles.bandeira} />
+                <View style={styles.button}>
+                </View>
             </View>
-            <Text style={styles.text}>{props.nome}</Text>
-            <Text style={styles.text}>Preço: {props.preco}</Text>
-            <Text style={styles.text}>Teor: {props.teorAlcool}%</Text>
-            <Image source={(props.bandeira)} style={styles.bandeira}/>
-            <View style={styles.button}>       
-            </View>
-        </View>
         </TouchableOpacity>
     )
 }
@@ -193,9 +195,9 @@ const styles = StyleSheet.create({
 
     },
 
-    background:{
-       
-        
+    background: {
+
+
     },
 
 

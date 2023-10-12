@@ -1,9 +1,10 @@
-import { View, Text } from "react-native"
+import { View, Text, Touchable, TouchableOpacity } from "react-native"
 
 const Cart = () => {
     return(
         <View>
             <Text>Carrinho</Text>
+            <TouchableOpacity ></TouchableOpacity>
         </View>
     )
 }
