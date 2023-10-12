@@ -4,7 +4,6 @@ import Home from './src/screens/Home';
 import Notifications from './src/screens/Notifications';
 import Review from './src/screens/Review';
 import Cart from './src/screens/Cart';
-import Checkout from './src/screens/Checkout';
 import Payment from './src/screens/Payment';
 import NotificationButton from './src/components/NotificationButton';
 import Search from './src/screens/Search';
@@ -29,8 +28,6 @@ export default function App() {
         <Stack.Screen name="Review" component={Review} />
 
         <Stack.Screen name="Cart" component={Cart} />
-
-        <Stack.Screen name="Checkout" component={Checkout} />
 
         <Stack.Screen name="Search" component={Search} />
 
