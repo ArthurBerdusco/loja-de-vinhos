@@ -78,7 +78,7 @@ const styles = StyleSheet.create({
     },
     notificationTitle: {
         fontSize: 20,
-        color: '#2ca234',
+        color: 'red',
         fontWeight: 'bold',
         marginBottom: 5,
     },
