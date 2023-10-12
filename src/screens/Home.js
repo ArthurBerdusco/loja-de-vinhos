@@ -1,4 +1,4 @@
-import { View, Text, Button, ScrollView, Image, StyleSheet, TouchableOpacity, ImageBackground } from "react-native"
+import { View, Text, ScrollView, Image, StyleSheet, TouchableOpacity, ImageBackground } from "react-native"
 import homeIcon from '../assets/img/home_icon.png'
 import cartIcon from '../assets/img/cart_icon.png'
 import orderIcon from '../assets/img/orders_icon.png'
@@ -88,8 +88,12 @@ const Home = ({ navigation }) => {
                         <Image style={styles.icons} source={cartIcon} />
                     </View>
                 </TouchableOpacity>
+<<<<<<< HEAD
 
                 <TouchableOpacity title="Comprar" color='black' onPress={() => navigation.navigate('Checkout')}>
+=======
+                <TouchableOpacity style={{}}>
+>>>>>>> 391eeb20a53b2d8cf05bafe97383cf3e2a2123e6
                     <View style={styles.menuItem}>
                         <Image style={styles.icons} source={orderIcon} />
                     </View>
