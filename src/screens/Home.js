@@ -5,6 +5,7 @@ import orderIcon from '../assets/img/orders_icon.png'
 import searchIcon from '../assets/img/search_icon.png'
 
 
+
 const today = [
     {
         nome: 'Coyat',
@@ -15,6 +16,7 @@ const today = [
         origem: 'Lucerna, Switzerland',
     },
 ]
+
 const vinhos = [
     {
         nome: 'Vinho Tinto Moriet',
@@ -107,6 +109,7 @@ const Home = ({ navigation }) => {
                             />
                         ))}
                     </View>
+
                 </View>
 
             </ScrollView>
@@ -136,7 +139,6 @@ const Home = ({ navigation }) => {
                     </View>
                 </TouchableOpacity>
             </View>
-
         </>
     )
 
@@ -144,7 +146,6 @@ const Home = ({ navigation }) => {
 
 const Vinho = (props) => {
     return (
-
         <TouchableOpacity title="Comprar" color='black' onPress={() => props.navigation.navigate('Review', {
             vinho:
             {
@@ -153,6 +154,7 @@ const Vinho = (props) => {
                 teorAlcool: props.teorAlcool,
                 imagem: props.imagem,
             }
+
         })}>
             <View style={styles.card}>
                 <View style={styles.imageContainer}>
@@ -364,20 +366,14 @@ const styles = StyleSheet.create({
     },
 
     bandeira: {
-
         width: 20,
         height: 20,
-
-
-
     },
 
     background: {
-
         flex: 1,
         width: "100%",
         height: 844,
-
     },
 
 
