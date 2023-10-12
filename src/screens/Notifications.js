@@ -26,7 +26,6 @@ const notifications = [
         valor: 'Evento Gratuito',
         data: '07/10/2023',
     },
-    
 ];
 
 const Notifications = ({ navigation }) => {
