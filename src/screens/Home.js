@@ -4,51 +4,55 @@ import cartIcon from '../assets/img/cart_icon.png'
 import orderIcon from '../assets/img/orders_icon.png'
 import searchIcon from '../assets/img/search_icon.png'
 
-
-
-
 const vinhos = [
     {
-        nome: 'Vinho Tinto Reserva',
+        nome: 'Vinho Tinto Moriet',
         preco: 299.99,
         teorAlcool: 13.5,
-        imagem: require('../assets/img/vinho1.jpg'),
+        imagem: require('../assets/img/vinho1.png'),
         bandeira: require('../assets/img/china.png'),
+        origem: 'Baoshan, China',
+
     },
     {
         nome: 'Vinho Branco Chardonnay',
         preco: 150.29,
         teorAlcool: 12.0,
-        imagem: require('../assets/img/vinho2.jpg'),
+        imagem: require('../assets/img/vinho2.png'),
         bandeira: require('../assets/img/germany.png'),
+        origem: 'Heidelberg, Alemanha',
     },
     {
         nome: 'Vinho Rosé Seco',
         preco: 190.39,
         teorAlcool: 11.5,
-        imagem: require('../assets/img/vinho3.jpg'),
+        imagem: require('../assets/img/vinho3.png'),
         bandeira: require('../assets/img/south-korea.png'),
+        origem: 'Geoje-si, Coreia do Sul',
     },
     {
         nome: 'Vinho Espumante Brut',
         preco: 345.29,
         teorAlcool: 12.8,
-        imagem: require('../assets/img/vinho4.jpg'),
+        imagem: require('../assets/img/vinho4.png'),
         bandeira: require('../assets/img/china.png'),
+        origem: 'Guilin, China',
     },
     {
         nome: 'Vinho Tinto Cabernet',
         preco: 270.79,
         teorAlcool: 14.0,
-        imagem: require('../assets/img/vinho5.jpg'),
+        imagem: require('../assets/img/vinho5.png'),
         bandeira: require('../assets/img/switzerland.png'),
+        origem: 'Grindelwald, Suiça',
     },
     {
         nome: 'Vinho Branco Sauvignon',
         preco: 220.99,
         teorAlcool: 11.8,
-        imagem: require('../assets/img/vinho6.jpg'),
+        imagem: require('../assets/img/vinho6.png'),
         bandeira: require('../assets/img/germany.png'),
+        origem: 'Yangshuo , China',
     },
 ];
 
@@ -57,42 +61,47 @@ const Home = ({ navigation }) => {
 
     return (
         <>
-            <ScrollView>
-                <View style={styles.container}>
+            
+                <ScrollView>
+                <Text style={styles.wines}>Wines</Text>
+                    <View style={styles.container}>
 
-                    <View style={styles.row}>
-                        {vinhos.map((vinho, index) => (
-                            <Vinho
-                                key={index}
-                                nome={vinho.nome}
-                                preco={vinho.preco}
-                                teorAlcool={vinho.teorAlcool}
-                                imagem={vinho.imagem}
-                                bandeira={vinho.bandeira}
-                                navigation={navigation}
-                            />
-                        ))}
+                        <View style={styles.row}>
+                            {vinhos.map((vinho, index) => (
+                                <Vinho
+                                    key={index}
+                                    nome={vinho.nome}
+                                    preco={vinho.preco}
+                                    teorAlcool={vinho.teorAlcool}
+                                    imagem={vinho.imagem}
+                                    bandeira={vinho.bandeira}
+                                    origem={vinho.origem}
+                                    navigation={navigation}
+                                />
+                            ))}
+                        </View>
                     </View>
-                </View>
-
-            </ScrollView>
+                </ScrollView>
             <View style={styles.menu}>
-                <TouchableOpacity>
+                <TouchableOpacity color='black' onPress={() => navigation.navigate('Home')}>
                     <View style={styles.menuItem}>
                         <Image style={styles.icons} source={homeIcon} />
                     </View>
                 </TouchableOpacity>
-                <TouchableOpacity>
+
+                <TouchableOpacity color='black' onPress={() => navigation.navigate('Cart')}>
                     <View style={styles.menuItem}>
                         <Image style={styles.icons} source={cartIcon} />
                     </View>
                 </TouchableOpacity>
-                <TouchableOpacity style={{}}>
+
+                <TouchableOpacity color='black' onPress={() => navigation.navigate('Checkout')}>
                     <View style={styles.menuItem}>
                         <Image style={styles.icons} source={orderIcon} />
                     </View>
                 </TouchableOpacity>
-                <TouchableOpacity>
+
+                <TouchableOpacity color='black' onPress={() => navigation.navigate('Search')}>
                     <View style={styles.menuItem}>
                         <Image style={styles.icons} source={searchIcon} />
                     </View>
@@ -105,29 +114,34 @@ const Home = ({ navigation }) => {
 
 const Vinho = (props) => {
     return (
-        <TouchableOpacity title="Comprar" color='black' onPress={() => props.navigation.navigate('Review', { vinho: 
+        <TouchableOpacity title="Comprar" color='black' onPress={() => props.navigation.navigate('Review', {
+            vinho:
             {
                 nome: props.nome,
                 preco: props.preco,
                 teorAlcool: props.teorAlcool,
                 imagem: props.imagem,
             }
-        
-        
-        
+
         })}>
-        <View style={styles.card}>
-            <View style={styles.imageContainer}>
-                <Image source={(props.imagem)} style={styles.image} resizeMode="contain"/>
+            <View style={styles.card}>
+                <View style={styles.imageContainer}>
+                    <Image source={(props.imagem)} style={styles.image} resizeMode="contain" />
+                </View>
+                <Text style={styles.text_name}>{props.nome}</Text>
+                <View style={styles.country}>
+                    <Image source={(props.bandeira)} style={styles.bandeira} />
+                    <Text style={styles.text_country}> {props.origem} </Text>
+                </View>
+                <Text style={styles.text}>Teor Alcolico: {props.teorAlcool}%</Text>
+                <View style={styles.line}></View>
+                <Text style={styles.text_preco}>R${props.preco}</Text>
+                
             </View>
-            <Text style={styles.text}>{props.nome}</Text>
-            <Text style={styles.text}>Preço: {props.preco}</Text>
-            <Text style={styles.text}>Teor: {props.teorAlcool}%</Text>
-            <Image source={(props.bandeira)} style={styles.bandeira}/>
-            <View style={styles.button}>       
-            </View>
-        </View>
         </TouchableOpacity>
+
+        
+
     )
 }
 
@@ -135,7 +149,7 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         justifyContent: 'center',
-
+        backgroundColor:"black"
     },
     row: {
         flexDirection: 'row',
@@ -146,11 +160,13 @@ const styles = StyleSheet.create({
     card: {
         width: 373,
         borderRadius: 50,
-        backgroundColor: "white",
+        backgroundColor: "#75D66D",
         flexDirection: "column",
         height: 177,
         marginBottom: 20,
         marginTop: 30,
+        marginLeft: 10,
+
 
     },
 
@@ -165,13 +181,71 @@ const styles = StyleSheet.create({
 
     },
     text: {
-        marginLeft: 30,
+        marginLeft: 55,
         textAlign: "justify",
-        top: 50,
-        fontWeight: "600"
+        top: 30,
+        fontWeight: "400",
+        color: "black",
+        
 
 
     },
+    line: {
+        height: 2,  
+        backgroundColor: 'black',
+        top: 35,  
+        left: 25,
+        marginRight: 125,
+        borderRadius: 100,
+      },
+    text_preco: {
+        marginLeft: "auto",
+        marginRight: 100,
+        textAlign: "right",
+        top: 35,
+        fontWeight: "bold",
+        color: "black",
+        fontSize: 15
+        
+
+
+    },
+    text_name: {
+        fontSize: 30,
+        lineHeight: 30,
+        fontWeight:"400",
+        color: "black",
+        textAlign: "left",
+        width: 262,
+        height: 60,
+        marginLeft:30,
+        top:25,
+        
+    },
+    text_country: {
+        fontWeight: "600"
+    },
+    country: {
+        marginLeft: 30,
+        top: 30,
+        flexDirection: 'row', 
+        alignItems: 'center'
+
+    },
+
+    wines: {
+        fontSize: 30,
+        lineHeight: 35,
+        fontWeight:"300",
+        color: "white",
+        textAlign: "left",
+        
+        fontStyle:"italic",
+        backgroundColor: "black"
+        
+    },
+
+
     imageContainer: {
         alignItems: 'center',
     },
@@ -183,19 +257,14 @@ const styles = StyleSheet.create({
     },
 
     bandeira: {
-
         width: 20,
         height: 20,
-        position: "relative",
-        top: 55,
-        left: 30,
-
-
     },
 
-    background:{
-       
-        
+    background: {
+        flex: 1,
+        width: "100%",
+        height: 844,
     },
 
 
@@ -207,7 +276,7 @@ const styles = StyleSheet.create({
 
     },
     menu: {
-        height: 60,
+        height: 63,
         flexDirection: 'row',
         justifyContent: 'space-around',
         backgroundColor: 'black'
@@ -225,13 +294,17 @@ const styles = StyleSheet.create({
     },
 
     textMenu: {
+
         textAlign: 'center',
         color: 'white',
+        fontSize: 10,
+        fontWeight: "500",
+
     },
     icons: {
-
-        width: 40,
-        height: 40,
+        marginTop: 5,
+        width: 32,
+        height: 32,
         alignSelf: "center",
         backgroundColor: "black",
 
