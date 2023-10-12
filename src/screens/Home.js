@@ -4,10 +4,6 @@ import cartIcon from '../assets/img/cart_icon.png'
 import orderIcon from '../assets/img/orders_icon.png'
 import searchIcon from '../assets/img/search_icon.png'
 
-
-
-
-
 const vinhos = [
     {
         nome: 'Vinho Tinto Moriet',
@@ -85,35 +81,32 @@ const Home = ({ navigation }) => {
                             ))}
                         </View>
                     </View>
-
                 </ScrollView>
-                <View style={styles.menu}>
-                    <TouchableOpacity>
-                        <View style={styles.menuItem}>
-                            <Image style={styles.icons} source={homeIcon} />
-                            <Text style={styles.textMenu}>Home</Text>
-                        </View>
-                    </TouchableOpacity>
-                    <TouchableOpacity>
-                        <View style={styles.menuItem}>
-                            <Image style={styles.icons} source={cartIcon} />
-                            <Text style={styles.textMenu}>Cart</Text>
-                        </View>
-                    </TouchableOpacity>
-                    <TouchableOpacity style={{}}>
-                        <View style={styles.menuItem}>
-                            <Image style={styles.icons} source={orderIcon} />
-                            <Text style={styles.textMenu}>Orders</Text>
-                        </View>
-                    </TouchableOpacity>
-                    <TouchableOpacity>
-                        <View style={styles.menuItem}>
-                            <Image style={styles.icons} source={searchIcon} />
-                            <Text style={styles.textMenu}>Search</Text>
-                        </View>
-                    </TouchableOpacity>
-                </View>
-            
+            <View style={styles.menu}>
+                <TouchableOpacity color='black' onPress={() => navigation.navigate('Home')}>
+                    <View style={styles.menuItem}>
+                        <Image style={styles.icons} source={homeIcon} />
+                    </View>
+                </TouchableOpacity>
+
+                <TouchableOpacity color='black' onPress={() => navigation.navigate('Cart')}>
+                    <View style={styles.menuItem}>
+                        <Image style={styles.icons} source={cartIcon} />
+                    </View>
+                </TouchableOpacity>
+
+                <TouchableOpacity color='black' onPress={() => navigation.navigate('Checkout')}>
+                    <View style={styles.menuItem}>
+                        <Image style={styles.icons} source={orderIcon} />
+                    </View>
+                </TouchableOpacity>
+
+                <TouchableOpacity color='black' onPress={() => navigation.navigate('Search')}>
+                    <View style={styles.menuItem}>
+                        <Image style={styles.icons} source={searchIcon} />
+                    </View>
+                </TouchableOpacity>
+            </View>
         </>
     )
 
@@ -121,7 +114,6 @@ const Home = ({ navigation }) => {
 
 const Vinho = (props) => {
     return (
-
         <TouchableOpacity title="Comprar" color='black' onPress={() => props.navigation.navigate('Review', {
             vinho:
             {
@@ -130,6 +122,7 @@ const Vinho = (props) => {
                 teorAlcool: props.teorAlcool,
                 imagem: props.imagem,
             }
+
         })}>
             <View style={styles.card}>
                 <View style={styles.imageContainer}>
@@ -145,7 +138,6 @@ const Vinho = (props) => {
                 <Text style={styles.text_preco}>R${props.preco}</Text>
                 
             </View>
-           
         </TouchableOpacity>
 
         
@@ -265,20 +257,14 @@ const styles = StyleSheet.create({
     },
 
     bandeira: {
-
         width: 20,
         height: 20,
-
-
-
     },
 
     background: {
-
         flex: 1,
         width: "100%",
         height: 844,
-
     },
 
 
