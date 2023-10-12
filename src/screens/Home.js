@@ -4,6 +4,19 @@ import cartIcon from '../assets/img/cart_icon.png'
 import orderIcon from '../assets/img/orders_icon.png'
 import searchIcon from '../assets/img/search_icon.png'
 
+
+
+const today = [
+    {
+        nome: 'Coyat',
+        preco: 500.00,
+        teorAlcool: 30.5,
+        imagem: require('../assets/img/coyat.png'),
+        bandeira: require('../assets/img/switzerland.png'),
+        origem: 'Lucerna, Switzerland',
+    },
+]
+
 const vinhos = [
     {
         nome: 'Vinho Tinto Moriet',
@@ -55,55 +68,74 @@ const vinhos = [
         origem: 'Yangshuo , China',
     },
 ];
-
-
 const Home = ({ navigation }) => {
 
     return (
         <>
-            
-                <ScrollView>
-                <Text style={styles.wines}>Wines</Text>
-                    <View style={styles.container}>
-
-                        <View style={styles.row}>
-                            {vinhos.map((vinho, index) => (
-                                <Vinho
-                                    key={index}
-                                    nome={vinho.nome}
-                                    preco={vinho.preco}
-                                    teorAlcool={vinho.teorAlcool}
-                                    imagem={vinho.imagem}
-                                    bandeira={vinho.bandeira}
-                                    origem={vinho.origem}
-                                    navigation={navigation}
-                                />
-                            ))}
-                        </View>
+            <ScrollView>
+                
+                <View style={styles.container}>
+                <Text style={styles.wines}>Today</Text>
+                    <View style={styles.row}>
+                        {today.map((today, index) => (
+                            <Today
+                                key={index}
+                                nome={today.nome}
+                                preco={today.preco}
+                                teorAlcool={today.teorAlcool}
+                                imagem={today.imagem}
+                                bandeira={today.bandeira}
+                                origem={today.origem}
+                                navigation={navigation}
+                            />
+                        ))}
                     </View>
-                </ScrollView>
+                </View>
+                
+               
+                <View style={styles.container}>
+                <Text style={styles.wines}>Wines</Text>
+                    <View style={styles.row}>
+                        {vinhos.map((vinho, index) => (
+                            <Vinho
+                                key={index}
+                                nome={vinho.nome}
+                                preco={vinho.preco}
+                                teorAlcool={vinho.teorAlcool}
+                                imagem={vinho.imagem}
+                                bandeira={vinho.bandeira}
+                                origem={vinho.origem}
+                                navigation={navigation}
+                            />
+                        ))}
+                    </View>
+
+                </View>
+
+            </ScrollView>
             <View style={styles.menu}>
-                <TouchableOpacity color='black' onPress={() => navigation.navigate('Home')}>
+                <TouchableOpacity>
                     <View style={styles.menuItem}>
                         <Image style={styles.icons} source={homeIcon} />
+                        <Text style={styles.textMenu}>Home</Text>
                     </View>
                 </TouchableOpacity>
-
-                <TouchableOpacity color='black' onPress={() => navigation.navigate('Cart')}>
+                <TouchableOpacity>
                     <View style={styles.menuItem}>
                         <Image style={styles.icons} source={cartIcon} />
+                        <Text style={styles.textMenu}>Cart</Text>
                     </View>
                 </TouchableOpacity>
-
-                <TouchableOpacity color='black' onPress={() => navigation.navigate('Checkout')}>
+                <TouchableOpacity style={{}}>
                     <View style={styles.menuItem}>
                         <Image style={styles.icons} source={orderIcon} />
+                        <Text style={styles.textMenu}>Orders</Text>
                     </View>
                 </TouchableOpacity>
-
-                <TouchableOpacity color='black' onPress={() => navigation.navigate('Search')}>
+                <TouchableOpacity>
                     <View style={styles.menuItem}>
                         <Image style={styles.icons} source={searchIcon} />
+                        <Text style={styles.textMenu}>Search</Text>
                     </View>
                 </TouchableOpacity>
             </View>
@@ -130,17 +162,52 @@ const Vinho = (props) => {
                 </View>
                 <Text style={styles.text_name}>{props.nome}</Text>
                 <View style={styles.country}>
+                    <Image source={(props.bandeira)}style={styles.bandeira} />
+                    <Text style={styles.text_country}>{props.origem}</Text>
+                </View>
+                <Text style={styles.text}>Teor Alcolico: {props.teorAlcool}%</Text>
+                <View style={styles.line}></View>
+                <Text style={styles.text_preco}>R${props.preco}</Text>
+
+            </View>
+
+        </TouchableOpacity>
+
+
+
+    )
+}
+const Today = (props) => {
+    return (
+
+        <TouchableOpacity title="Comprar" color='black' onPress={() => props.navigation.navigate('Review', {
+            vinho:
+            {
+                nome: props.nome,
+                preco: props.preco,
+                teorAlcool: props.teorAlcool,
+                imagem: props.imagem,
+            }
+        })}>
+            <View style={styles.card_today}>
+                <View style={styles.imageContainer}>
+                    <Image source={(props.imagem)} style={styles.image_today} resizeMode="contain" />
+                </View>
+                <Text style={styles.text_name_today}>{props.nome}</Text>
+                <Text style={styles.text_name_today_today}>{props.nome}</Text>
+                <View style={styles.country}>
                     <Image source={(props.bandeira)} style={styles.bandeira} />
                     <Text style={styles.text_country}> {props.origem} </Text>
                 </View>
                 <Text style={styles.text}>Teor Alcolico: {props.teorAlcool}%</Text>
                 <View style={styles.line}></View>
                 <Text style={styles.text_preco}>R${props.preco}</Text>
-                
+
             </View>
+
         </TouchableOpacity>
 
-        
+
 
     )
 }
@@ -149,7 +216,7 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         justifyContent: 'center',
-        backgroundColor:"black"
+        backgroundColor: "black"
     },
     row: {
         flexDirection: 'row',
@@ -159,15 +226,24 @@ const styles = StyleSheet.create({
 
     card: {
         width: 373,
-        borderRadius: 50,
-        backgroundColor: "#75D66D",
+        borderRadius: 20,
+        backgroundColor: "white",
         flexDirection: "column",
         height: 177,
         marginBottom: 20,
         marginTop: 30,
         marginLeft: 10,
+    },
 
-
+    card_today: {
+        width: 373,
+        borderRadius: 20,
+        backgroundColor: "#FF8D4D",
+        flexDirection: "column",
+        height: 177,
+        marginBottom: 20,
+        marginTop: 30,
+        marginLeft: 10,
     },
 
     title: {
@@ -181,23 +257,23 @@ const styles = StyleSheet.create({
 
     },
     text: {
-        marginLeft: 55,
+        marginLeft: 50,
         textAlign: "justify",
         top: 30,
         fontWeight: "400",
         color: "black",
-        
+
 
 
     },
     line: {
-        height: 2,  
+        height: 2,
         backgroundColor: 'black',
-        top: 35,  
+        top: 35,
         left: 25,
         marginRight: 125,
         borderRadius: 100,
-      },
+    },
     text_preco: {
         marginLeft: "auto",
         marginRight: 100,
@@ -206,43 +282,70 @@ const styles = StyleSheet.create({
         fontWeight: "bold",
         color: "black",
         fontSize: 15
-        
+
 
 
     },
     text_name: {
         fontSize: 30,
         lineHeight: 30,
-        fontWeight:"400",
+        fontWeight: "400",
         color: "black",
         textAlign: "left",
         width: 262,
         height: 60,
-        marginLeft:30,
-        top:25,
-        
+        marginLeft: 30,
+        top: 25,
+    },
+    text_name_today: {
+        fontSize: 60,
+        lineHeight: 60,
+        fontWeight: "700",
+        fontStyle:"italic",
+        fontVariant: "small-caps;",
+        color: "#1117F5",
+        textAlign: "left",
+        width: 200,
+        height: 60,
+        marginLeft: 31,
+        top: 10,
+
+    },
+    text_name_today_today: {
+        position:"absolute",
+        fontSize: 60,
+        lineHeight: 60,
+        fontWeight: "300",
+        fontStyle:"italic",
+        fontVariant: "small-caps;",
+        color: "white",
+        textAlign: "left",
+        width: 200,
+        height: 60,
+        marginLeft: 30,
+        top:10,
     },
     text_country: {
-        fontWeight: "600"
+        fontWeight: "600",
+        
     },
     country: {
         marginLeft: 30,
         top: 30,
-        flexDirection: 'row', 
+        flexDirection: 'row',
         alignItems: 'center'
 
     },
 
     wines: {
         fontSize: 30,
-        lineHeight: 35,
-        fontWeight:"300",
+       
+        fontWeight: "300",
         color: "white",
         textAlign: "left",
+        fontStyle: "italic",
         
-        fontStyle:"italic",
-        backgroundColor: "black"
-        
+
     },
 
 
@@ -251,8 +354,14 @@ const styles = StyleSheet.create({
     },
     image: {
         position: "absolute",
-        left: 120,
+        left: 130,
         height: 164,
+        width: "100%",
+    },
+    image_today: {
+        position: "absolute",
+        left: 105,
+        height: 177,
         width: "100%",
     },
 
