@@ -21,7 +21,7 @@ const Payment = () => {
       alert('Por favor, escolha uma forma de pagamento.');
       return;
     }
-
+//Logica 
     // Add authentication logic here for the selected payment method
     switch (selectedPayment) {
       case 'creditCard':
