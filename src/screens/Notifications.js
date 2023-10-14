@@ -7,28 +7,35 @@ const notifications = [
         descricao: 'Vinho Tinto Cabernet Sauvignon 2018 em promoção!',
         valor: 'R$ 29,90',
         data: '1h',
-        viwed: false
+        viewed: false
     },
     {
         nome: 'Lançamento',
         descricao: 'Novo Vinho Branco Chardonnay Safra 2024 disponível!',
         valor: 'R$ 45,50',
         data: '2h',
-        viwed: true
+        viewed: true
     },
     {
         nome: 'Desconto Exclusivo',
         descricao: 'Desconto de 15% em todas as garrafas de Malbec!',
         valor: '15% de desconto',
         data: '7h',
-        viwed: false
+        viewed: false
+    },
+    {
+        nome: 'Somente hoje',
+        descricao: 'Cupom de 100R$ para compras acima de 300R$!',
+        valor: '100R$',
+        data: '9h',
+        viewed: false
     },
     {
         nome: 'Degustação',
         descricao: 'Degustação de Vinhos Premium no sábado, participe!',
         valor: 'Evento Gratuito',
         data: '1d',
-        viwed: true
+        viewed: true
     },
 ];
 
@@ -42,13 +49,24 @@ const CustomToggleButton = ({ label, selected, onPress }) => {
 
 const Notifications = ({ navigation }) => {
     const [selection, setSelection] = useState('Todas'); // Inicialmente, exibe todas
+    const [notificationData, setNotificationData] = useState(notifications); // Substitua o array com suas notificações reais
 
     const handleToggle = (newSelection) => {
         setSelection(newSelection);
     };
 
+    const handleNotificationPress = (notification) => {
+        // Verifique alguma condição específica na notificação antes de marcá-la como "viewed".
+        if (!notification.viewed) {
+            const updatedNotifications = notificationData.map((n) =>
+                n === notification ? { ...n, viewed: true } : n
+            );
+            setNotificationData(updatedNotifications);
+        }
+    };
+
     // Filtrar as notificações com base na seleção atual
-    const filteredNotifications = selection === 'Todas' ? notifications : notifications.filter(notification => !notification.viwed);
+    const filteredNotifications = selection === 'Todas' ? notificationData : notificationData.filter(notification => !notification.viewed);
 
     return (
         <View style={styles.container}>
@@ -59,10 +77,12 @@ const Notifications = ({ navigation }) => {
             {filteredNotifications.map((note, index) => (
                 <Notification
                     key={index}
-                    viwed={note.viwed}
+                    viewed={note.viewed}
                     descricao={note.descricao}
                     valor={note.valor}
                     data={note.data}
+                    navigation={navigation}
+                    handleNotificationPress={() => handleNotificationPress(note)} // Passa a função diretamente
                 />
             ))}
         </View>
@@ -70,10 +90,13 @@ const Notifications = ({ navigation }) => {
 };
 
 const Notification = (props) => {
-    const bolinhaStyle = props.viwed ? styles.bolinhaLida : styles.bolinhaNaoLida;
+    const bolinhaStyle = props.viewed ? styles.bolinhaNaoLida : styles.bolinhaLida;
 
     return (
-        <TouchableOpacity style={styles.notification} onPress={()=>{props.viewd=true}}>
+        <TouchableOpacity style={styles.notification} onPress={() => {
+            props.handleNotificationPress(); // Chama a função passada como prop
+            props.navigation.navigate('NotificationContent');
+        }}>
             <View style={bolinhaStyle}></View>
             <View style={styles.notificationContent}>
                 <Text style={styles.notificationText}>{props.descricao}</Text>
@@ -102,37 +125,43 @@ const styles = StyleSheet.create({
         shadowOffset: { width: 0, height: 2 },
         shadowOpacity: 0.2,
         shadowRadius: 2,
+        paddingLeft: 20,
+        paddingRight: 20
     },
     notificationContent: {
         flex: 1,
         flexDirection: 'row',
         justifyContent: 'space-between',
+        alignItems: 'center',
+        
     },
     bolinhaLida: {
         width: 10,
         height: 10,
         borderRadius: 5,
         backgroundColor: 'blue',
-        marginRight: 10,
+        marginRight: 30,
     },
     bolinhaNaoLida: {
         width: 10,
         height: 10,
         borderRadius: 5,
         backgroundColor: 'transparent',
-        marginRight: 10,
+        marginRight: 30,
     },
     notificationText: {
-        fontSize: 16,
+        fontSize: 14,
         color: 'gray',
+        marginRight: 30,
+        width: '80%'
     },
     notificationDate: {
         fontSize: 14,
         color: 'gray',
+        
     },
     toggleContainer: {
         flexDirection: 'row',
-
     },
     toggleButton: {
         justifyContent: 'center',

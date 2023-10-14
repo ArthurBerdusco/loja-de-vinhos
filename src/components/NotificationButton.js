@@ -13,7 +13,7 @@ const NotificationButton = (props) => {
       <Icon name="bell" size={24} color="#333">
 
         <View style={styles.notificationBadge}>
-          <Text style={styles.notificationText}>{props.notifications + '+'}</Text>
+          <Text style={styles.notificationText}>{props.count + '+'}</Text>
         </View>
 
       </Icon>

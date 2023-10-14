@@ -114,25 +114,25 @@ const Home = ({ navigation }) => {
 
             </ScrollView>
             <View style={styles.menu}>
-                <TouchableOpacity>
+                <TouchableOpacity onPress={()=>{ navigation.navigate('Home')}}>
                     <View style={styles.menuItem}>
                         <Image style={styles.icons} source={homeIcon} />
                         <Text style={styles.textMenu}>Home</Text>
                     </View>
                 </TouchableOpacity>
-                <TouchableOpacity>
+                <TouchableOpacity onPress={()=>{ navigation.navigate('Cart')}}>
                     <View style={styles.menuItem}>
                         <Image style={styles.icons} source={cartIcon} />
                         <Text style={styles.textMenu}>Cart</Text>
                     </View>
                 </TouchableOpacity>
-                <TouchableOpacity style={{}}>
+                <TouchableOpacity onPress={()=>{ navigation.navigate('Payment')}}>
                     <View style={styles.menuItem}>
                         <Image style={styles.icons} source={orderIcon} />
                         <Text style={styles.textMenu}>Orders</Text>
                     </View>
                 </TouchableOpacity>
-                <TouchableOpacity>
+                <TouchableOpacity onPress={()=>{ navigation.navigate('Search')}}>
                     <View style={styles.menuItem}>
                         <Image style={styles.icons} source={searchIcon} />
                         <Text style={styles.textMenu}>Search</Text>

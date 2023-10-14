@@ -10,21 +10,24 @@ const Review = ({ route }) => {
       <Image source={vinho.imagem} style={styles.image} />
       <Text style={styles.name}>{vinho.nome}</Text>
 
-      <View style= {styles.vconteudo}> 
-      <Text style={styles.price}>Preço: </Text>
-      <Text style={styles.conteudo}>{vinho.preco}</Text></View>
+      <View style={styles.vconteudo}>
+        <Text style={styles.price}>Preço: </Text>
+        <Text style={styles.conteudo}>{vinho.preco}</Text></View>
 
-      <View style= {styles.vconteudo}> 
-      <Text style={styles.alcoholContent}>Teor Alcoólico: </Text>
-      <Text style={styles.conteudo}>{vinho.teorAlcool}%</Text></View>
+      <View style={styles.vconteudo}>
+        <Text style={styles.alcoholContent}>Teor Alcoólico: </Text>
+        <Text style={styles.conteudo}>{vinho.teorAlcool}%</Text>
+      </View>
 
-      <View style= {styles.vconteudo}> 
-      <Text style={styles.description}>Descrição: </Text>
-      <Text style={styles.conteudo}>{vinho.classificacao} Sobre o vinho...</Text></View>
+      <View style={styles.vconteudo}>
+        <Text style={styles.description}>Descrição: </Text>
+        <Text style={styles.conteudo}>{vinho.classificacao} Sobre o vinho...</Text>
+      </View>
 
-      <View style= {styles.vconteudo}> 
-      <Text style={styles.rating}>Classificação: </Text>
-      <Text style={styles.conteudo}>{vinho.classificacao} Estrelas</Text></View>
+      <View style={styles.vconteudo}>
+        <Text style={styles.rating}>Classificação: </Text>
+        <Text style={styles.conteudo}>{vinho.classificacao} Estrelas</Text>
+      </View>
 
     </ScrollView>
   );
