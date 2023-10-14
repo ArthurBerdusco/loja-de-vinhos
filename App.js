@@ -22,7 +22,7 @@ export default function App() {
           headerTitleAlign: 'center',
           headerRight: () => (
             <NotificationButton
-              count={2}
+              count={3}
               navigation={useNavigation()}
             />
           ),
@@ -32,11 +32,13 @@ export default function App() {
         <Stack.Screen name="Home" component={Home} options={{ headerTitle: 'Home' }} />
         <Stack.Screen name="Review" component={Review} options={{ headerTitle: 'Informações' }} />
         <Stack.Screen name="Cart" component={Cart} options={{ headerTitle: 'Carrinho' }} />
-        <Stack.Screen name="Search" component={Search} options={{ headerTitle: 'Buscar' }} />
         <Stack.Screen name="Payment" component={Payment} options={{ headerTitle: 'Pagamento' }} />
+
         <Stack.Screen name="Notifications" component={Notifications} options={{ headerRight: null, headerTitle: 'Notificações' }} />
         <Stack.Screen name="NotificationContent" component={NotificationContent} options={{ headerRight: null, headerTitle: 'Notificação' }} />
 
+        <Stack.Screen name="Search" component={Search} options={{ headerTitle: 'Buscar' }} />
+        
       </Stack.Navigator>
     </NavigationContainer>
   );
