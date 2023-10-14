@@ -7,6 +7,7 @@ const NotificationButton = (props) => {
     <TouchableOpacity
       style={styles.container}
       onPress={()=>{
+        styles.notificationBadge = null;
         props.navigation.navigate('Notifications')
       }}
     >
