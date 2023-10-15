@@ -7,13 +7,14 @@ const NotificationButton = (props) => {
     <TouchableOpacity
       style={styles.container}
       onPress={()=>{
+        styles.notificationBadge = null;
         props.navigation.navigate('Notifications')
       }}
     >
       <Icon name="bell" size={24} color="#333">
 
         <View style={styles.notificationBadge}>
-          <Text style={styles.notificationText}>{props.notifications + '+'}</Text>
+          <Text style={styles.notificationText}>{props.count + '+'}</Text>
         </View>
 
       </Icon>
