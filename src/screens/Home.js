@@ -3,6 +3,7 @@ import homeIcon from '../assets/img/home_icon.png'
 import cartIcon from '../assets/img/cart_icon.png'
 import orderIcon from '../assets/img/orders_icon.png'
 import searchIcon from '../assets/img/search_icon.png'
+import star from '../assets/img/star.png'
 
 
 
@@ -14,6 +15,7 @@ const today = [
         imagem: require('../assets/img/coyat.png'),
         bandeira: require('../assets/img/switzerland.png'),
         origem: 'Lucerna, Switzerland',
+        rating: 4.5
     },
 ]
 
@@ -25,6 +27,7 @@ const vinhos = [
         imagem: require('../assets/img/vinho1.png'),
         bandeira: require('../assets/img/china.png'),
         origem: 'Baoshan, China',
+        rating: 5
 
     },
     {
@@ -34,6 +37,7 @@ const vinhos = [
         imagem: require('../assets/img/vinho2.png'),
         bandeira: require('../assets/img/germany.png'),
         origem: 'Heidelberg, Alemanha',
+        rating: 4.2
     },
     {
         nome: 'Vinho Rosé Seco',
@@ -42,6 +46,7 @@ const vinhos = [
         imagem: require('../assets/img/vinho3.png'),
         bandeira: require('../assets/img/south-korea.png'),
         origem: 'Geoje-si, Coreia do Sul',
+        rating: 4.3
     },
     {
         nome: 'Vinho Espumante Brut',
@@ -50,6 +55,7 @@ const vinhos = [
         imagem: require('../assets/img/vinho4.png'),
         bandeira: require('../assets/img/china.png'),
         origem: 'Guilin, China',
+        rating: 3.3
     },
     {
         nome: 'Vinho Tinto Cabernet',
@@ -58,6 +64,7 @@ const vinhos = [
         imagem: require('../assets/img/vinho5.png'),
         bandeira: require('../assets/img/switzerland.png'),
         origem: 'Grindelwald, Suiça',
+        rating: 5
     },
     {
         nome: 'Vinho Branco Sauvignon',
@@ -66,6 +73,7 @@ const vinhos = [
         imagem: require('../assets/img/vinho6.png'),
         bandeira: require('../assets/img/germany.png'),
         origem: 'Yangshuo , China',
+        rating: 4.5
     },
 ];
 const Home = ({ navigation }) => {
@@ -73,9 +81,9 @@ const Home = ({ navigation }) => {
     return (
         <>
             <ScrollView>
-                
+
                 <View style={styles.container}>
-                <Text style={styles.wines}>Today</Text>
+                    <Text style={styles.wines}>Today</Text>
                     <View style={styles.row}>
                         {today.map((today, index) => (
                             <Today
@@ -86,15 +94,16 @@ const Home = ({ navigation }) => {
                                 imagem={today.imagem}
                                 bandeira={today.bandeira}
                                 origem={today.origem}
+                                rating={today.rating}
                                 navigation={navigation}
                             />
                         ))}
                     </View>
                 </View>
-                
-               
+
+
                 <View style={styles.container}>
-                <Text style={styles.wines}>Wines</Text>
+                    <Text style={styles.wines}>Wines</Text>
                     <View style={styles.row}>
                         {vinhos.map((vinho, index) => (
                             <Vinho
@@ -105,6 +114,7 @@ const Home = ({ navigation }) => {
                                 imagem={vinho.imagem}
                                 bandeira={vinho.bandeira}
                                 origem={vinho.origem}
+                                rating={vinho.rating}
                                 navigation={navigation}
                             />
                         ))}
@@ -114,25 +124,31 @@ const Home = ({ navigation }) => {
 
             </ScrollView>
             <View style={styles.menu}>
-                <TouchableOpacity onPress={()=>{ navigation.navigate('Home')}}>
+                <TouchableOpacity color='black' onPress={() => navigation.navigate('Home')}>
+
                     <View style={styles.menuItem}>
                         <Image style={styles.icons} source={homeIcon} />
                         <Text style={styles.textMenu}>Home</Text>
                     </View>
                 </TouchableOpacity>
-                <TouchableOpacity onPress={()=>{ navigation.navigate('Cart')}}>
+
+                <TouchableOpacity color='black' onPress={() => navigation.navigate('Cart')}>
                     <View style={styles.menuItem}>
                         <Image style={styles.icons} source={cartIcon} />
                         <Text style={styles.textMenu}>Cart</Text>
                     </View>
                 </TouchableOpacity>
-                <TouchableOpacity onPress={()=>{ navigation.navigate('Payment')}}>
+
+                <TouchableOpacity color='black' onPress={() => navigation.navigate('Payment')}>
+
                     <View style={styles.menuItem}>
                         <Image style={styles.icons} source={orderIcon} />
                         <Text style={styles.textMenu}>Orders</Text>
                     </View>
                 </TouchableOpacity>
-                <TouchableOpacity onPress={()=>{ navigation.navigate('Search')}}>
+
+                <TouchableOpacity color='black' onPress={() => navigation.navigate('Search', {vinhos})}>
+
                     <View style={styles.menuItem}>
                         <Image style={styles.icons} source={searchIcon} />
                         <Text style={styles.textMenu}>Search</Text>
@@ -153,6 +169,7 @@ const Vinho = (props) => {
                 preco: props.preco,
                 teorAlcool: props.teorAlcool,
                 imagem: props.imagem,
+                rating: props.rating
             }
 
         })}>
@@ -162,13 +179,16 @@ const Vinho = (props) => {
                 </View>
                 <Text style={styles.text_name}>{props.nome}</Text>
                 <View style={styles.country}>
-                    <Image source={(props.bandeira)}style={styles.bandeira} />
+                    <Image source={(props.bandeira)} style={styles.bandeira} />
                     <Text style={styles.text_country}>{props.origem}</Text>
                 </View>
                 <Text style={styles.text}>Teor Alcolico: {props.teorAlcool}%</Text>
                 <View style={styles.line}></View>
                 <Text style={styles.text_preco}>R${props.preco}</Text>
-
+                <View style={styles.classify}>
+                    <Image source={star} style={styles.star} />
+                    <Text style={styles.rating}>{props.rating}</Text>
+                </View>
             </View>
 
         </TouchableOpacity>
@@ -187,6 +207,7 @@ const Today = (props) => {
                 preco: props.preco,
                 teorAlcool: props.teorAlcool,
                 imagem: props.imagem,
+                rating: props.rating,
             }
         })}>
             <View style={styles.card_today}>
@@ -195,13 +216,19 @@ const Today = (props) => {
                 </View>
                 <Text style={styles.text_name_today}>{props.nome}</Text>
                 <Text style={styles.text_name_today_today}>{props.nome}</Text>
-                <View style={styles.country}>
-                    <Image source={(props.bandeira)} style={styles.bandeira} />
-                    <Text style={styles.text_country}> {props.origem} </Text>
+                <View style={styles.container_today}>
+                    <View style={styles.country}>
+                        <Image source={(props.bandeira)} style={styles.bandeira} />
+                        <Text style={styles.text_country}> {props.origem} </Text>
+                    </View>
+                    <Text style={styles.text}>Teor Alcolico: {props.teorAlcool}%</Text>
+                    <View style={styles.line}></View>
+                    <Text style={styles.text_preco}>R${props.preco}</Text>
+                    <View style={styles.classify}>
+                        <Image source={star} style={styles.star} />
+                        <Text style={styles.rating}>{props.rating}</Text>
+                    </View>
                 </View>
-                <Text style={styles.text}>Teor Alcolico: {props.teorAlcool}%</Text>
-                <View style={styles.line}></View>
-                <Text style={styles.text_preco}>R${props.preco}</Text>
 
             </View>
 
@@ -216,7 +243,10 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         justifyContent: 'center',
-        backgroundColor: "black"
+        backgroundColor: "green"
+    },
+    container_today: {
+        marginTop: 40,
     },
     row: {
         flexDirection: 'row',
@@ -237,10 +267,10 @@ const styles = StyleSheet.create({
 
     card_today: {
         width: 373,
-        borderRadius: 20,
-        backgroundColor: "#FF8D4D",
+        borderRadius: 34,
+        backgroundColor: "orange",
         flexDirection: "column",
-        height: 177,
+        height: 240,
         marginBottom: 20,
         marginTop: 30,
         marginLeft: 10,
@@ -262,6 +292,7 @@ const styles = StyleSheet.create({
         top: 30,
         fontWeight: "400",
         color: "black",
+        marginRight: "auto"
 
 
 
@@ -278,7 +309,7 @@ const styles = StyleSheet.create({
         marginLeft: "auto",
         marginRight: 100,
         textAlign: "right",
-        top: 35,
+        top: 34,
         fontWeight: "bold",
         color: "black",
         fontSize: 15
@@ -301,7 +332,7 @@ const styles = StyleSheet.create({
         fontSize: 60,
         lineHeight: 60,
         fontWeight: "700",
-        fontStyle:"italic",
+        fontStyle: "italic",
         fontVariant: "small-caps;",
         color: "#1117F5",
         textAlign: "left",
@@ -312,22 +343,22 @@ const styles = StyleSheet.create({
 
     },
     text_name_today_today: {
-        position:"absolute",
+        position: "absolute",
         fontSize: 60,
         lineHeight: 60,
         fontWeight: "300",
-        fontStyle:"italic",
+        fontStyle: "italic",
         fontVariant: "small-caps;",
         color: "white",
         textAlign: "left",
         width: 200,
         height: 60,
         marginLeft: 30,
-        top:10,
+        top: 10,
     },
     text_country: {
         fontWeight: "600",
-        
+
     },
     country: {
         marginLeft: 30,
@@ -336,15 +367,32 @@ const styles = StyleSheet.create({
         alignItems: 'center'
 
     },
+    rating: {
+
+
+        fontWeight: "bold",
+        color: "black",
+        fontSize: 15
+
+    },
+    star: {
+        top: 5,
+    },
+
+    classify: {
+        margin: 50,
+        marginTop: 13,
+        flexDirection: "row"
+    },
 
     wines: {
         fontSize: 30,
-       
+        left: 15,
         fontWeight: "300",
         color: "white",
         textAlign: "left",
         fontStyle: "italic",
-        
+
 
     },
 
@@ -357,12 +405,16 @@ const styles = StyleSheet.create({
         left: 130,
         height: 164,
         width: "100%",
+
+
     },
     image_today: {
         position: "absolute",
-        left: 105,
-        height: 177,
+        flex: 1,
+        left: 80,
+        height: 240,
         width: "100%",
+
     },
 
     bandeira: {
