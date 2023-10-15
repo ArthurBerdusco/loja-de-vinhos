@@ -3,28 +3,29 @@ import React from "react";
 import { View, Text, Image, StyleSheet, ScrollView } from "react-native";
 
 const Review = ({ route }) => {
-  const vinho = route.params.vinho;
+  const vinhos = route.params.vinho;
 
+  
   return (
     <ScrollView contentContainerStyle={styles.container}>
-      <Image source={vinho.imagem} style={styles.image} />
-      <Text style={styles.name}>{vinho.nome}</Text>
+      <Image source={vinhos.imagem} style={styles.image} />
+      <Text style={styles.name}>{vinhos.nome}</Text>
 
       <View style= {styles.vconteudo}> 
       <Text style={styles.price}>Preço: </Text>
-      <Text style={styles.conteudo}>{vinho.preco}</Text></View>
+      <Text style={styles.conteudo}>{vinhos.preco}</Text></View>
 
       <View style= {styles.vconteudo}> 
       <Text style={styles.alcoholContent}>Teor Alcoólico: </Text>
-      <Text style={styles.conteudo}>{vinho.teorAlcool}%</Text></View>
+      <Text style={styles.conteudo}>{vinhos.teorAlcool}%</Text></View>
 
       <View style= {styles.vconteudo}> 
       <Text style={styles.description}>Descrição: </Text>
-      <Text style={styles.conteudo}>{vinho.classificacao} Sobre o vinho...</Text></View>
+      <Text style={styles.conteudo}>{vinhos.classificacao} Sobre o vinho...</Text></View>
 
       <View style= {styles.vconteudo}> 
       <Text style={styles.rating}>Classificação: </Text>
-      <Text style={styles.conteudo}>{vinho.classificacao} Estrelas</Text></View>
+      <Text style={styles.conteudo}>{vinhos.rating} Estrelas</Text></View>
 
     </ScrollView>
   );
