@@ -1,6 +1,4 @@
 import { View, StyleSheet, Text, TouchableOpacity } from "react-native"
-import React, { useState } from 'react';
-import { Navigation } from "@react-navigation/native";
 
 const Cart = ( {navigation} ) => {
     return (

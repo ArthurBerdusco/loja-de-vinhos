@@ -1,23 +1,29 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { TouchableOpacity, View, Text, StyleSheet } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
 const NotificationButton = (props) => {
+  const [showBadge, setShowBadge] = useState(true);
+
+  const handleNotificationPress = () => {
+    props.navigation.navigate('Notifications');
+    setShowBadge(false); // Oculta o badge ao clicar no ícone de notificação
+  };
+
   return (
     <TouchableOpacity
       style={styles.container}
-      onPress={()=>{
-        styles.notificationBadge = null;
-        props.navigation.navigate('Notifications')
-      }}
+      onPress={handleNotificationPress}
     >
-      <Icon name="bell" size={24} color="#333">
+      <View style={styles.iconContainer}>
+        <Icon name="bell-o" size={26} color="#333" />
 
-        <View style={styles.notificationBadge}>
-          <Text style={styles.notificationText}>{props.count + '+'}</Text>
-        </View>
-
-      </Icon>
+        {showBadge && (
+          <View style={styles.notificationBadge}>
+            <Text style={styles.notificationText}>3</Text>
+          </View>
+        )}
+      </View>
     </TouchableOpacity>
   );
 };
@@ -26,6 +32,10 @@ const styles = StyleSheet.create({
   container: {
     flexDirection: 'row',
     alignItems: 'center',
+    margin: 10,
+  },
+  iconContainer: {
+    position: 'relative', // Permite que os elementos filhos sejam posicionados relativamente a este container
   },
   notificationBadge: {
     position: 'absolute', // Isso posiciona o badge de notificação absolutamente
@@ -36,7 +46,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     top: -5, // Posiciona o badge 5 pixels acima do ícone do sino
-    left: 10, // Posiciona o badge 18 pixels à direita do ícone do sino
+    right: -8, // Posiciona o badge 5 pixels à esquerda do ícone do sino
   },
   notificationText: {
     color: 'white',

@@ -2,10 +2,7 @@ import { View, Text, ScrollView, Image, StyleSheet, TouchableOpacity, ImageBackg
 import homeIcon from '../assets/img/home_icon.png'
 import cartIcon from '../assets/img/cart_icon.png'
 import orderIcon from '../assets/img/orders_icon.png'
-import searchIcon from '../assets/img/search_icon.png'
 import star from '../assets/img/star.png'
-
-
 
 const today = [
     {
@@ -76,6 +73,7 @@ const vinhos = [
         rating: 4.5
     },
 ];
+
 const Home = ({ navigation }) => {
 
     return (
@@ -83,7 +81,7 @@ const Home = ({ navigation }) => {
             <ScrollView>
 
                 <View style={styles.container}>
-                    <Text style={styles.wines}>Today</Text>
+                    <Text style={styles.wines}>Somente hoje</Text>
                     <View style={styles.row}>
                         {today.map((today, index) => (
                             <Today
@@ -103,7 +101,7 @@ const Home = ({ navigation }) => {
 
 
                 <View style={styles.container}>
-                    <Text style={styles.wines}>Wines</Text>
+                    <Text style={styles.wines}>Vinhos</Text>
                     <View style={styles.row}>
                         {vinhos.map((vinho, index) => (
                             <Vinho
@@ -147,13 +145,6 @@ const Home = ({ navigation }) => {
                     </View>
                 </TouchableOpacity>
 
-                <TouchableOpacity color='black' onPress={() => navigation.navigate('Search', {vinhos})}>
-
-                    <View style={styles.menuItem}>
-                        <Image style={styles.icons} source={searchIcon} />
-                        <Text style={styles.textMenu}>Search</Text>
-                    </View>
-                </TouchableOpacity>
             </View>
         </>
     )
