@@ -4,6 +4,10 @@ import cartIcon from '../assets/img/cart_icon.png'
 import orderIcon from '../assets/img/orders_icon.png'
 import star from '../assets/img/star.png'
 
+import Icon from 'react-native-vector-icons/FontAwesome5'; // Importe o pacote FontAwesome5
+
+
+
 const today = [
     {
         nome: 'Coyat',
@@ -122,29 +126,26 @@ const Home = ({ navigation }) => {
 
             </ScrollView>
             <View style={styles.menu}>
-                <TouchableOpacity color='black' onPress={() => navigation.navigate('Home')}>
-
+                <TouchableOpacity onPress={() => navigation.navigate('Home')}>
                     <View style={styles.menuItem}>
-                        <Image style={styles.icons} source={homeIcon} />
+                        <Icon name="home" size={26} color="#fff" />
                         <Text style={styles.textMenu}>Home</Text>
                     </View>
                 </TouchableOpacity>
 
-                <TouchableOpacity color='black' onPress={() => navigation.navigate('Cart')}>
+                <TouchableOpacity onPress={() => navigation.navigate('Cart')}>
                     <View style={styles.menuItem}>
-                        <Image style={styles.icons} source={cartIcon} />
-                        <Text style={styles.textMenu}>Cart</Text>
+                        <Icon name="shopping-cart" size={26} color="#fff" />
+                        <Text style={styles.textMenu}>Carrinho</Text>
                     </View>
                 </TouchableOpacity>
 
-                <TouchableOpacity color='black' onPress={() => navigation.navigate('Payment')}>
-
+                <TouchableOpacity onPress={() => navigation.navigate('Payment')}>
                     <View style={styles.menuItem}>
-                        <Image style={styles.icons} source={orderIcon} />
-                        <Text style={styles.textMenu}>Orders</Text>
+                        <Icon name="user-alt" size={26} color="#fff" />
+                        <Text style={styles.textMenu}>Conta</Text>
                     </View>
                 </TouchableOpacity>
-
             </View>
         </>
     )
@@ -234,7 +235,7 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         justifyContent: 'center',
-        backgroundColor: "green"
+        backgroundColor: "#F8F8F8"
     },
     container_today: {
         marginTop: 40,
@@ -248,7 +249,7 @@ const styles = StyleSheet.create({
     card: {
         width: 373,
         borderRadius: 20,
-        backgroundColor: "white",
+        backgroundColor: "#F7E4CF",
         flexDirection: "column",
         height: 177,
         marginBottom: 20,
@@ -380,7 +381,7 @@ const styles = StyleSheet.create({
         fontSize: 30,
         left: 15,
         fontWeight: "300",
-        color: "white",
+        color: "black",
         textAlign: "left",
         fontStyle: "italic",
 
@@ -418,52 +419,33 @@ const styles = StyleSheet.create({
         width: "100%",
         height: 844,
     },
-
-
     button: {
         marginTop: 50,
         marginBottom: 70,
         alignItems: "center",
-
-
     },
     menu: {
-        height: 63,
         flexDirection: 'row',
-        justifyContent: 'space-around',
-        backgroundColor: 'black'
-
+        backgroundColor: '#4D1F1F',
+        justifyContent: 'space-between',
+        height: 65,
+        paddingVertical: 10,
+        paddingHorizontal: 20,
     },
     menuItem: {
-        borderWidth: 0.3,
-        borderColor: 'black',
-        height: 50,
-        width: 85,
-        margin: 5,
-        borderRadius: 5,
-        justifyContent: 'center',
-
-    },
-
-    textMenu: {
-
-        textAlign: 'center',
-        color: 'white',
-        fontSize: 10,
-        fontWeight: "500",
-
+        flex: 1,
+        alignItems: 'center',
     },
     icons: {
-        marginTop: 5,
-        width: 32,
-        height: 32,
-        alignSelf: "center",
-        backgroundColor: "black",
+        width: 24, // Ajuste o tamanho do ícone conforme necessário
+        height: 24, // Ajuste o tamanho do ícone conforme necessário
+        tintColor: '#FFFFFF', // Cor do ícone
+    },
+    textMenu: {
+        color: '#FFFFFF',
+        fontSize: 12, // Tamanho da fonte do texto
 
-
-
-
-    }
+    },
 
 })
 

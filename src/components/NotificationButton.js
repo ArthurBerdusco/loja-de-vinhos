@@ -16,7 +16,7 @@ const NotificationButton = (props) => {
       onPress={handleNotificationPress}
     >
       <View style={styles.iconContainer}>
-        <Icon name="bell-o" size={26} color="#333" />
+        <Icon name="bell-o" size={26} color="#fff" />
 
         {showBadge && (
           <View style={styles.notificationBadge}>

@@ -9,12 +9,13 @@ import NotificationButton from './src/components/NotificationButton';
 import Search from './src/screens/Search';
 import NotificationContent from './src/screens/NotificationContent';
 import SearchButton from './src/components/SearchButton';
+import { View } from 'react-native';
 
 const Stack = createNativeStackNavigator();
 
 export default function App() {
 
-  
+
 
   return (
     <NavigationContainer>
@@ -22,12 +23,16 @@ export default function App() {
         initialRouteName='Home'
         screenOptions={{
           headerTitleAlign: 'center',
-
+          headerTintColor: 'white',
+          headerStyle: {
+            backgroundColor: '#7E3030',
+            
+          },
           headerRight: () => (
-            <>
-              <SearchButton navigation={useNavigation()}/>
-              <NotificationButton navigation={useNavigation()} />              
-            </>
+            <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+              <SearchButton navigation={useNavigation()} />
+              <NotificationButton navigation={useNavigation()} />
+            </View>
           ),
         }}
       >
