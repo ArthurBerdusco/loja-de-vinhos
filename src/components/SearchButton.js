@@ -1,4 +1,5 @@
 import { TouchableOpacity, StyleSheet, Image } from 'react-native';
+import Icon from 'react-native-vector-icons/FontAwesome';
 
 const SearchButton = (props) => {
 
@@ -67,7 +68,7 @@ const SearchButton = (props) => {
                 props.navigation.navigate("Search", { vinhos });
             }}
         >
-            <Image source={require('../assets/img/t1.png')} />
+            <Icon name="search" size={26} color="#fff" />
         </TouchableOpacity>
     );
 };
