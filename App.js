@@ -7,9 +7,9 @@ import Cart from './src/screens/Cart';
 import Payment from './src/screens/Payment';
 import NotificationButton from './src/components/NotificationButton';
 import Search from './src/screens/Search';
-import NotificationContent from './src/screens/NotificationContent';
 import SearchButton from './src/components/SearchButton';
 import { View } from 'react-native';
+import Notification1 from './src/components/notifications/Notification1';
 
 const Stack = createNativeStackNavigator();
 
@@ -30,7 +30,6 @@ export default function App() {
           },
           headerRight: () => (
             <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-              <SearchButton navigation={useNavigation()} />
               <NotificationButton navigation={useNavigation()} />
             </View>
           ),
@@ -38,12 +37,15 @@ export default function App() {
       >
 
         <Stack.Screen name="Home" component={Home} options={{ headerTitle: 'Home' }} />
+
+
         <Stack.Screen name="Review" component={Review} options={{ headerTitle: 'Informações' }} />
         <Stack.Screen name="Cart" component={Cart} options={{ headerTitle: 'Carrinho' }} />
         <Stack.Screen name="Payment" component={Payment} options={{ headerTitle: 'Pagamento' }} />
 
         <Stack.Screen name="Notifications" component={Notifications} options={{ headerRight: null, headerTitle: 'Notificações' }} />
-        <Stack.Screen name="NotificationContent" component={NotificationContent} options={{ headerRight: null, headerTitle: 'Notificação' }} />
+        <Stack.Screen name="Notification1" component={Notification1} options={{ headerTitle: 'Notificação' }} />
+
 
         <Stack.Screen name="Search" component={Search} options={{ headerTitle: 'Buscar' }} />
 

@@ -95,7 +95,7 @@ const Notification = (props) => {
     return (
         <TouchableOpacity style={styles.notification} onPress={() => {
             props.handleNotificationPress(); // Chama a função passada como prop
-            props.navigation.navigate('NotificationContent');
+            props.navigation.navigate('Notification1');
         }}>
             <View style={bolinhaStyle}></View>
             <View style={styles.notificationContent}>
