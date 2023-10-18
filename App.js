@@ -7,14 +7,15 @@ import Cart from './src/screens/Cart';
 import Payment from './src/screens/Payment';
 import NotificationButton from './src/components/NotificationButton';
 import Search from './src/screens/Search';
-import NotificationContent from './src/screens/NotificationContent';
 import SearchButton from './src/components/SearchButton';
+import { View } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context'; // Importe o SafeAreaView
+import Notification1 from './src/components/notifications/Notification1';
+
 
 const Stack = createNativeStackNavigator();
 
 export default function App() {
-
-  
 
   return (
     <NavigationContainer>
@@ -22,23 +23,43 @@ export default function App() {
         initialRouteName='Home'
         screenOptions={{
           headerTitleAlign: 'center',
-
+          headerTintColor: 'white',
+          headerStyle: {
+            backgroundColor: '#7E3030',
+          },
           headerRight: () => (
-            <>
-              <SearchButton navigation={useNavigation()}/>
-              <NotificationButton navigation={useNavigation()} />              
-            </>
+            <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+              <NotificationButton navigation={useNavigation()} />
+            </View>
           ),
         }}
       >
 
-        <Stack.Screen name="Home" component={Home} options={{ headerTitle: 'Home' }} />
+
+        <Stack.Screen
+          name="Home"
+          component={Home}
+          options={({ navigation }) => ({
+            headerTitle: '', // Remover o título padrão
+            header: () => (
+              <SafeAreaView style={{backgroundColor: '#7E3030'}}>
+                <View style={{ flexDirection: 'row', alignItems: 'center', backgroundColor: '#7E3030', justifyContent: 'space-around', height: 63 }}>
+                  <SearchButton navigation={useNavigation()} />
+                  <NotificationButton navigation={useNavigation()} />
+                </View>
+              </SafeAreaView>
+            ),
+          })}
+        />
+
         <Stack.Screen name="Review" component={Review} options={{ headerTitle: 'Informações' }} />
         <Stack.Screen name="Cart" component={Cart} options={{ headerTitle: 'Carrinho' }} />
         <Stack.Screen name="Payment" component={Payment} options={{ headerTitle: 'Pagamento' }} />
+        
 
         <Stack.Screen name="Notifications" component={Notifications} options={{ headerRight: null, headerTitle: 'Notificações' }} />
-        <Stack.Screen name="NotificationContent" component={NotificationContent} options={{ headerRight: null, headerTitle: 'Notificação' }} />
+
+        <Stack.Screen name="Notification1" component={Notification1} options={{ headerTitle: 'Notificação 1' }} />
 
         <Stack.Screen name="Search" component={Search} options={{ headerTitle: 'Buscar' }} />
 
