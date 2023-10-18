@@ -1,5 +1,6 @@
-import { TouchableOpacity, StyleSheet, Image } from 'react-native';
+import { TouchableOpacity, StyleSheet, TextInput } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
+import { View } from 'react-native';
 
 const SearchButton = (props) => {
 
@@ -12,7 +13,7 @@ const SearchButton = (props) => {
             bandeira: require('../assets/img/china.png'),
             origem: 'Baoshan, China',
             rating: 5
-    
+
         },
         {
             nome: 'Vinho Branco Chardonnay',
@@ -62,27 +63,47 @@ const SearchButton = (props) => {
     ];
 
     return (
-        <TouchableOpacity
-            style={styles.container}
-            onPress={() => {
-                props.navigation.navigate("Search", { vinhos });
-            }}
-        >
-            <Icon name="search" size={26} color="#fff" />
-        </TouchableOpacity>
+        <View style={styles.inputContainer}>
+
+            <TextInput
+                style={styles.input}
+                placeholder='Procurar vinho'
+            />
+            <TouchableOpacity onPress={()=>{props.navigation.navigate('Search',{vinhos})}}>
+                <Icon name="search" style={styles.icon} />
+            </TouchableOpacity>
+        </View>
+
+
     );
 };
 
 const styles = StyleSheet.create({
-    container: {
-        flexDirection: 'row',
-        alignItems: 'center',
+    inputContainer: {
+      flexDirection: 'row',
+      alignItems: 'center',
+      justifyContent: 'center', // Centralizar o conteúdo horizontalmente
+      borderColor: '#E5E5E5',
+      borderWidth: 1,
+      borderRadius: 5,
+      paddingHorizontal: 20,
+      width: '70%',
+      backgroundColor: 'white',
     },
-    searchIconWithBorder: {
-        borderWidth: 1,  // Adiciona uma borda preta de 1 pixel
-        borderColor: 'black', // Define a cor da borda como preto
-        borderRadius: 50, // Define a forma do ícone como um círculo (opcional)
+  
+    icon: {
+      fontSize: 20,
+      color: 'gray',
+      alignSelf: 'center', // Centralizar o ícone verticalmente
     },
-});
+  
+    input: {
+      flex: 1,
+      paddingVertical: 8,
+      fontSize: 16,
+      backgroundColor: 'transparent',
+    },
+  });
+  
 
 export default SearchButton;
