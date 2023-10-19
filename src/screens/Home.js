@@ -146,6 +146,13 @@ const Home = ({ navigation }) => {
                     </View>
                 </TouchableOpacity>
 
+                <TouchableOpacity onPress={() => navigation.navigate('Orders')}>
+                    <View style={styles.menuItem}>
+                        <Icon name="list-ul" size={26} color="#fff" />
+                        <Text style={styles.textMenu}>Pedidos</Text>
+                    </View>
+                </TouchableOpacity>
+
                 <TouchableOpacity onPress={() => navigation.navigate('Payment')}>
                     <View style={styles.menuItem}>
                         <Icon name="user-alt" size={26} color="#fff" />

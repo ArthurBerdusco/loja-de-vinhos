@@ -9,8 +9,10 @@ import NotificationButton from './src/components/NotificationButton';
 import Search from './src/screens/Search';
 import SearchButton from './src/components/SearchButton';
 import { View } from 'react-native';
-import { SafeAreaView } from 'react-native-safe-area-context'; // Importe o SafeAreaView
+import { SafeAreaView } from 'react-native-safe-area-context';
 import Notification1 from './src/components/notifications/Notification1';
+import Orders from './src/screens/Orders';
+import OrderDetail from './src/screens/OrderDetail';
 
 
 const Stack = createNativeStackNavigator();
@@ -39,7 +41,7 @@ export default function App() {
         <Stack.Screen
           name="Home"
           component={Home}
-          options={({ navigation }) => ({
+          options={() => ({
             headerTitle: '', // Remover o título padrão
             header: () => (
               <SafeAreaView style={{backgroundColor: '#7E3030'}}>
@@ -55,6 +57,8 @@ export default function App() {
         <Stack.Screen name="Review" component={Review} options={{ headerTitle: 'Informações' }} />
         <Stack.Screen name="Cart" component={Cart} options={{ headerTitle: 'Carrinho' }} />
         <Stack.Screen name="Payment" component={Payment} options={{ headerTitle: 'Pagamento' }} />
+        <Stack.Screen name="Orders" component={Orders} options={{ headerTitle: 'Pedidos' }} />
+        <Stack.Screen name="OrderDetail" component={OrderDetail} options={{ headerTitle: 'Detalhe do pedido' }} />
         
 
         <Stack.Screen name="Notifications" component={Notifications} options={{ headerRight: null, headerTitle: 'Notificações' }} />
