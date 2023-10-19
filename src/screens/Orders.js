@@ -1,39 +1,98 @@
 import { useNavigation } from "@react-navigation/native";
-import React, { useState } from "react";
-import { Text, StyleSheet, FlatList } from "react-native";
-import { TouchableOpacity } from "react-native";
+import { Text, StyleSheet, FlatList, TouchableOpacity } from "react-native";
+
 
 const Order = ({ order }) => {
 
     const navigation = useNavigation();
 
+    const calculateTotalValue = (wines) => {
+        let totalValue = 0;
+        for (const wine of wines) {
+            totalValue += wine.preco;
+        }
+        return totalValue.toFixed(2);
+    };
+    
+
     return (
         <TouchableOpacity style={styles.orderContainer}
-            onPress={() => navigation.navigate('OrderDetail', order={order})}>
+            onPress={() => navigation.navigate('OrderDetail', {order})}>
 
-            <Text style={styles.orderInfo}>{`Pedido ${order.num}: `}<Text style={styles.orderID}>{order.orderID}</Text></Text>
+            <Text style={styles.orderInfo}>{`ID: `}<Text style={styles.orderID}>{order.orderID}</Text></Text>
             <Text style={styles.orderDate}>{`Data do Pedido: ${order.orderDate}`}</Text>
-            <Text style={styles.orderValue}>{`Valor: ${order.orderValue}`}</Text>
+            <Text style={styles.orderValue}>{`Valor: ${order.orderValue =  calculateTotalValue(order.orderWines)}`}</Text>
             <Text style={styles.deliveryStatus}>{`Status de Entrega: ${order.deliveryStatus}`}</Text>
         </TouchableOpacity>
     );
 }
 
-const generateRandomID = () => {
-    return Math.floor(1000000 + Math.random() * 9000000).toString();
-};
+const vinhos = [
+    {
+        nome: 'Vinho Tinto Moriet',
+        preco: 299.99,
+        teorAlcool: 13.5,
+        imagem: require('../assets/img/vinho1.png'),
+        bandeira: require('../assets/img/china.png'),
+        origem: 'Baoshan, China',
+        rating: 5
+
+    },
+    {
+        nome: 'Vinho Branco Chardonnay',
+        preco: 150.29,
+        teorAlcool: 12.0,
+        imagem: require('../assets/img/vinho2.png'),
+        bandeira: require('../assets/img/germany.png'),
+        origem: 'Heidelberg, Alemanha',
+        rating: 4.2
+    },
+    {
+        nome: 'Vinho Rosé Seco',
+        preco: 190.39,
+        teorAlcool: 11.5,
+        imagem: require('../assets/img/vinho3.png'),
+        bandeira: require('../assets/img/south-korea.png'),
+        origem: 'Geoje-si, Coreia do Sul',
+        rating: 4.3
+    },
+    {
+        nome: 'Vinho Espumante Brut',
+        preco: 345.29,
+        teorAlcool: 12.8,
+        imagem: require('../assets/img/vinho4.png'),
+        bandeira: require('../assets/img/china.png'),
+        origem: 'Guilin, China',
+        rating: 3.3
+    },
+    {
+        nome: 'Vinho Tinto Cabernet',
+        preco: 270.79,
+        teorAlcool: 14.0,
+        imagem: require('../assets/img/vinho5.png'),
+        bandeira: require('../assets/img/switzerland.png'),
+        origem: 'Grindelwald, Suiça',
+        rating: 5
+    },
+    {
+        nome: 'Vinho Branco Sauvignon',
+        preco: 220.99,
+        teorAlcool: 11.8,
+        imagem: require('../assets/img/vinho6.png'),
+        bandeira: require('../assets/img/germany.png'),
+        origem: 'Yangshuo , China',
+        rating: 4.5
+    },
+];
 
 const Orders = () => {
 
-    const [orderList, setOrderList] = useState([
-        { num: '1', orderID: generateRandomID(), orderDate: '01/10/2023', orderValue: 'R$50', deliveryStatus: 'Em trânsito' },
-        { num: '2', orderID: generateRandomID(), orderDate: '05/10/2023', orderValue: 'R$30', deliveryStatus: 'Entregue' },
-        { num: '3', orderID: generateRandomID(), orderDate: '10/10/2023', orderValue: 'R$45', deliveryStatus: 'Pendente' },
-        { num: '4', orderID: generateRandomID(), orderDate: '10/10/2023', orderValue: 'R$45', deliveryStatus: 'Pendente' },
-        { num: '5', orderID: generateRandomID(), orderDate: '10/10/2023', orderValue: 'R$45', deliveryStatus: 'Pendente' },
-        { num: '6', orderID: generateRandomID(), orderDate: '10/10/2023', orderValue: 'R$45', deliveryStatus: 'Pendente' },
-        { num: '7', orderID: generateRandomID(), orderDate: '10/10/2023', orderValue: 'R$45', deliveryStatus: 'Pendente' },
-    ]);
+    const orderList = [
+        {  orderID: '918239182', orderDate: '01/10/2023',orderValue: '', orderWines: [vinhos[1], vinhos[3], vinhos[5]], deliveryStatus: 'Em trânsito' },
+        {  orderID: '129380232', orderDate: '05/10/2023',orderValue: '', orderWines: [vinhos[5], vinhos[3], vinhos[2]], deliveryStatus: 'Entregue' },
+        {  orderID: '392783012', orderDate: '10/10/2023',orderValue: '', orderWines: [vinhos[3], vinhos[0], vinhos[1]], deliveryStatus: 'Pendente' },
+        {  orderID: '626382911', orderDate: '10/10/2023',orderValue: '', orderWines: [vinhos[3], vinhos[2], vinhos[0],vinhos[5], vinhos[4], vinhos[2]], deliveryStatus: 'Pendente' },
+    ];
 
     return (
         <FlatList
