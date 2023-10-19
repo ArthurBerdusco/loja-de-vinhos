@@ -14,8 +14,6 @@ const Stack = createNativeStackNavigator();
 
 export default function App() {
 
-  
-
   return (
     <NavigationContainer>
       <Stack.Navigator
@@ -26,7 +24,7 @@ export default function App() {
           headerRight: () => (
             <>
               <SearchButton navigation={useNavigation()}/>
-              <NotificationButton navigation={useNavigation()} />              
+              <NotificationButton navigation={useNavigation()} />         
             </>
           ),
         }}
