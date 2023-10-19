@@ -56,7 +56,7 @@ const styles = StyleSheet.create({
         fontSize: 24,
         fontWeight: "bold",
         color: "#333",
-        marginLeft: 8,
+        marginBottom: 8,
     },
     orderDate: {
         fontSize: 18,
