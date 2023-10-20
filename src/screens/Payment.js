@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import { View, Text, TouchableOpacity, StyleSheet, Modal, TextInput, Button } from 'react-native';
 
-
 const Payment = () => {
   const [selectedPayment, setSelectedPayment] = useState(null);
   const [modalVisible, setModalVisible] = useState(false);
+  const [paymentModalVisible, setPaymentModalVisible] = useState(false);
   const [cardNumber, setCardNumber] = useState('');
   const [cvv, setCVV] = useState('');
   const [expiration, setExpiration] = useState('');
@@ -27,65 +27,84 @@ const Payment = () => {
   };
 
   const handlePaymentSubmit = () => {
-    if (!selectedPayment) {
-      alert('Por favor, escolha uma forma de pagamento.');
-      return;
-    }
+    switch (selectedPayment) {
+      case 'creditCard':
+        let isValid = true;
 
-      switch (selectedPayment) {
-    case 'creditCard':
-      if (cardNumber === '') {
-        setCardNumberError('Por favor, insira o número do cartão!');
-        setCardNumberSuccess(false);
-      } else {
-        setCardNumberError('');
-        setCardNumberSuccess(true);
-      }
-      if (cvv === '') {
-        setCVVError('Por favor, insira o número de segurança!');
-        setCVVSuccess(false);
-      } else {
-        setCVVError('');
-        setCVVSuccess(true);
-      }
-      if (expiration === '') {
-        setExpirationError('Por favor, insira a validade!');
-        setExpirationSuccess(false);
-      } else {
-        setExpirationError('');
-        setExpirationSuccess(true);
-      }
-      if (cardHolderName === '') {
-        setCardHolderNameError('Por favor, insira o número do cartão!');
-        setCardHolderNameSuccess(false);
-      } else {
-        setCardHolderNameError('');
-        setCardHolderNameSuccess(true);
-      }
-      break;
-
-      case 'debitCard':
         if (cardNumber === '') {
-          err = 'Por favor, insira o número do cartão!';
+          setCardNumberError('Por favor, insira o número do cartão!');
+          setCardNumberSuccess(false);
+          isValid = false;
+          break;
+        } else {
+          setCardNumberError('');
+          setCardNumberSuccess(true);
         }
+
         if (cvv === '') {
-          cvvError = 'Por favor, insira o valor de verificação do cartão!';
+          setCVVError('Por favor, insira o número de segurança!');
+          setCVVSuccess(false);
+          isValid = false;
+          break;
+        } else {
+          setCVVError('');
+          setCVVSuccess(true);
         }
+
         if (expiration === '') {
-          expirationError = 'Por favor, insira o vencimento do cartão!';
+          setExpirationError('Por favor, insira a validade!');
+          setExpirationSuccess(false);
+          isValid = false;
+          break;
+        } else {
+          setExpirationError('');
+          setExpirationSuccess(true);
         }
+
+        if (cardHolderName === '') {
+          setCardHolderNameError('Por favor, insira o nome do titular do cartão!');
+          setCardHolderNameSuccess(false);
+          isValid = false;
+          break;
+        } else {
+          setCardHolderNameError('');
+          setCardHolderNameSuccess(true);
+          setModalVisible(false);
+        }
+
         break;
 
-      case 'pix':
+      case 'debitCard':
+      // Handle debit card fields here
 
+      case 'pix':
+        // Handle pix payment fields here
         break;
 
       default:
-        setModalVisible(false)
-
+        break;
     }
-
+    setPaymentModalVisible(true)
+    //setModalVisible(false);
   };
+
+  const finish = () => {
+    return(
+      <View>{renderPaymentSuccess()}</View>
+    )
+  }
+
+  const renderPaymentSuccess = () => {
+    return (
+      <Modal animationType="slide" transparent={true} visible={paymentModalVisible}>
+        <View style={styles.container1}>
+          <Text style={styles.successText}>Compra realizada com sucesso!</Text>
+          <Text style={styles.infoText}>Obrigado por sua compra. Seu pedido será processado em breve.</Text>
+        </View>
+      </Modal>
+
+    );
+  }
 
   const renderPaymentOption = (paymentMethod, label) => {
     return (
@@ -110,7 +129,9 @@ const Payment = () => {
       {renderPaymentOption('pix', 'Pix')}
 
       <Modal animationType="slide" transparent={true} visible={modalVisible}>
+
         <View style={styles.modalContainer}>
+
           {selectedPayment === 'creditCard' || selectedPayment === 'debitCard' ? (
             <View style={styles.modalView}>
               <TouchableOpacity color='#44ff' onPress={() => setModalVisible(false)}>
@@ -127,9 +148,10 @@ const Payment = () => {
                 placeholder="Número do Cartão"
                 value={cardNumber}
                 onChangeText={setCardNumber}
-              />
 
-<TextInput
+
+              />
+              <TextInput
                 style={
                   cvvError
                     ? styles.inputBorderError
@@ -141,7 +163,7 @@ const Payment = () => {
                 value={cvv}
                 onChangeText={setCVV}
               />
-               <TextInput
+              <TextInput
                 style={
                   expirationError
                     ? styles.inputBorderError
@@ -153,7 +175,7 @@ const Payment = () => {
                 value={expiration}
                 onChangeText={setExpiration}
               />
-               <TextInput
+              <TextInput
                 style={
                   cardHolderNameError
                     ? styles.inputBorderError
@@ -164,8 +186,11 @@ const Payment = () => {
                 placeholder="Nome do Titular"
                 value={cardHolderName}
                 onChangeText={setCardHolderName}
+                
               />
+              <View>{finish}</View>
             </View>
+
           ) : (
             <View style={styles.modalView}>
               <TouchableOpacity color='#44ff' onPress={() => setModalVisible(false)}>
@@ -180,16 +205,23 @@ const Payment = () => {
               />
             </View>
           )}
+
+
           <TouchableOpacity style={styles.submitButton} onPress={() => handlePaymentSubmit()}>
+
             <Text style={styles.submitButtonText}>Confirmar Pagamento</Text>
 
           </TouchableOpacity>
 
+
         </View>
       </Modal>
     </View>
-  );
 
+
+
+
+  );
 
 };
 
@@ -265,7 +297,23 @@ const styles = StyleSheet.create({
     borderColor: 'green',
     marginBottom: 12,
     padding: 10,
-  }
+  },
+  container1: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: 'green', // Cor de fundo para indicar sucesso
+  },
+  successText: {
+    fontSize: 24,
+    fontWeight: 'bold',
+    color: 'white', // Cor do texto
+    marginBottom: 20,
+  },
+  infoText: {
+    fontSize: 18,
+    color: 'white', // Cor do texto
+  },
 });
 
 export default Payment;
