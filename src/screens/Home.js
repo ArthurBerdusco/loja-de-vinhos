@@ -4,6 +4,10 @@ import cartIcon from '../assets/img/cart_icon.png'
 import orderIcon from '../assets/img/orders_icon.png'
 import star from '../assets/img/star.png'
 
+import Icon from 'react-native-vector-icons/FontAwesome5'; 
+
+
+
 const today = [
     {
         nome: 'Coyat',
@@ -77,75 +81,86 @@ const vinhos = [
 const Home = ({ navigation }) => {
 
     return (
-        <>
+
+        
+            <>
+
+                <ScrollView>
+
+                    <View style={styles.container}>
+                        <Text style={styles.wines}>Somente hoje</Text>
+                        <View style={styles.row}>
+                            {today.map((today, index) => (
+                                <Today
+                                    key={index}
+                                    nome={today.nome}
+                                    preco={today.preco}
+                                    teorAlcool={today.teorAlcool}
+                                    imagem={today.imagem}
+                                    bandeira={today.bandeira}
+                                    origem={today.origem}
+                                    rating={today.rating}
+                                    navigation={navigation}
+                                />
+                            ))}
+                        </View>
+                    </View>
+
+
+                    <View style={styles.container}>
+                        <Text style={styles.wines}>Vinhos</Text>
+                        <View style={styles.row}>
+                            {vinhos.map((vinho, index) => (
+                                <Vinho
+                                    key={index}
+                                    nome={vinho.nome}
+                                    preco={vinho.preco}
+                                    teorAlcool={vinho.teorAlcool}
+                                    imagem={vinho.imagem}
+                                    bandeira={vinho.bandeira}
+                                    origem={vinho.origem}
+                                    rating={vinho.rating}
+                                    navigation={navigation}
+                                />
+                            ))}
+                        </View>
+
+                    </View>
+
+                </ScrollView>
+                
+
             <ScrollView>
-
-                <View style={styles.container}>
-                    <Text style={styles.wines}>Somente hoje</Text>
-                    <View style={styles.row}>
-                        {today.map((today, index) => (
-                            <Today
-                                key={index}
-                                nome={today.nome}
-                                preco={today.preco}
-                                teorAlcool={today.teorAlcool}
-                                imagem={today.imagem}
-                                bandeira={today.bandeira}
-                                origem={today.origem}
-                                rating={today.rating}
-                                navigation={navigation}
-                            />
-                        ))}
-                    </View>
-                </View>
-
-
-                <View style={styles.container}>
-                    <Text style={styles.wines}>Vinhos</Text>
-                    <View style={styles.row}>
-                        {vinhos.map((vinho, index) => (
-                            <Vinho
-                                key={index}
-                                nome={vinho.nome}
-                                preco={vinho.preco}
-                                teorAlcool={vinho.teorAlcool}
-                                imagem={vinho.imagem}
-                                bandeira={vinho.bandeira}
-                                origem={vinho.origem}
-                                rating={vinho.rating}
-                                navigation={navigation}
-                            />
-                        ))}
-                    </View>
-
-                </View>
-
-            </ScrollView>
             <View style={styles.menu}>
-                <TouchableOpacity color='black' onPress={() => navigation.navigate('Home')}>
-
+                <TouchableOpacity onPress={() => navigation.navigate('Home')}>
                     <View style={styles.menuItem}>
-                        <Image style={styles.icons} source={homeIcon} />
+                        <Icon name="home" size={26} color="#fff" />
                         <Text style={styles.textMenu}>Home</Text>
                     </View>
                 </TouchableOpacity>
 
-                <TouchableOpacity color='black' onPress={() => navigation.navigate('Cart')}>
+                <TouchableOpacity onPress={() => navigation.navigate('Cart')}>
                     <View style={styles.menuItem}>
-                        <Image style={styles.icons} source={cartIcon} />
-                        <Text style={styles.textMenu}>Cart</Text>
+                        <Icon name="shopping-cart" size={26} color="#fff" />
+                        <Text style={styles.textMenu}>Carrinho</Text>
                     </View>
                 </TouchableOpacity>
 
-                <TouchableOpacity color='black' onPress={() => navigation.navigate('Payment')}>
-
+                <TouchableOpacity onPress={() => navigation.navigate('Orders')}>
                     <View style={styles.menuItem}>
-                        <Image style={styles.icons} source={orderIcon} />
-                        <Text style={styles.textMenu}>Orders</Text>
+                        <Icon name="list-ul" size={26} color="#fff" />
+                        <Text style={styles.textMenu}>Pedidos</Text>
                     </View>
                 </TouchableOpacity>
 
+                <TouchableOpacity onPress={() => navigation.navigate('Payment')}>
+                    <View style={styles.menuItem}>
+                        <Icon name="user-alt" size={26} color="#fff" />
+                        <Text style={styles.textMenu}>Conta</Text>
+                    </View>
+                </TouchableOpacity>
             </View>
+            </ScrollView>
         </>
     )
 
@@ -174,11 +189,13 @@ const Vinho = (props) => {
                     <Text style={styles.text_country}>{props.origem}</Text>
                 </View>
                 <Text style={styles.text}>Teor Alcolico: {props.teorAlcool}%</Text>
-                <View style={styles.line}></View>
-                <Text style={styles.text_preco}>R${props.preco}</Text>
-                <View style={styles.classify}>
-                    <Image source={star} style={styles.star} />
-                    <Text style={styles.rating}>{props.rating}</Text>
+                <View style={styles.container_line}>
+                    <View style={styles.line}></View>
+                    <Text style={styles.text_preco}>R${props.preco}</Text>
+                    <View style={styles.classify}>
+                        <Image source={star} style={styles.star} />
+                        <Text style={styles.rating}>{props.rating}</Text>
+                    </View>
                 </View>
             </View>
 
@@ -234,7 +251,7 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         justifyContent: 'center',
-        backgroundColor: "green"
+        backgroundColor: "#F8F8F8"
     },
     container_today: {
         marginTop: 40,
@@ -248,11 +265,11 @@ const styles = StyleSheet.create({
     card: {
         width: 373,
         borderRadius: 20,
-        backgroundColor: "white",
+        backgroundColor: "#F7E4CF",
         flexDirection: "column",
-        height: 177,
+        height: 220,
         marginBottom: 20,
-        marginTop: 30,
+        marginTop: 15,
         marginLeft: 10,
     },
 
@@ -283,18 +300,24 @@ const styles = StyleSheet.create({
         top: 30,
         fontWeight: "400",
         color: "black",
-        marginRight: "auto"
+        marginRight: "auto",
+        fontSize: 20,
 
 
 
     },
     line: {
-        height: 2,
+        height: 3,
         backgroundColor: 'black',
         top: 35,
         left: 25,
         marginRight: 125,
         borderRadius: 100,
+    },
+
+    container_line:{
+        flex: 1,
+        top: 38,
     },
     text_preco: {
         marginLeft: "auto",
@@ -349,18 +372,18 @@ const styles = StyleSheet.create({
     },
     text_country: {
         fontWeight: "600",
+        fontSize: 20,
 
     },
     country: {
         marginLeft: 30,
         top: 30,
         flexDirection: 'row',
-        alignItems: 'center'
+        alignItems: 'center',
+        marginRight: 70
 
     },
     rating: {
-
-
         fontWeight: "bold",
         color: "black",
         fontSize: 15
@@ -380,7 +403,7 @@ const styles = StyleSheet.create({
         fontSize: 30,
         left: 15,
         fontWeight: "300",
-        color: "white",
+        color: "black",
         textAlign: "left",
         fontStyle: "italic",
 
@@ -393,18 +416,20 @@ const styles = StyleSheet.create({
     },
     image: {
         position: "absolute",
-        left: 130,
-        height: 164,
-        width: "100%",
+        height: 170,
+        width: 50,
+        right: 20,
+        top: 25
 
 
     },
     image_today: {
         position: "absolute",
         flex: 1,
-        left: 80,
+        left: 60,
         height: 240,
         width: "100%",
+
 
     },
 
@@ -416,54 +441,35 @@ const styles = StyleSheet.create({
     background: {
         flex: 1,
         width: "100%",
-        height: 844,
+        height: "100%",
     },
-
-
     button: {
         marginTop: 50,
         marginBottom: 70,
         alignItems: "center",
-
-
     },
     menu: {
-        height: 63,
         flexDirection: 'row',
-        justifyContent: 'space-around',
-        backgroundColor: 'black'
-
+        backgroundColor: '#4D1F1F',
+        justifyContent: 'space-between',
+        height: 65,
+        paddingVertical: 10,
+        paddingHorizontal: 20,
     },
     menuItem: {
-        borderWidth: 0.3,
-        borderColor: 'black',
-        height: 50,
-        width: 85,
-        margin: 5,
-        borderRadius: 5,
-        justifyContent: 'center',
-
-    },
-
-    textMenu: {
-
-        textAlign: 'center',
-        color: 'white',
-        fontSize: 10,
-        fontWeight: "500",
-
+        flex: 1,
+        alignItems: 'center',
     },
     icons: {
-        marginTop: 5,
-        width: 32,
-        height: 32,
-        alignSelf: "center",
-        backgroundColor: "black",
+        width: 24, // Ajuste o tamanho do ícone conforme necessário
+        height: 24, // Ajuste o tamanho do ícone conforme necessário
+        tintColor: '#FFFFFF', // Cor do ícone
+    },
+    textMenu: {
+        color: '#FFFFFF',
+        fontSize: 12, // Tamanho da fonte do texto
 
-
-
-
-    }
+    },
 
 })
 

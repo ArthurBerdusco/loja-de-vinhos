@@ -94,7 +94,7 @@ const styles = StyleSheet.create({
     container: {
 
         flex: 1,
-        backgroundColor: "green"
+        
     },
     container_input: {
         height: "auto",
