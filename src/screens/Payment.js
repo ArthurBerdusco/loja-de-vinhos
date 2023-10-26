@@ -4,37 +4,54 @@ import { View, Text, TouchableOpacity, StyleSheet, Modal, TextInput, Button } fr
 const Payment = () => {
   const [selectedPayment, setSelectedPayment] = useState(null);
   const [modalVisible, setModalVisible] = useState(false);
-  const [cardNumber, setCardNumber] = useState('');
-  const [cvv, setCVV] = useState('');
-  const [expiration, setExpiration] = useState('');
-  const [cardHolderName, setCardHolderName] = useState('');
-  const [pixValue, setPixValue] = useState('');
-  const [pixRecipient, setPixRecipient] = useState('');
+  const [formData, setFormData] = useState({
+    cardNumber: '',
+    cvv: '',
+    expiration: '',
+    cardHolderName: '',
+    pixValue: '',
+  });
+  const [errors, setErrors] = useState({
+    cardNumber: '',
+    cvv: '',
+    expiration: '',
+    cardHolderName: '',
+  });
 
   const handlePaymentSelection = (paymentMethod) => {
     setSelectedPayment(paymentMethod);
     setModalVisible(true);
   };
 
-  const handlePaymentSubmit = () => {
-    if (!selectedPayment) {
-      alert('Por favor, escolha uma forma de pagamento.');
-      return;
+  const validateFormData = () => {
+    const { cardNumber, cvv, expiration, cardHolderName } = formData;
+    const newErrors = {};
+
+    if (cardNumber === '') {
+      newErrors.cardNumber = 'Por favor, insira o número do cartão!';
     }
-//Logica 
-    // Add authentication logic here for the selected payment method
-    switch (selectedPayment) {
-      case 'creditCard':
-        // Add credit card authentication logic
-        break;
-      case 'debitCard':
-        // Add debit card authentication logic
-        break;
-      case 'pix':
-        // Add Pix payment authentication logic
-        break;
-      default:
-        break;
+
+    if (cvv === '') {
+      newErrors.cvv = 'Por favor, insira o número de segurança!';
+    }
+
+    if (expiration === '') {
+      newErrors.expiration = 'Por favor, insira a validade!';
+    }
+
+    if (cardHolderName === '') {
+      newErrors.cardHolderName = 'Por favor, insira o nome do titular do cartão!';
+    }
+
+    setErrors(newErrors);
+
+    return Object.values(newErrors).every((error) => error === '');
+  };
+
+  const handlePaymentSubmit = () => {
+    if (validateFormData()) {
+      setModalVisible(false);
+      setPaymentModalVisible(true);
     }
   };
 
@@ -61,111 +78,138 @@ const Payment = () => {
 
       <Modal animationType="slide" transparent={true} visible={modalVisible}>
         <View style={styles.modalContainer}>
-          {selectedPayment === 'creditCard' || selectedPayment === 'debitCard' ? (
-            <View style={styles.modalView}>
-              <TextInput
-                style={styles.input}
-                placeholder="Número do Cartão"
-                value={cardNumber}
-                onChangeText={setCardNumber}
-              />
-              <TextInput
-                style={styles.input}
-                placeholder="CVV"
-                value={cvv}
-                onChangeText={setCVV}
-              />
-              <TextInput
-                style={styles.input}
-                placeholder="Vencimento (MM/AA)"
-                value={expiration}
-                onChangeText={setExpiration}
-              />
-              <TextInput
-                style={styles.input}
-                placeholder="Nome do Titular"
-                value={cardHolderName}
-                onChangeText={setCardHolderName}
-              />
-            </View>
-          ) : (
-            <View style={styles.modalView}>
-              <TextInput
-                style={styles.input}
-                placeholder="R$ 00,00"
-                value={pixValue}
-                onChangeText={setPixValue}
-                keyboardType="numeric"
-              />
-            </View>
-          )}
-          <TouchableOpacity style={styles.submitButton} onPress={() => setModalVisible(false)}>
-            <Text style={styles.submitButtonText}>Confirmar Pagamento</Text>
-          </TouchableOpacity>
-
+          <View style={styles.modalView}>
+            <TouchableOpacity color="#44ff" onPress={() => setModalVisible(false)}>
+              Voltar
+            </TouchableOpacity>
+            <TextInput
+              style={styles.inputBorder(errors.cardNumber)}
+              placeholder="Número do Cartão"
+              value={formData.cardNumber}
+              onChangeText={(text) => setFormData({ ...formData, cardNumber: text })}
+            />
+            <TextInput
+              style={styles.inputBorder(errors.cvv)}
+              placeholder="CVV"
+              value={formData.cvv}
+              onChangeText={(text) => setFormData({ ...formData, cvv: text })}
+            />
+            <TextInput
+              style={styles.inputBorder(errors.expiration)}
+              placeholder="Vencimento (MM/AA)"
+              value={formData.expiration}
+              onChangeText={(text) => setFormData({ ...formData, expiration: text })}
+            />
+            <TextInput
+              style={styles.inputBorder(errors.cardHolderName)}
+              placeholder="Nome do Titular"
+              value={formData.cardHolderName}
+              onChangeText={(text) => setFormData({ ...formData, cardHolderName: text })}
+            />
+            <Button title="Confirmar Pagamento" onPress={handlePaymentSubmit} />
+          </View>
         </View>
       </Modal>
     </View>
   );
-
-
 };
 
-const styles = StyleSheet.create({
+  const styles = StyleSheet.create({
   container: {
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
   },
   title: {
-    fontSize: 24, // Increased font size
+    fontSize: 24,
     marginBottom: 20,
-    fontWeight: 'bold', // Added font weight
+    fontWeight: 'bold',
   },
   paymentOption: {
     borderWidth: 1,
-    borderColor: '#ccc',
+    borderColor: '#44ff',
     borderRadius: 5,
-    padding: 12, // Increased padding
+    padding: 12,
     margin: 10,
     width: 200,
     alignItems: 'center',
   },
   selectedOption: {
-    backgroundColor: 'blue',
-    borderColor: 'blue',
+    backgroundColor: '#44ff',
+    borderColor: '#44ff',
   },
   paymentOptionText: {
     color: 'black',
-    fontSize: 16, // Increased font size
+    fontSize: 16,
   },
   submitButton: {
-    backgroundColor: 'blue',
-    padding: 12, // Increased padding
+    backgroundColor: '#44ff',
+    padding: 12,
     borderRadius: 5,
     marginTop: 20,
   },
   submitButtonText: {
     color: 'white',
-    fontSize: 18, // Increased font size
+    fontSize: 18,
   },
   modalContainer: {
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
+    borderColor: 'green',
+
   },
   modalView: {
     backgroundColor: 'white',
     padding: 20,
     borderRadius: 10,
-    width: 300,
+    width: 600,
+
   },
   input: {
     borderBottomWidth: 1,
-    borderColor: '#ccc',
-    marginBottom: 12, // Increased margin
+    borderColor: '#44ff',
+    marginBottom: 12,
     padding: 10,
   },
+  txtBack: {
+    color: 'red'
+  },
+  inputBorderError: {
+    borderBottomWidth: 1,
+    borderColor: 'red',
+    marginBottom: 12,
+    padding: 10,
+  },
+  inputBorderSuccess: {
+    borderBottomWidth: 1,
+    borderColor: 'green',
+    marginBottom: 12,
+    padding: 10,
+  },
+  container1: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: 'green', // Cor de fundo para indicar sucesso
+  },
+  successText: {
+    fontSize: 24,
+    fontWeight: 'bold',
+    color: 'white', // Cor do texto
+    marginBottom: 20,
+  },
+  infoText: {
+    fontSize: 18,
+    color: 'white', // Cor do texto
+  },
+
+  inputBorder: (error) => ({
+    borderBottomWidth: 1,
+    borderColor: error ? 'red' : '#44ff',
+    marginBottom: 12,
+    padding: 10,
+  }),
 });
 
 export default Payment;
