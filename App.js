@@ -13,13 +13,16 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import Notification1 from './src/components/notifications/Notification1';
 import Orders from './src/screens/Orders';
 import OrderDetail from './src/screens/OrderDetail';
+import Profile from './src/screens/Profile';
+import BottomMenu from './src/components/BottomMenu';
 
 
 const Stack = createNativeStackNavigator();
 
 export default function App() {
 
-  return (
+  return (<>
+ 
     <NavigationContainer>
       <Stack.Navigator
         initialRouteName='Home'
@@ -36,7 +39,6 @@ export default function App() {
           ),
         }}
       >
-
 
         <Stack.Screen
           name="Home"
@@ -59,6 +61,7 @@ export default function App() {
         <Stack.Screen name="Payment" component={Payment} options={{ headerTitle: 'Pagamento' }} />
         <Stack.Screen name="Orders" component={Orders} options={{ headerTitle: 'Pedidos' }} />
         <Stack.Screen name="OrderDetail" component={OrderDetail} options={{ headerTitle: 'Detalhe do pedido' }} />
+        <Stack.Screen name="Profile" component={Profile} options={{ headerTitle: 'Perfil' }} />
         
 
         <Stack.Screen name="Notifications" component={Notifications} options={{ headerRight: null, headerTitle: 'Notificações' }} />
@@ -66,8 +69,11 @@ export default function App() {
         <Stack.Screen name="Notification1" component={Notification1} options={{ headerTitle: 'Notificação 1' }} />
 
         <Stack.Screen name="Search" component={Search} options={{ headerTitle: 'Buscar' }} />
+        
 
       </Stack.Navigator>
     </NavigationContainer>
+    
+    </>
   );
 }
