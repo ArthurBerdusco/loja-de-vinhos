@@ -30,16 +30,9 @@ export default function App() {
             backgroundColor: '#7E3030',
           },
           headerRight: () => (
-<<<<<<< HEAD
-            <>
-              <SearchButton navigation={useNavigation()}/>
-              <NotificationButton navigation={useNavigation()} />         
-            </>
-=======
             <View style={{ flexDirection: 'row', alignItems: 'center' }}>
               <NotificationButton navigation={useNavigation()} />
             </View>
->>>>>>> 1199ca2271688f8092abf856c9a4aea0448af068
           ),
         }}
       >

@@ -47,7 +47,7 @@ const styles = StyleSheet.create({
     width: '100%', // Largura total da tela
   },
   button: {
-    backgroundColor: '#44ff',
+    backgroundColor: '#7E3030',
     padding: 10,
     borderRadius: 5,
   },
