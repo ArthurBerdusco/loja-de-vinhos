@@ -1,12 +1,6 @@
 import { View, Text, ScrollView, Image, StyleSheet, TouchableOpacity, ImageBackground } from "react-native"
-import homeIcon from '../assets/img/home_icon.png'
-import cartIcon from '../assets/img/cart_icon.png'
-import orderIcon from '../assets/img/orders_icon.png'
 import star from '../assets/img/star.png'
-
-import Icon from 'react-native-vector-icons/FontAwesome5'; 
-
-
+import BottomMenu from "../components/BottomMenu";
 
 const today = [
     {
@@ -79,88 +73,54 @@ const vinhos = [
 ];
 
 const Home = ({ navigation }) => {
-
     return (
-
-        
-            <>
-
-                <ScrollView>
-
-                    <View style={styles.container}>
-                        <Text style={styles.wines}>Somente hoje</Text>
-                        <View style={styles.row}>
-                            {today.map((today, index) => (
-                                <Today
-                                    key={index}
-                                    nome={today.nome}
-                                    preco={today.preco}
-                                    teorAlcool={today.teorAlcool}
-                                    imagem={today.imagem}
-                                    bandeira={today.bandeira}
-                                    origem={today.origem}
-                                    rating={today.rating}
-                                    navigation={navigation}
-                                />
-                            ))}
-                        </View>
-                    </View>
-
-
-                    <View style={styles.container}>
-                        <Text style={styles.wines}>Vinhos</Text>
-                        <View style={styles.row}>
-                            {vinhos.map((vinho, index) => (
-                                <Vinho
-                                    key={index}
-                                    nome={vinho.nome}
-                                    preco={vinho.preco}
-                                    teorAlcool={vinho.teorAlcool}
-                                    imagem={vinho.imagem}
-                                    bandeira={vinho.bandeira}
-                                    origem={vinho.origem}
-                                    rating={vinho.rating}
-                                    navigation={navigation}
-                                />
-                            ))}
-                        </View>
-
-                    </View>
-
-                </ScrollView>
-                
+        <>
 
             <ScrollView>
-            <View style={styles.menu}>
-                <TouchableOpacity onPress={() => navigation.navigate('Home')}>
-                    <View style={styles.menuItem}>
-                        <Icon name="home" size={26} color="#fff" />
-                        <Text style={styles.textMenu}>Home</Text>
-                    </View>
-                </TouchableOpacity>
 
-                <TouchableOpacity onPress={() => navigation.navigate('Cart')}>
-                    <View style={styles.menuItem}>
-                        <Icon name="shopping-cart" size={26} color="#fff" />
-                        <Text style={styles.textMenu}>Carrinho</Text>
+                <View style={styles.container}>
+                    <Text style={styles.wines}>Somente hoje</Text>
+                    <View style={styles.row}>
+                        {today.map((today, index) => (
+                            <Today
+                                key={index}
+                                nome={today.nome}
+                                preco={today.preco}
+                                teorAlcool={today.teorAlcool}
+                                imagem={today.imagem}
+                                bandeira={today.bandeira}
+                                origem={today.origem}
+                                rating={today.rating}
+                                navigation={navigation}
+                            />
+                        ))}
                     </View>
-                </TouchableOpacity>
+                </View>
 
-                <TouchableOpacity onPress={() => navigation.navigate('Orders')}>
-                    <View style={styles.menuItem}>
-                        <Icon name="list-ul" size={26} color="#fff" />
-                        <Text style={styles.textMenu}>Pedidos</Text>
+                <View style={styles.container}>
+                    <Text style={styles.wines}>Vinhos</Text>
+                    <View style={styles.row}>
+                        {vinhos.map((vinho, index) => (
+                            <Vinho
+                                key={index}
+                                nome={vinho.nome}
+                                preco={vinho.preco}
+                                teorAlcool={vinho.teorAlcool}
+                                imagem={vinho.imagem}
+                                bandeira={vinho.bandeira}
+                                origem={vinho.origem}
+                                rating={vinho.rating}
+                                navigation={navigation}
+                            />
+                        ))}
                     </View>
-                </TouchableOpacity>
 
-                <TouchableOpacity onPress={() => navigation.navigate('Payment')}>
-                    <View style={styles.menuItem}>
-                        <Icon name="user-alt" size={26} color="#fff" />
-                        <Text style={styles.textMenu}>Conta</Text>
-                    </View>
-                </TouchableOpacity>
-            </View>
+                </View>
+
             </ScrollView>
+            <BottomMenu navigation={navigation}/>
+
+
         </>
     )
 
@@ -315,7 +275,7 @@ const styles = StyleSheet.create({
         borderRadius: 100,
     },
 
-    container_line:{
+    container_line: {
         flex: 1,
         top: 38,
     },
@@ -447,29 +407,7 @@ const styles = StyleSheet.create({
         marginTop: 50,
         marginBottom: 70,
         alignItems: "center",
-    },
-    menu: {
-        flexDirection: 'row',
-        backgroundColor: '#4D1F1F',
-        justifyContent: 'space-between',
-        height: 65,
-        paddingVertical: 10,
-        paddingHorizontal: 20,
-    },
-    menuItem: {
-        flex: 1,
-        alignItems: 'center',
-    },
-    icons: {
-        width: 24, // Ajuste o tamanho do ícone conforme necessário
-        height: 24, // Ajuste o tamanho do ícone conforme necessário
-        tintColor: '#FFFFFF', // Cor do ícone
-    },
-    textMenu: {
-        color: '#FFFFFF',
-        fontSize: 12, // Tamanho da fonte do texto
-
-    },
+    }
 
 })
 

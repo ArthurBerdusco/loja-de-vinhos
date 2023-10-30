@@ -1,12 +1,14 @@
 
 import React from "react";
 import { View, Text, Image, StyleSheet, ScrollView } from "react-native";
+import BottomMenu from "../components/BottomMenu";
 
 const Review = ({ route }) => {
   const vinhos = route.params.vinho;
 
   
   return (
+    
     <ScrollView contentContainerStyle={styles.container}>
       <Image source={vinhos.imagem} style={styles.image} />
       <Text style={styles.name}>{vinhos.nome}</Text>
@@ -28,6 +30,7 @@ const Review = ({ route }) => {
       <Text style={styles.conteudo}>{vinhos.rating} Estrelas</Text></View>
 
     </ScrollView>
+
   );
 };
 

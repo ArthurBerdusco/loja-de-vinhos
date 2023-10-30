@@ -1,5 +1,6 @@
 import { useNavigation } from "@react-navigation/native";
 import { Text, StyleSheet, FlatList, TouchableOpacity } from "react-native";
+import BottomMenu from "../components/BottomMenu";
 
 
 const Order = ({ order }) => {
@@ -85,7 +86,7 @@ const vinhos = [
     },
 ];
 
-const Orders = () => {
+const Orders = ({navigation}) => {
 
     const orderList = [
         {  orderID: '918239182', orderDate: '01/10/2023',orderValue: '', orderWines: [vinhos[1], vinhos[3], vinhos[5]], deliveryStatus: 'Em trânsito' },
@@ -95,12 +96,15 @@ const Orders = () => {
     ];
 
     return (
+        <>
         <FlatList
             data={orderList}
             keyExtractor={(item, index) => index.toString()}
             style={styles.container}
             renderItem={({ item }) => <Order order={item} />}
         />
+        <BottomMenu navigation={navigation}/>
+        </>
     );
 };
 
