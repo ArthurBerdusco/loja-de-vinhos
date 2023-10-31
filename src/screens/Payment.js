@@ -1,112 +1,108 @@
 import React, { useState } from 'react';
-import { View, Text, TouchableOpacity, StyleSheet, Modal, TextInput, Button } from 'react-native';
+import { View, Text, TextInput, Button, StyleSheet, Modal } from 'react-native';
+import { TouchableOpacity } from 'react-native-web';
 
-const Payment = () => {
-  const [selectedPayment, setSelectedPayment] = useState(null);
-  const [modalVisible, setModalVisible] = useState(false);
-  const [formData, setFormData] = useState({
-    cardNumber: '',
-    cvv: '',
-    expiration: '',
-    cardHolderName: '',
-    pixValue: '',
-  });
-  const [errors, setErrors] = useState({
-    cardNumber: '',
-    cvv: '',
-    expiration: '',
-    cardHolderName: '',
-  });
+const PaymentScreen = () => {
+  const [cardNumber, setCardNumber] = useState('');
+  const [cardHolder, setCardHolder] = useState('');
+  const [expiryDate, setExpiryDate] = useState('');
+  const [cvv, setCvv] = useState('');
+  const [errorMessage, setErrorMessage] = useState('');
+  const [isPaymentSuccess, setIsPaymentSuccess] = useState(false); // State para controlar o modal
 
-  const handlePaymentSelection = (paymentMethod) => {
-    setSelectedPayment(paymentMethod);
-    setModalVisible(true);
+  const handlePayment = () => {
+    // Remover espaços em branco do número do cartão
+    const cleanedCardNumber = cardNumber.replace(/\s/g, '');
+
+    // Validação básica do número do cartão
+    if (!cleanedCardNumber || !/^\d{16}$/.test(cleanedCardNumber)) {
+      setErrorMessage('Número do cartão inválido. Deve ter 16 dígitos.');
+      return;
+    }
+
+    // Adicionar espaços a cada 4 dígitos
+    const formattedCardNumber = cleanedCardNumber.replace(/(\d{4})/g, '$1 ');
+
+    setCardNumber(formattedCardNumber); // Atualize o estado com os espaços adicionados
+
+    if (!cardHolder || !/^[A-Za-z\s]+$/.test(cardHolder)) {
+      setErrorMessage('Nome no cartão inválido.');
+      return;
+    }
+
+    if (!expiryDate || !/^(0[1-9]|1[0-2])\/\d{2}$/.test(expiryDate)) {
+      setErrorMessage('Data de validade inválida. Use o formato MM/YY.');
+      return;
+    }
+
+    if (!cvv || !/^\d{3,4}$/.test(cvv)) {
+      setErrorMessage('CVV inválido. Deve ter 3 dígitos.');
+      return;
+    }
+
+    // Lógica de pagamento
+    setIsPaymentSuccess(true);
   };
 
-  const validateFormData = () => {
-    const { cardNumber, cvv, expiration, cardHolderName } = formData;
-    const newErrors = {};
-
-    if (cardNumber === '') {
-      newErrors.cardNumber = 'Por favor, insira o número do cartão!';
-    }
-
-    if (cvv === '') {
-      newErrors.cvv = 'Por favor, insira o número de segurança!';
-    }
-
-    if (expiration === '') {
-      newErrors.expiration = 'Por favor, insira a validade!';
-    }
-
-    if (cardHolderName === '') {
-      newErrors.cardHolderName = 'Por favor, insira o nome do titular do cartão!';
-    }
-
-    setErrors(newErrors);
-
-    return Object.values(newErrors).every((error) => error === '');
-  };
-
-  const handlePaymentSubmit = () => {
-    if (validateFormData()) {
-      setModalVisible(false);
-      setPaymentModalVisible(true);
-    }
-  };
-
-  const renderPaymentOption = (paymentMethod, label) => {
-    return (
-      <TouchableOpacity
-        style={[
-          styles.paymentOption,
-          selectedPayment === paymentMethod && styles.selectedOption,
-        ]}
-        onPress={() => handlePaymentSelection(paymentMethod)}
-      >
-        <Text style={styles.paymentOptionText}>{label}</Text>
-      </TouchableOpacity>
-    );
+  const closeModal = () => {
+    setIsPaymentSuccess(false);
   };
 
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Escolha a forma de pagamento:</Text>
-      {renderPaymentOption('creditCard', 'Cartão de Crédito')}
-      {renderPaymentOption('debitCard', 'Cartão de Débito')}
-      {renderPaymentOption('pix', 'Pix')}
+      <Text>Número do Cartão</Text>
+      <TextInput
+        value={cardNumber}
+        onChangeText={setCardNumber}
+        placeholder="XXXX XXXX XXXX XXXX"
+        style={styles.input}
+        maxLength={16} // limita a entrada a 16 dígitos e 3 espaços
+      />
 
-      <Modal animationType="slide" transparent={true} visible={modalVisible}>
+      <Text>Nome no Cartão</Text>
+      <TextInput
+        value={cardHolder}
+        onChangeText={setCardHolder}
+        placeholder="NOME COMPLETO"
+        style={styles.input}
+        maxLength={35}
+      />
+
+      <Text>Data de Validade</Text>
+      <TextInput
+        value={expiryDate}
+        onChangeText={setExpiryDate}
+        placeholder="MM/YY"
+        style={styles.input}
+        maxLength={5}
+      />
+
+      <Text>CVV</Text>
+      <TextInput
+        value={cvv}
+        onChangeText={setCvv}
+        placeholder="CVV"
+        style={styles.input}
+        maxLength={3}
+      />
+
+      {errorMessage ? <Text style={styles.errorText}>{errorMessage}</Text> : null}
+
+      <TouchableOpacity style={styles.button} title="Pagar" onPress={handlePayment} >
+      <Text style={styles.buttonText}>Finalizar</Text>
+      </TouchableOpacity>
+
+      {/* Modal de Pagamento Bem-Sucedido */}
+      <Modal
+        transparent={true}
+        animationType="slide"
+        visible={isPaymentSuccess}
+        onRequestClose={closeModal}
+      >
         <View style={styles.modalContainer}>
-          <View style={styles.modalView}>
-            <TouchableOpacity color="#44ff" onPress={() => setModalVisible(false)}>
-              Voltar
-            </TouchableOpacity>
-            <TextInput
-              style={styles.inputBorder(errors.cardNumber)}
-              placeholder="Número do Cartão"
-              value={formData.cardNumber}
-              onChangeText={(text) => setFormData({ ...formData, cardNumber: text })}
-            />
-            <TextInput
-              style={styles.inputBorder(errors.cvv)}
-              placeholder="CVV"
-              value={formData.cvv}
-              onChangeText={(text) => setFormData({ ...formData, cvv: text })}
-            />
-            <TextInput
-              style={styles.inputBorder(errors.expiration)}
-              placeholder="Vencimento (MM/AA)"
-              value={formData.expiration}
-              onChangeText={(text) => setFormData({ ...formData, expiration: text })}
-            />
-            <TextInput
-              style={styles.inputBorder(errors.cardHolderName)}
-              placeholder="Nome do Titular"
-              value={formData.cardHolderName}
-              onChangeText={(text) => setFormData({ ...formData, cardHolderName: text })}
-            />
-            <Button title="Confirmar Pagamento" onPress={handlePaymentSubmit} />
+          <View style={styles.modalContent}>
+            <Text style={styles.successText}>Pagamento Bem-Sucedido</Text>
+            <TouchableOpacity  style={styles.button} title="Fechar" onPress={closeModal}/>
           </View>
         </View>
       </Modal>
@@ -114,102 +110,50 @@ const Payment = () => {
   );
 };
 
-  const styles = StyleSheet.create({
+const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
+    padding: 20,
   },
-  title: {
-    fontSize: 24,
-    marginBottom: 20,
-    fontWeight: 'bold',
-  },
-  paymentOption: {
+  input: {
+    height: 40,
+    borderColor: 'gray',
     borderWidth: 1,
-    borderColor: '#44ff',
+    marginBottom: 10,
+    padding: 10,
+  },
+  button: {
+    backgroundColor: '#7E3030',
+    padding: 10,
     borderRadius: 5,
-    padding: 12,
-    margin: 10,
-    width: 200,
-    alignItems: 'center',
   },
-  selectedOption: {
-    backgroundColor: '#44ff',
-    borderColor: '#44ff',
-  },
-  paymentOptionText: {
-    color: 'black',
-    fontSize: 16,
-  },
-  submitButton: {
-    backgroundColor: '#44ff',
-    padding: 12,
-    borderRadius: 5,
-    marginTop: 20,
-  },
-  submitButtonText: {
+  buttonText: {
     color: 'white',
-    fontSize: 18,
+    fontWeight: 'bold',
+    textAlign: 'center',
+  },
+  errorText: {
+    color: 'red',
+    marginBottom: 10,
   },
   modalContainer: {
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    borderColor: 'green',
-
+    backgroundColor: 'rgba(0, 0, 0, 0.5)',
   },
-  modalView: {
-    backgroundColor: 'white',
+  modalContent: {
+    width: 300,
     padding: 20,
+    backgroundColor: 'green', // Cor de fundo verde
     borderRadius: 10,
-    width: 600,
-
-  },
-  input: {
-    borderBottomWidth: 1,
-    borderColor: '#44ff',
-    marginBottom: 12,
-    padding: 10,
-  },
-  txtBack: {
-    color: 'red'
-  },
-  inputBorderError: {
-    borderBottomWidth: 1,
-    borderColor: 'red',
-    marginBottom: 12,
-    padding: 10,
-  },
-  inputBorderSuccess: {
-    borderBottomWidth: 1,
-    borderColor: 'green',
-    marginBottom: 12,
-    padding: 10,
-  },
-  container1: {
-    flex: 1,
-    justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: 'green', // Cor de fundo para indicar sucesso
   },
   successText: {
-    fontSize: 24,
-    fontWeight: 'bold',
-    color: 'white', // Cor do texto
-    marginBottom: 20,
+    fontSize: 20,
+    color: 'white',
+    marginBottom: 10,
   },
-  infoText: {
-    fontSize: 18,
-    color: 'white', // Cor do texto
-  },
-
-  inputBorder: (error) => ({
-    borderBottomWidth: 1,
-    borderColor: error ? 'red' : '#44ff',
-    marginBottom: 12,
-    padding: 10,
-  }),
 });
 
-export default Payment;
+export default PaymentScreen;
