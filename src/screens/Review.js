@@ -2,10 +2,16 @@
 import React, { useState } from "react";
 import { View, Text, Image, StyleSheet, ScrollView, Button } from "react-native";
 
-const Review = ({ route, navigation }) => {
+const Review = ({ route, navigation, cartLabel, setCartLabel }) => {
   const vinhos = route.params.vinho;
 
-  const [teste, setTeste] = useState('0');
+  const handleAddToCart = () => {
+
+    console.log(cartLabel)
+      setCartLabel(cartLabel + 1);
+    
+  };
+
   return (
     <>
 
@@ -28,7 +34,7 @@ const Review = ({ route, navigation }) => {
         <View style={styles.vconteudo}>
           <Text style={styles.rating}>Classificação: </Text>
           <Text style={styles.conteudo}>{vinhos.rating} Estrelas</Text></View>
-        <Button title="Comprar" onPress={()=>{setTeste('1')}}/>
+        <Button title="Teste" onPress={() => { handleAddToCart() }} />
 
       </ScrollView>
     </>

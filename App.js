@@ -1,4 +1,5 @@
-import * as React from 'react';
+import React, { useState } from 'react';
+import { useRoute } from '@react-navigation/native';
 import { NavigationContainer, useNavigation } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
@@ -21,8 +22,7 @@ import Icon from 'react-native-vector-icons/FontAwesome5';
 const Tab = createBottomTabNavigator();
 const Stack = createNativeStackNavigator();
 
-function HomeStack() {
-
+function HomeStack({ setCartLabel, cartLabel }) {
 
   return (
     <Stack.Navigator>
@@ -42,7 +42,10 @@ function HomeStack() {
         }}
       />
       <Stack.Screen name="Search" component={Search} options={{ headerTitle: 'Buscar' }} />
-      <Stack.Screen name="Review" component={Review} options={{ headerTitle: 'Informações' }} />
+      <Stack.Screen name="Review" component={() => {
+        
+        return <Review route={useRoute()} setCartLabel={setCartLabel} cartLabel={cartLabel} />;
+      }} options={{ headerTitle: 'Informações' }} />
       <Stack.Screen name="OrderDetail" component={OrderDetail} options={{ headerTitle: 'Detalhe do Pedido' }} />
       <Stack.Screen name="Payment" component={PaymentScreen} options={{ headerTitle: 'Pagamento' }} />
 
@@ -55,11 +58,14 @@ function HomeStack() {
 }
 
 function MainTabs() {
+
+  const [cartLabel, setCartLabel] = useState(1);
+
   return (
     <Tab.Navigator>
       <Tab.Screen
         name="Home"
-        component={HomeStack}
+        component={() => <HomeStack setCartLabel={setCartLabel} cartLabel={cartLabel} />}
         options={{
           tabBarIcon: ({ focused }) => (
             <Icon name="home" size={26} color={focused ? '#7D1F1F' : '#cacaca'} />
@@ -67,7 +73,7 @@ function MainTabs() {
           headerShown: false,
         }}
       />
-      <Tab.Screen name="Cart" component={Cart} options={{
+      <Tab.Screen name={'Carrinho ' + cartLabel} component={() => <Cart cartLabel={cartLabel} />} options={{
         tabBarIcon: ({ focused }) => <Icon name="shopping-cart" size={26} color={focused ? '#7D1F1F' : '#cacaca'} />,
       }} />
       <Tab.Screen name="Orders" component={Orders} options={{
