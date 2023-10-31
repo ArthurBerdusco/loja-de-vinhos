@@ -118,8 +118,6 @@ const Home = ({ navigation }) => {
                 </View>
 
             </ScrollView>
-            <BottomMenu navigation={navigation}/>
-
 
         </>
     )
