@@ -105,7 +105,6 @@ const Profile = ({ navigation }) => {
                     </TouchableOpacity>
                 </View>
             </View>
-        <BottomMenu navigation={navigation}/>
         </>
     );
 };

@@ -1,7 +1,5 @@
 import { useNavigation } from "@react-navigation/native";
 import { Text, StyleSheet, FlatList, TouchableOpacity } from "react-native";
-import BottomMenu from "../components/BottomMenu";
-
 
 const Order = ({ order }) => {
 
@@ -103,7 +101,6 @@ const Orders = ({navigation}) => {
             style={styles.container}
             renderItem={({ item }) => <Order order={item} />}
         />
-        <BottomMenu navigation={navigation}/>
         </>
     );
 };
