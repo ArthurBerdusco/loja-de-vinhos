@@ -1,6 +1,5 @@
 import { View, Text, ScrollView, Image, StyleSheet, TouchableOpacity, ImageBackground } from "react-native"
 import star from '../assets/img/star.png'
-import BottomMenu from "../components/BottomMenu";
 
 const today = [
     {
@@ -70,6 +69,201 @@ const vinhos = [
         origem: 'Yangshuo , China',
         rating: 4.5
     },
+];
+
+
+
+
+const tintos = [
+    {
+        nome: 'Tinto Moriet',
+        preco: 299.99,
+        teorAlcool: 13.5,
+        imagem: require('../assets/img/vinho1.png'),
+        bandeira: require('../assets/img/china.png'),
+        origem: 'Baoshan, China',
+        rating: 5
+    },
+    {
+        nome: 'Cabernet Sauvignon',
+        preco: 25.99,
+        teorAlcool: 13.8,
+        imagem: require('../assets/img/vinho2.png'),
+        bandeira: require('../assets/img/france.png'),
+        origem: 'Bordeaux, França',
+        rating: 4.7
+    },
+    {
+        nome: 'Merlot Reserva',
+        preco: 189.50,
+        teorAlcool: 14.2,
+        imagem: require('../assets/img/vinho3.png'),
+        bandeira: require('../assets/img/italy.png'),
+        origem: 'Toscana, Itália',
+        rating: 4.2
+    },
+    {
+        nome: 'Pinot Noir Elegance',
+        preco: 129.99,
+        teorAlcool: 12.5,
+        imagem: require('../assets/img/vinho4.png'),
+        bandeira: require('../assets/img/new-zealand.png'),
+        origem: 'Marlborough, Nova Zelândia',
+        rating: 4.8
+    },
+    {
+        nome: 'Malbec Intenso',
+        preco: 79.90,
+        teorAlcool: 15.0,
+        imagem: require('../assets/img/vinho5.png'),
+        bandeira: require('../assets/img/argentina.png'),
+        origem: 'Mendoza, Argentina',
+        rating: 4.5
+    }
+];
+
+const roses = [
+    {
+        nome: 'Rosé Seco',
+        preco: 190.39,
+        teorAlcool: 11.5,
+        imagem: require('../assets/img/vinho1.png'),
+        bandeira: require('../assets/img/south-korea.png'),
+        origem: 'Geoje-si, Coreia do Sul',
+        rating: 4.3
+    },
+    {
+        nome: 'Provence Rosé',
+        preco: 35.50,
+        teorAlcool: 12.0,
+        imagem: require('../assets/img/vinho2.png'),
+        bandeira: require('../assets/img/france.png'),
+        origem: 'Provence, França',
+        rating: 4.8
+    },
+    {
+        nome: 'Rosé Elegance',
+        preco: 89.99,
+        teorAlcool: 11.8,
+        imagem: require('../assets/img/vinho3.png'),
+        bandeira: require('../assets/img/spain.png'),
+        origem: 'Rioja, Espanha',
+        rating: 4.5
+    },
+    {
+        nome: 'Rosé do Vale',
+        preco: 120.75,
+        teorAlcool: 12.5,
+        imagem: require('../assets/img/vinho4.png'),
+        bandeira: require('../assets/img/portugal.png'),
+        origem: 'Douro, Portugal',
+        rating: 4.2
+    },
+    {
+        nome: 'Rosé Refrescante',
+        preco: 55.00,
+        teorAlcool: 10.5,
+        imagem: require('../assets/img/vinho5.png'),
+        bandeira: require('../assets/img/italy.png'),
+        origem: 'Sicília, Itália',
+        rating: 4.6
+    }
+];
+
+const espumantes = [
+    {
+        nome: 'Espumante Brut',
+        preco: 345.29,
+        teorAlcool: 12.8,
+        imagem: require('../assets/img/vinho1.png'),
+        bandeira: require('../assets/img/china.png'),
+        origem: 'Guilin, China',
+        rating: 3.3
+    },
+    {
+        nome: 'Prosecco Extra Dry',
+        preco: 28.99,
+        teorAlcool: 11.0,
+        imagem: require('../assets/img/vinho2.png'),
+        bandeira: require('../assets/img/italy.png'),
+        origem: 'Veneto, Itália',
+        rating: 4.7
+    },
+    {
+        nome: 'Champagne Prestige',
+        preco: 198.50,
+        teorAlcool: 12.5,
+        imagem: require('../assets/img/vinho3.png'),
+        bandeira: require('../assets/img/france.png'),
+        origem: 'Champagne, França',
+        rating: 4.2
+    },
+    {
+        nome: 'Cava Espanhola',
+        preco: 65.75,
+        teorAlcool: 11.5,
+        imagem: require('../assets/img/vinho4.png'),
+        bandeira: require('../assets/img/spain.png'),
+        origem: 'Penedès, Espanha',
+        rating: 4.5
+    },
+    {
+        nome: 'Asti Spumante',
+        preco: 42.00,
+        teorAlcool: 7.5,
+        imagem: require('../assets/img/vinho5.png'),
+        bandeira: require('../assets/img/italy.png'),
+        origem: 'Piemonte, Itália',
+        rating: 4.8
+    }
+];
+
+const brancos = [
+    {
+        nome: 'Chardonnay Elegance',
+        preco: 150.29,
+        teorAlcool: 12.0,
+        imagem: require('../assets/img/vinho1.png'),
+        bandeira: require('../assets/img/germany.png'),
+        origem: 'Heidelberg, Alemanha',
+        rating: 4.2
+    },
+    {
+        nome: 'Sauvignon Blanc Fresco',
+        preco: 55.99,
+        teorAlcool: 11.5,
+        imagem: require('../assets/img/vinho2.png'),
+        bandeira: require('../assets/img/new-zealand.png'),
+        origem: 'Marlborough, Nova Zelândia',
+        rating: 4.6
+    },
+    {
+        nome: 'Pinot Grigio Delicate',
+        preco: 89.50,
+        teorAlcool: 13.2,
+        imagem: require('../assets/img/vinho3.png'),
+        bandeira: require('../assets/img/italy.png'),
+        origem: 'Alto Adige, Itália',
+        rating: 4.3
+    },
+    {
+        nome: 'Riesling Clássico',
+        preco: 120.75,
+        teorAlcool: 10.5,
+        imagem: require('../assets/img/vinho4.png'),
+        bandeira: require('../assets/img/germany.png'),
+        origem: 'Mosel, Alemanha',
+        rating: 4.8
+    },
+    {
+        nome: 'Albariño Refrescante',
+        preco: 65.00,
+        teorAlcool: 12.0,
+        imagem: require('../assets/img/vinho5.png'),
+        bandeira: require('../assets/img/spain.png'),
+        origem: 'Rias Baixas, Espanha',
+        rating: 4.5
+    }
 ];
 
 const Home = ({ navigation }) => {
@@ -199,7 +393,6 @@ const Today = (props) => {
             </View>
 
         </TouchableOpacity>
-
 
 
     )
