@@ -92,9 +92,8 @@ const Vinho = (props) => {
 }
 const styles = StyleSheet.create({
     container: {
-
         flex: 1,
-        
+        backgroundColor: '#eaeaea'
     },
     container_input: {
         height: "auto",

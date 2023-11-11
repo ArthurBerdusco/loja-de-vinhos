@@ -108,6 +108,7 @@ const Orders = ({navigation}) => {
 const styles = StyleSheet.create({
     container: {
         padding: 16,
+        backgroundColor: '#eaeaea'
     },
     orderContainer: {
         backgroundColor: "#f8f8f8",
