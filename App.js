@@ -19,14 +19,16 @@ import Profile from './src/screens/Profile';
 import PaymentScreen from './src/screens/Payment';
 import Icon from 'react-native-vector-icons/FontAwesome5';
 
-const Tab = createBottomTabNavigator();
-const Stack = createNativeStackNavigator();
 
-function HomeStack({ setCartLabel, cartLabel }) {
+const Tab = createBottomTabNavigator();
+
+function MainTabs() {
+
+  const [cartLabel, setCartLabel] = useState(1);
 
   return (
-    <Stack.Navigator>
-      <Stack.Screen
+    <Tab.Navigator>
+      <Tab.Screen
         name="Home"
         component={Home}
         options={{
@@ -39,41 +41,11 @@ function HomeStack({ setCartLabel, cartLabel }) {
               </View>
             </SafeAreaView>
           ),
+          tabBarIcon: ({ focused }) => <Icon name="home" size={26} color={focused ? '#7D1F1F' : '#cacaca'}/>
         }}
       />
-      <Stack.Screen name="Search" component={Search} options={{ headerTitle: 'Buscar' }} />
-      <Stack.Screen name="Review" component={() => {
-        
-        return <Review route={useRoute()} setCartLabel={setCartLabel} cartLabel={cartLabel} />;
-      }} options={{ headerTitle: 'Informações' }} />
-      <Stack.Screen name="OrderDetail" component={OrderDetail} options={{ headerTitle: 'Detalhe do Pedido' }} />
-      <Stack.Screen name="Payment" component={PaymentScreen} options={{ headerTitle: 'Pagamento' }} />
 
-      <Stack.Screen name="Notifications" component={Notifications} options={{ headerRight: null, headerTitle: 'Notificações' }} />
-
-      <Stack.Screen name="Notification1" component={Notification1} options={{ headerTitle: 'Notificação 1' }} />
-
-    </Stack.Navigator>
-  );
-}
-
-function MainTabs() {
-
-  const [cartLabel, setCartLabel] = useState(1);
-
-  return (
-    <Tab.Navigator>
-      <Tab.Screen
-        name="Home"
-        component={() => <HomeStack setCartLabel={setCartLabel} cartLabel={cartLabel} />}
-        options={{
-          tabBarIcon: ({ focused }) => (
-            <Icon name="home" size={26} color={focused ? '#7D1F1F' : '#cacaca'} />
-          ),
-          headerShown: false,
-        }}
-      />
-      <Tab.Screen name={'Carrinho ' + cartLabel} component={() => <Cart cartLabel={cartLabel} />} options={{
+      <Tab.Screen name={'Carrinho '} component={() => <Cart cartLabel={cartLabel} />} options={{
         tabBarIcon: ({ focused }) => <Icon name="shopping-cart" size={26} color={focused ? '#7D1F1F' : '#cacaca'} />,
       }} />
       <Tab.Screen name="Orders" component={Orders} options={{
