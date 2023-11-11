@@ -112,6 +112,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         padding: 10,
+        backgroundColor: '#eaeaea'
     },
     notification: {
         backgroundColor: '#fafafa',

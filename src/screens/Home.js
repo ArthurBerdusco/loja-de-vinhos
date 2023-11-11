@@ -1,75 +1,5 @@
-import { View, Text, ScrollView, Image, StyleSheet, TouchableOpacity, ImageBackground } from "react-native"
+import { View, Text, ScrollView, Image, StyleSheet, TouchableOpacity, ImageBackground, FlatList } from "react-native"
 import star from '../assets/img/star.png'
-
-const today = [
-    {
-        nome: 'Coyat',
-        preco: 500.00,
-        teorAlcool: 30.5,
-        imagem: require('../assets/img/coyat.png'),
-        bandeira: require('../assets/img/switzerland.png'),
-        origem: 'Lucerna, Switzerland',
-        rating: 4.5
-    },
-]
-
-const vinhos = [
-    {
-        nome: 'Vinho Tinto Moriet',
-        preco: 299.99,
-        teorAlcool: 13.5,
-        imagem: require('../assets/img/vinho1.png'),
-        bandeira: require('../assets/img/china.png'),
-        origem: 'Baoshan, China',
-        rating: 5
-
-    },
-    {
-        nome: 'Vinho Branco Chardonnay',
-        preco: 150.29,
-        teorAlcool: 12.0,
-        imagem: require('../assets/img/vinho2.png'),
-        bandeira: require('../assets/img/germany.png'),
-        origem: 'Heidelberg, Alemanha',
-        rating: 4.2
-    },
-    {
-        nome: 'Vinho Rosé Seco',
-        preco: 190.39,
-        teorAlcool: 11.5,
-        imagem: require('../assets/img/vinho3.png'),
-        bandeira: require('../assets/img/south-korea.png'),
-        origem: 'Geoje-si, Coreia do Sul',
-        rating: 4.3
-    },
-    {
-        nome: 'Vinho Espumante Brut',
-        preco: 345.29,
-        teorAlcool: 12.8,
-        imagem: require('../assets/img/vinho4.png'),
-        bandeira: require('../assets/img/china.png'),
-        origem: 'Guilin, China',
-        rating: 3.3
-    },
-    {
-        nome: 'Vinho Tinto Cabernet',
-        preco: 270.79,
-        teorAlcool: 14.0,
-        imagem: require('../assets/img/vinho5.png'),
-        bandeira: require('../assets/img/switzerland.png'),
-        origem: 'Grindelwald, Suiça',
-        rating: 5
-    },
-    {
-        nome: 'Vinho Branco Sauvignon',
-        preco: 220.99,
-        teorAlcool: 11.8,
-        imagem: require('../assets/img/vinho6.png'),
-        bandeira: require('../assets/img/germany.png'),
-        origem: 'Yangshuo , China',
-        rating: 4.5
-    },
-];
 
 
 
@@ -85,11 +15,11 @@ const tintos = [
         rating: 5
     },
     {
-        nome: 'Cabernet Sauvignon',
+        nome: 'Sauvignon',
         preco: 25.99,
         teorAlcool: 13.8,
         imagem: require('../assets/img/vinho2.png'),
-        bandeira: require('../assets/img/france.png'),
+        bandeira: require('../assets/img/china.png'),
         origem: 'Bordeaux, França',
         rating: 4.7
     },
@@ -98,16 +28,16 @@ const tintos = [
         preco: 189.50,
         teorAlcool: 14.2,
         imagem: require('../assets/img/vinho3.png'),
-        bandeira: require('../assets/img/italy.png'),
+        bandeira: require('../assets/img/china.png'),
         origem: 'Toscana, Itália',
         rating: 4.2
     },
     {
-        nome: 'Pinot Noir Elegance',
+        nome: 'Pinot Elegance',
         preco: 129.99,
         teorAlcool: 12.5,
         imagem: require('../assets/img/vinho4.png'),
-        bandeira: require('../assets/img/new-zealand.png'),
+        bandeira: require('../assets/img/china.png'),
         origem: 'Marlborough, Nova Zelândia',
         rating: 4.8
     },
@@ -116,7 +46,7 @@ const tintos = [
         preco: 79.90,
         teorAlcool: 15.0,
         imagem: require('../assets/img/vinho5.png'),
-        bandeira: require('../assets/img/argentina.png'),
+        bandeira: require('../assets/img/china.png'),
         origem: 'Mendoza, Argentina',
         rating: 4.5
     }
@@ -128,8 +58,8 @@ const roses = [
         preco: 190.39,
         teorAlcool: 11.5,
         imagem: require('../assets/img/vinho1.png'),
-        bandeira: require('../assets/img/south-korea.png'),
-        origem: 'Geoje-si, Coreia do Sul',
+        bandeira: require('../assets/img/china.png'),
+        origem: 'Geoje, Coreia do Sul',
         rating: 4.3
     },
     {
@@ -137,7 +67,7 @@ const roses = [
         preco: 35.50,
         teorAlcool: 12.0,
         imagem: require('../assets/img/vinho2.png'),
-        bandeira: require('../assets/img/france.png'),
+        bandeira: require('../assets/img/china.png'),
         origem: 'Provence, França',
         rating: 4.8
     },
@@ -146,7 +76,7 @@ const roses = [
         preco: 89.99,
         teorAlcool: 11.8,
         imagem: require('../assets/img/vinho3.png'),
-        bandeira: require('../assets/img/spain.png'),
+        bandeira: require('../assets/img/china.png'),
         origem: 'Rioja, Espanha',
         rating: 4.5
     },
@@ -155,8 +85,8 @@ const roses = [
         preco: 120.75,
         teorAlcool: 12.5,
         imagem: require('../assets/img/vinho4.png'),
-        bandeira: require('../assets/img/portugal.png'),
-        origem: 'Douro, Portugal',
+        bandeira: require('../assets/img/china.png'),
+        origem: 'Douro, china',
         rating: 4.2
     },
     {
@@ -164,7 +94,7 @@ const roses = [
         preco: 55.00,
         teorAlcool: 10.5,
         imagem: require('../assets/img/vinho5.png'),
-        bandeira: require('../assets/img/italy.png'),
+        bandeira: require('../assets/img/china.png'),
         origem: 'Sicília, Itália',
         rating: 4.6
     }
@@ -181,20 +111,20 @@ const espumantes = [
         rating: 3.3
     },
     {
-        nome: 'Prosecco Extra Dry',
+        nome: 'Prosecco Dry',
         preco: 28.99,
         teorAlcool: 11.0,
         imagem: require('../assets/img/vinho2.png'),
-        bandeira: require('../assets/img/italy.png'),
+        bandeira: require('../assets/img/china.png'),
         origem: 'Veneto, Itália',
         rating: 4.7
     },
     {
-        nome: 'Champagne Prestige',
+        nome: 'Prestige',
         preco: 198.50,
         teorAlcool: 12.5,
         imagem: require('../assets/img/vinho3.png'),
-        bandeira: require('../assets/img/france.png'),
+        bandeira: require('../assets/img/china.png'),
         origem: 'Champagne, França',
         rating: 4.2
     },
@@ -203,7 +133,7 @@ const espumantes = [
         preco: 65.75,
         teorAlcool: 11.5,
         imagem: require('../assets/img/vinho4.png'),
-        bandeira: require('../assets/img/spain.png'),
+        bandeira: require('../assets/img/china.png'),
         origem: 'Penedès, Espanha',
         rating: 4.5
     },
@@ -212,7 +142,7 @@ const espumantes = [
         preco: 42.00,
         teorAlcool: 7.5,
         imagem: require('../assets/img/vinho5.png'),
-        bandeira: require('../assets/img/italy.png'),
+        bandeira: require('../assets/img/china.png'),
         origem: 'Piemonte, Itália',
         rating: 4.8
     }
@@ -220,29 +150,29 @@ const espumantes = [
 
 const brancos = [
     {
-        nome: 'Chardonnay Elegance',
+        nome: 'Chardonnay',
         preco: 150.29,
         teorAlcool: 12.0,
         imagem: require('../assets/img/vinho1.png'),
-        bandeira: require('../assets/img/germany.png'),
+        bandeira: require('../assets/img/china.png'),
         origem: 'Heidelberg, Alemanha',
         rating: 4.2
     },
     {
-        nome: 'Sauvignon Blanc Fresco',
+        nome: 'Sauvignon Blanc',
         preco: 55.99,
         teorAlcool: 11.5,
         imagem: require('../assets/img/vinho2.png'),
-        bandeira: require('../assets/img/new-zealand.png'),
+        bandeira: require('../assets/img/china.png'),
         origem: 'Marlborough, Nova Zelândia',
         rating: 4.6
     },
     {
-        nome: 'Pinot Grigio Delicate',
+        nome: 'Pinot Grigio',
         preco: 89.50,
         teorAlcool: 13.2,
         imagem: require('../assets/img/vinho3.png'),
-        bandeira: require('../assets/img/italy.png'),
+        bandeira: require('../assets/img/china.png'),
         origem: 'Alto Adige, Itália',
         rating: 4.3
     },
@@ -251,355 +181,212 @@ const brancos = [
         preco: 120.75,
         teorAlcool: 10.5,
         imagem: require('../assets/img/vinho4.png'),
-        bandeira: require('../assets/img/germany.png'),
+        bandeira: require('../assets/img/china.png'),
         origem: 'Mosel, Alemanha',
         rating: 4.8
     },
     {
-        nome: 'Albariño Refrescante',
+        nome: 'Albariño',
         preco: 65.00,
         teorAlcool: 12.0,
         imagem: require('../assets/img/vinho5.png'),
-        bandeira: require('../assets/img/spain.png'),
+        bandeira: require('../assets/img/china.png'),
         origem: 'Rias Baixas, Espanha',
         rating: 4.5
     }
 ];
 
+const today = [
+    {
+        nome: 'Coyat',
+        preco: 500.00,
+        teorAlcool: 30.5,
+        imagem: require('../assets/img/coyat.png'),
+        bandeira: require('../assets/img/china.png'),
+        origem: 'Lucerna, Switzerland',
+        rating: 4.5
+    },
+]
+
 const Home = ({ navigation }) => {
     return (
-        <>
+        <ScrollView contentContainerStyle={styles.container}>
+            <Banner wine={today[0]} navigation={navigation} />
+            <Section label="Tintos" data={tintos} navigation={navigation} />
+            <Section label="Rosés" data={roses} navigation={navigation} />
+            <Section label="Espumantes" data={espumantes} navigation={navigation} />
+            <Section label="Brancos" data={brancos} navigation={navigation} />
+        </ScrollView>
+    );
+};
 
-            <ScrollView>
+const Banner = ({ wine, navigation }) => (
+    <TouchableOpacity
+        title="Comprar"
+        color='black'
+        onPress={() => navigation.navigate('Review', { vinho: { ...wine } })}
+    >
+        <View style={styles.bannerContainer}>
+            <Image source={wine.imagem} style={styles.bannerImage} resizeMode="contain" />
+            <Text style={styles.bannerName}>{wine.nome}</Text>
+            <Text style={styles.bannerPromo}>Promoção!</Text>
+            <View style={styles.priceContainer}>
+                <Text style={styles.oldPrice}>R${wine.preco + 50}</Text>
+                <Text style={styles.currentPrice}>R${wine.preco}</Text>
+            </View>
+        </View>
+    </TouchableOpacity>
+);
 
-                <View style={styles.container}>
-                    <Text style={styles.wines}>Somente hoje</Text>
-                    <View style={styles.row}>
-                        {today.map((today, index) => (
-                            <Today
-                                key={index}
-                                nome={today.nome}
-                                preco={today.preco}
-                                teorAlcool={today.teorAlcool}
-                                imagem={today.imagem}
-                                bandeira={today.bandeira}
-                                origem={today.origem}
-                                rating={today.rating}
-                                navigation={navigation}
-                            />
-                        ))}
-                    </View>
-                </View>
 
-                <View style={styles.container}>
-                    <Text style={styles.wines}>Vinhos</Text>
-                    <View style={styles.row}>
-                        {vinhos.map((vinho, index) => (
-                            <Vinho
-                                key={index}
-                                nome={vinho.nome}
-                                preco={vinho.preco}
-                                teorAlcool={vinho.teorAlcool}
-                                imagem={vinho.imagem}
-                                bandeira={vinho.bandeira}
-                                origem={vinho.origem}
-                                rating={vinho.rating}
-                                navigation={navigation}
-                            />
-                        ))}
-                    </View>
-
-                </View>
-
-            </ScrollView>
-
-        </>
-    )
-
-}
+const Section = ({ label, data, navigation }) => (
+    <>
+        <Text style={styles.sectionLabel}>{label}</Text>
+        <FlatList
+            data={data}
+            keyExtractor={(item, index) => index.toString()}
+            renderItem={(item) => <Vinho {...item.item} navigation={navigation} />}
+            horizontal
+        />
+    </>
+);
 
 const Vinho = (props) => {
     return (
-        <TouchableOpacity title="Comprar" color='black' onPress={() => props.navigation.navigate('Review', {
-            vinho:
-            {
-                nome: props.nome,
-                preco: props.preco,
-                teorAlcool: props.teorAlcool,
-                imagem: props.imagem,
-                rating: props.rating
-            }
-
-        })}>
+        <TouchableOpacity
+            title="Comprar"
+            color='black'
+            onPress={() => props.navigation.navigate('Review', { vinho: { ...props } })}
+        >
             <View style={styles.card}>
                 <View style={styles.imageContainer}>
-                    <Image source={(props.imagem)} style={styles.image} resizeMode="contain" />
+                    <Image source={props.imagem} style={styles.image} resizeMode="contain" />
                 </View>
-                <Text style={styles.text_name}>{props.nome}</Text>
-                <View style={styles.country}>
-                    <Image source={(props.bandeira)} style={styles.bandeira} />
-                    <Text style={styles.text_country}>{props.origem}</Text>
+                <Text style={styles.name}>{props.nome}</Text>
+                <View style={styles.countryContainer}>
+                    <Image source={props.bandeira} style={styles.bandeira} />
+                    <Text style={styles.country}>{props.origem}</Text>
                 </View>
                 <Text style={styles.text}>Teor Alcolico: {props.teorAlcool}%</Text>
-                <View style={styles.container_line}>
-                    <View style={styles.line}></View>
-                    <Text style={styles.text_preco}>R${props.preco}</Text>
-                    <View style={styles.classify}>
+                <View style={styles.priceContainer}>
+
+                    <Text style={styles.price}>R${props.preco}</Text>
+                    <View style={styles.ratingContainer}>
                         <Image source={star} style={styles.star} />
                         <Text style={styles.rating}>{props.rating}</Text>
                     </View>
                 </View>
             </View>
-
         </TouchableOpacity>
-
-
-
-    )
-}
-const Today = (props) => {
-    return (
-
-        <TouchableOpacity title="Comprar" color='black' onPress={() => props.navigation.navigate('Review', {
-            vinho:
-            {
-                nome: props.nome,
-                preco: props.preco,
-                teorAlcool: props.teorAlcool,
-                imagem: props.imagem,
-                rating: props.rating,
-            }
-        })}>
-            <View style={styles.card_today}>
-                <View style={styles.imageContainer}>
-                    <Image source={(props.imagem)} style={styles.image_today} resizeMode="contain" />
-                </View>
-                <Text style={styles.text_name_today}>{props.nome}</Text>
-                <Text style={styles.text_name_today_today}>{props.nome}</Text>
-                <View style={styles.container_today}>
-                    <View style={styles.country}>
-                        <Image source={(props.bandeira)} style={styles.bandeira} />
-                        <Text style={styles.text_country}> {props.origem} </Text>
-                    </View>
-                    <Text style={styles.text}>Teor Alcolico: {props.teorAlcool}%</Text>
-                    <View style={styles.line}></View>
-                    <Text style={styles.text_preco}>R${props.preco}</Text>
-                    <View style={styles.classify}>
-                        <Image source={star} style={styles.star} />
-                        <Text style={styles.rating}>{props.rating}</Text>
-                    </View>
-                </View>
-
-            </View>
-
-        </TouchableOpacity>
-
-
-    )
-}
+    );
+};
 
 const styles = StyleSheet.create({
     container: {
-        flex: 1,
-        justifyContent: 'center',
-        backgroundColor: "#F8F8F8"
+        padding: 16,
+        backgroundColor: '#eaeaea'
     },
-    container_today: {
-        marginTop: 40,
-    },
-    row: {
-        flexDirection: 'row',
-        flexWrap: 'wrap',
-        justifyContent: 'space-between'
-    },
-
-    card: {
-        width: 373,
-        borderRadius: 20,
-        backgroundColor: "#F7E4CF",
-        flexDirection: "column",
-        height: 220,
-        marginBottom: 20,
-        marginTop: 15,
-        marginLeft: 10,
-    },
-
-    card_today: {
-        width: 373,
-        borderRadius: 34,
-        backgroundColor: "orange",
-        flexDirection: "column",
-        height: 240,
-        marginBottom: 20,
-        marginTop: 30,
-        marginLeft: 10,
-    },
-
-    title: {
+    sectionLabel: {
+        fontSize: 16,
+        fontWeight: 'bold',
+        margin: 8,
         marginTop: 20,
-        marginBottom: 20,
-        textAlign: 'center',
-        fontSize: 40,
-        color: '#AA00AB',
-        fontStyle: 'italic'
-
-
     },
-    text: {
-        marginLeft: 50,
-        textAlign: "justify",
-        top: 30,
-        fontWeight: "400",
-        color: "black",
-        marginRight: "auto",
-        fontSize: 20,
-
-
-
+    bannerContainer: {
+        backgroundColor: '#F8F8F8',
+        borderRadius: 10,
+        padding: 16,
+        margin: 8,
+        alignItems: 'center',
     },
-    line: {
-        height: 3,
-        backgroundColor: 'black',
-        top: 35,
-        left: 25,
-        marginRight: 125,
-        borderRadius: 100,
+    bannerImage: {
+        width: 150,
+        height: 150,
     },
-
-    container_line: {
-        flex: 1,
-        top: 38,
+    bannerName: {
+        fontSize: 18,
+        fontWeight: 'bold',
+        marginTop: 8,
     },
-    text_preco: {
-        marginLeft: "auto",
-        marginRight: 100,
-        textAlign: "right",
-        top: 34,
-        fontWeight: "bold",
-        color: "black",
-        fontSize: 15
-
-
-
+    bannerPromo: {
+        fontSize: 16,
+        color: 'red',
+        fontWeight: 'bold',
+        marginTop: 4,
     },
-    text_name: {
-        fontSize: 30,
-        lineHeight: 30,
-        fontWeight: "400",
-        color: "black",
-        textAlign: "left",
-        width: 262,
-        height: 60,
-        marginLeft: 30,
-        top: 25,
-    },
-    text_name_today: {
-        fontSize: 60,
-        lineHeight: 60,
-        fontWeight: "700",
-        fontStyle: "italic",
-        fontVariant: "small-caps;",
-        color: "#1117F5",
-        textAlign: "left",
-        width: 200,
-        height: 60,
-        marginLeft: 31,
-        top: 10,
-
-    },
-    text_name_today_today: {
-        position: "absolute",
-        fontSize: 60,
-        lineHeight: 60,
-        fontWeight: "300",
-        fontStyle: "italic",
-        fontVariant: "small-caps;",
-        color: "white",
-        textAlign: "left",
-        width: 200,
-        height: 60,
-        marginLeft: 30,
-        top: 10,
-    },
-    text_country: {
-        fontWeight: "600",
-        fontSize: 20,
-
-    },
-    country: {
-        marginLeft: 30,
-        top: 30,
+    priceContainer: {
         flexDirection: 'row',
         alignItems: 'center',
-        marginRight: 70
-
+        marginTop: 8,
     },
-    rating: {
-        fontWeight: "bold",
-        color: "black",
-        fontSize: 15
-
+    oldPrice: {
+        fontSize: 14,
+        color: '#888',
+        textDecorationLine: 'line-through',
+        marginRight: 8,
     },
-    star: {
-        top: 5,
+    currentPrice: {
+        fontSize: 18,
+        fontWeight: 'bold',
     },
-
-    classify: {
-        margin: 50,
-        marginTop: 13,
-        flexDirection: "row"
+    card: {
+        backgroundColor: '#F8F8F8',
+        borderRadius: 10,
+        padding: 16,
+        margin: 8,
+        width: 170,
     },
-
-    wines: {
-        fontSize: 30,
-        left: 15,
-        fontWeight: "300",
-        color: "black",
-        textAlign: "left",
-        fontStyle: "italic",
-
-
-    },
-
-
     imageContainer: {
         alignItems: 'center',
     },
     image: {
-        position: "absolute",
-        height: 170,
-        width: 50,
-        right: 20,
-        top: 25
-
-
+        width: 100,
+        height: 100,
     },
-    image_today: {
-        position: "absolute",
-        flex: 1,
-        left: 60,
-        height: 240,
-        width: "100%",
-
-
+    name: {
+        fontSize: 16,
+        fontWeight: 'bold',
+        marginTop: 8,
     },
-
+    countryContainer: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        marginTop: 4,
+    },
     bandeira: {
         width: 20,
         height: 20,
+        marginRight: 4,
     },
-
-    background: {
-        flex: 1,
-        width: "100%",
-        height: "100%",
+    country: {
+        fontSize: 12,
     },
-    button: {
-        marginTop: 50,
-        marginBottom: 70,
-        alignItems: "center",
-    }
-
-})
+    text: {
+        fontSize: 12,
+        marginTop: 4,
+    },
+    priceContainer: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'space-between',
+        marginTop: 8,
+    },
+    price: {
+        fontSize: 14,
+        fontWeight: 'bold',
+    },
+    ratingContainer: {
+        flexDirection: 'row',
+        alignItems: 'center',
+    },
+    star: {
+        width: 16,
+        height: 16,
+        marginRight: 4,
+    },
+    rating: {
+        fontSize: 14,
+    },
+});
 
 export default Home

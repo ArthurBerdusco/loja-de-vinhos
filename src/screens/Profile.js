@@ -113,12 +113,12 @@ const Profile = ({ navigation }) => {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#e8e8e8',
+        backgroundColor: '#eaeaea',
         padding: 20,
         justifyContent: 'space-between',
     },
     identification: {
-        backgroundColor: '#F2F2F2',
+        backgroundColor: '#fefefe',
         padding: 20,
         borderRadius: 10,
         alignItems: 'center',
@@ -146,7 +146,6 @@ const styles = StyleSheet.create({
         marginTop: 20,
     },
     gameInfoCard: {
-        backgroundColor: 'white',
         padding: 10,
         borderRadius: 5,
         alignItems: 'center',
@@ -163,7 +162,7 @@ const styles = StyleSheet.create({
         color: '#7E3030',
     },
     buttonsContainer: {
-        backgroundColor: '#F2F2F2',
+        backgroundColor: '#fefefe',
         borderRadius: 10,
         padding: 20,
         elevation: 5
