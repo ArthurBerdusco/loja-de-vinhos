@@ -1,37 +1,43 @@
 import React from "react";
-import { View, Text, Image, StyleSheet, ScrollView } from "react-native";
-import { FlatList } from "react-native";
+import { View, Text, Image, StyleSheet, ScrollView, FlatList } from "react-native";
 
 const OrderDetail = ({ route }) => {
     const order = route.params.order;
 
     const renderWineItem = ({ item }) => {
-        if (item && item.nome) {
+        if (item) {
+            const vinho = item[0]
             return (
                 <View style={styles.wineItemContainer}>
-                    <Image source={item.imagem} style={styles.wineImage} />
+                    <Image source={vinho.imagem} style={styles.wineImage} />
                     <View style={styles.wineInfo}>
-                        <Text style={styles.wineName}>{item.nome}</Text>
-                        <Text style={styles.winePrice}>{`Preço: ${item.preco}`}</Text>
-                        <Text style={styles.wineOrigin}>{`Origem: ${item.origem}`}</Text>
-                        <Text style={styles.wineRating}>{`Avaliação: ${item.rating}`}</Text>
+                        <Text style={styles.wineName}>{vinho.nome}</Text>
+                        <Text style={styles.wineOrigin}>{`País: ${vinho.pais}`}</Text>
+                        <Text style={styles.wineOrigin}>{`Cidade: ${vinho.cidade}`}</Text>
+                        <Text style={styles.wineRating}>{`Avaliação: ${vinho.rating}`}</Text>
+                    </View>
+                    <View style={styles.wineDetails}>
+                        <Text style={styles.winePrice}>{`R$: ${vinho.preco}`}</Text>
+                        <Text style={styles.wineQuantity}>{`Qnt: ${item[1]}`}</Text>
+                        <Text style={styles.wineTotal}>{`Total: ${vinho.preco * item[1]}`}</Text>
                     </View>
                 </View>
             );
         } else {
-            return null; 
+            return null;
         }
     };
-    
 
     return (
         <ScrollView contentContainerStyle={styles.container}>
-
-            <Text style={styles.orderID}>{`ID: ${order.orderID}`}</Text>
-
-            <Text style={styles.orderDate}>{`Data do Pedido: ${order.orderDate}`}</Text>
-            <Text style={styles.orderValue}>{`Valor: ${order.orderValue}`}</Text>
-            <Text style={styles.deliveryStatus}>{`Status de Entrega: ${order.deliveryStatus}`}</Text>
+            <View style={styles.orderInfoContainer}>
+                <Text style={styles.orderInfo}>Informações do pedido:</Text>
+                <Text style={styles.orderID}>{`ID: ${order.orderID}`}</Text>
+                <Text style={styles.orderDate}>{`Data: ${order.orderDate}`}</Text>
+                <Text style={styles.orderValue}>{`Valor: ${order.orderValue}`}</Text>
+                <Text style={styles.deliveryStatus}>{`Status de Entrega: ${order.deliveryStatus}`}</Text>
+            </View>
+           
             <FlatList
                 data={order.orderWines}
                 keyExtractor={(item, index) => index.toString()}
@@ -48,14 +54,19 @@ const styles = StyleSheet.create({
         backgroundColor: '#eaeaea'
     },
     orderInfoContainer: {
-        flexDirection: "row",
-        alignItems: "center",
+        backgroundColor: 'white',
+        padding: 12,
         marginBottom: 16,
+        borderRadius: 10,
     },
-
-    orderID: {
+    orderInfo: {
         fontSize: 24,
         fontWeight: "bold",
+        color: "#333",
+        marginBottom: 8,
+    },
+    orderID: {
+        fontSize: 18,
         color: "#333",
         marginBottom: 8,
     },
@@ -69,21 +80,30 @@ const styles = StyleSheet.create({
     },
     deliveryStatus: {
         fontSize: 18,
-        marginBottom: 8,
+        marginBottom: 16,
     },
     wineItemContainer: {
+        padding: 14,
+        backgroundColor: 'white',
         flexDirection: "row",
+        justifyContent: 'space-between',
         alignItems: "center",
         marginBottom: 16,
+        borderRadius: 10,
     },
     wineImage: {
         width: 100,
-        height: 150,
+        height: 100,
         resizeMode: 'contain',
         marginRight: 16,
     },
     wineInfo: {
         flex: 1,
+        marginRight: 16,
+    },
+    wineDetails: {
+        justifyContent: 'center',
+        alignItems: 'flex-end',
     },
     wineName: {
         fontSize: 18,
@@ -92,11 +112,13 @@ const styles = StyleSheet.create({
     winePrice: {
         fontSize: 16,
     },
-    wineOrigin: {
+    wineQuantity: {
         fontSize: 16,
+        marginBottom: 4,
     },
-    wineRating: {
+    wineTotal: {
         fontSize: 16,
+        fontWeight: 'bold',
     },
 });
 

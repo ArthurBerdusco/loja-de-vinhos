@@ -1,28 +1,39 @@
 import React, { useState } from "react";
-import { View, Text, Image, StyleSheet, ScrollView, TouchableOpacity, Button } from "react-native";
+import { View, Text, Image, StyleSheet, ScrollView, TouchableOpacity } from "react-native";
 
-const Review = ({ route, navigation, cartLabel, setCartLabel }) => {
+const Review = ({ route, pedido, setPedido }) => {
 
-  const vinhos = route.params.vinho;
+  const vinho = route.params.vinho;
   const [quantity, setQuantity] = useState(1);
+  const [price, setPrice] = useState(vinho.preco);
 
-  const [price, setPrice] = useState(vinhos.preco);
 
   const handleAddToCart = () => {
-    // Add your logic to add the selected quantity of wine to the cart
-    console.log(`Added ${quantity} bottles of ${vinhos.nome} to the cart`);
-    setCartLabel(cartLabel + quantity);
+    // Verifique se o vinho já está no carrinho
+    const existingItem = pedido.find(item => item[0] === vinho);
+
+    if (existingItem) {
+      // Se o vinho já estiver no carrinho, atualize a quantidade
+      const updatedCart = pedido.map(item =>
+        item[0] === vinho ? [vinho, item[1] + quantity] : item
+      );
+      setPedido(updatedCart);
+    } else {
+      // Se o vinho não estiver no carrinho, adicione como um novo item
+      const newItem = [vinho, quantity];
+      setPedido([...pedido, newItem]);
+    }
   };
 
   const handleIncreaseQuantity = () => {
-    const total = price + vinhos.preco;
+    const total = price + vinho.preco;
     setQuantity(quantity + 1);
     setPrice(parseFloat(total.toFixed(2)));
   };
 
   const handleDecreaseQuantity = () => {
     if (quantity > 1) {
-      const total = price - vinhos.preco;
+      const total = price - vinho.preco;
       setQuantity(quantity - 1);
       setPrice(parseFloat(total.toFixed(2)));
     }
@@ -31,28 +42,28 @@ const Review = ({ route, navigation, cartLabel, setCartLabel }) => {
   return (
     <>
       <ScrollView contentContainerStyle={styles.container}>
-        <Image source={vinhos.imagem} style={styles.image} />
-        <Text style={styles.name}>{vinhos.nome}</Text>
+        <Image source={vinho.imagem} style={styles.image} />
+        <Text style={styles.name}>{vinho.nome}</Text>
 
         <View style={styles.infoContainer}>
           <View style={styles.rowContainer}>
             <Text style={styles.label}>Preço:</Text>
-            <Text style={styles.content}>{vinhos.preco}</Text>
+            <Text style={styles.content}>{vinho.preco}</Text>
           </View>
 
           <View style={styles.rowContainer}>
             <Text style={styles.label}>Teor Alcoólico:</Text>
-            <Text style={styles.content}>{vinhos.teorAlcool}%</Text>
+            <Text style={styles.content}>{vinho.teorAlcool}%</Text>
           </View>
 
           <View style={styles.rowContainer}>
             <Text style={styles.label}>Classificação:</Text>
-            <Text style={styles.content}>{vinhos.rating} Estrelas</Text>
+            <Text style={styles.content}>{vinho.rating} Estrelas</Text>
           </View>
 
           <View style={styles.rowContainer}>
             <Text style={styles.label}>Descrição:</Text>
-            <Text style={styles.content}>{vinhos.classificacao} Sobre o vinho...</Text>
+            <Text style={styles.content}>{vinho.classificacao} Sobre o vinho...</Text>
           </View>
         </View>
 
@@ -141,7 +152,7 @@ const styles = StyleSheet.create({
     marginHorizontal: 10,
   },
   addToCartButton: {
-    backgroundColor: '#8e44ad',
+    backgroundColor: '#edc967',
     padding: 12,
     borderRadius: 10,
     alignItems: 'center',

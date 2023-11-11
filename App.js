@@ -1,54 +1,50 @@
 import React, { useState } from 'react';
-import { useRoute } from '@react-navigation/native';
-import { NavigationContainer, useNavigation } from '@react-navigation/native';
+import { NavigationContainer, useNavigation, useRoute } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import Home from './src/screens/Home';
 import Notifications from './src/screens/Notifications';
 import Review from './src/screens/Review';
 import Cart from './src/screens/Cart';
-import Search from './src/screens/Search';
-import SearchButton from './src/components/SearchButton';
+
 import NotificationButton from './src/components/NotificationButton';
-import { View } from 'react-native';
-import { SafeAreaView } from 'react-native-safe-area-context';
+import { View, StyleSheet, Text } from 'react-native';
 import Notification1 from './src/components/notifications/Notification1';
 import Orders from './src/screens/Orders';
 import OrderDetail from './src/screens/OrderDetail';
 import Profile from './src/screens/Profile';
-import PaymentScreen from './src/screens/Payment';
+import Payment from './src/screens/Payment';
 import Icon from 'react-native-vector-icons/FontAwesome5';
-
 
 const Tab = createBottomTabNavigator();
 const Stack = createNativeStackNavigator();
 
-function HomeStack({ setCartLabel, cartLabel }) {
+function HomeStack({ setPedido, pedido }) {
 
   return (
-    <Stack.Navigator>
+    <Stack.Navigator
+      screenOptions={{
+        headerStyle: {
+          backgroundColor: '#7E3030', // Specify your desired background color
+        },
+        headerTintColor: 'white', // Text color
+      }}
+    >
       <Stack.Screen
         name="Home"
         component={Home}
         options={{
-          headerTitle: '',
-          header: () => (
-            <SafeAreaView style={{ backgroundColor: '#7E3030' }}>
-              <View style={{ flexDirection: 'row', alignItems: 'center', backgroundColor: '#7E3030', justifyContent: 'space-around', height: 63 }}>
-                <SearchButton navigation={useNavigation()} />
+          headerRight: () => (
                 <NotificationButton navigation={useNavigation()} />
-              </View>
-            </SafeAreaView>
-          ),
-        }}
+          ),}}
       />
-      <Stack.Screen name="Search" component={Search} options={{ headerTitle: 'Buscar' }} />
+
       <Stack.Screen name="Review" component={() => {
-        
-        return <Review route={useRoute()} setCartLabel={setCartLabel} cartLabel={cartLabel} />;
+        return <Review route={useRoute()} setPedido={setPedido} pedido={pedido} />;
       }} options={{ headerTitle: 'Informações' }} />
       <Stack.Screen name="OrderDetail" component={OrderDetail} options={{ headerTitle: 'Detalhe do Pedido' }} />
-      <Stack.Screen name="Payment" component={PaymentScreen} options={{ headerTitle: 'Pagamento' }} />
+
+      <Stack.Screen name="Payment" component={() => <Payment navigation={useNavigation()} route={useRoute()} />} options={{ headerTitle: 'Pagamento', headerLeft: null }} />
 
       <Stack.Screen name="Notifications" component={Notifications} options={{ headerRight: null, headerTitle: 'Notificações' }} />
 
@@ -60,37 +56,68 @@ function HomeStack({ setCartLabel, cartLabel }) {
 
 function MainTabs() {
 
-  const [cartLabel, setCartLabel] = useState(1);
+  const [pedido, setPedido] = useState([]);
 
   return (
-    <Tab.Navigator>
+    <Tab.Navigator
+      screenOptions={{
+        headerStyle: {
+          backgroundColor: '#7E3030', // Specify your desired background color
+        },
+        headerTintColor: 'white', // Text color
+      }}
+    >
       <Tab.Screen
         name="Home"
-        component={() => <HomeStack setCartLabel={setCartLabel} cartLabel={cartLabel} />}
+        component={() => <HomeStack setPedido={setPedido} pedido={pedido} />}
         options={{
           tabBarIcon: ({ focused }) => (
             <Icon name="home" size={26} color={focused ? '#7D1F1F' : '#cacaca'} />
           ),
           headerShown: false,
+          tabBarLabelStyle: { color: '999' }
         }}
       />
-      <Tab.Screen name={'Carrinho ' + cartLabel} component={() => <Cart cartLabel={cartLabel} />} options={{
-        tabBarIcon: ({ focused }) => <Icon name="shopping-cart" size={26} color={focused ? '#7D1F1F' : '#cacaca'} />,
+      <Tab.Screen name={'Carrinho'} component={() => <Cart navigation={useNavigation()} pedido={pedido} setPedido={setPedido} />} options={{
+        tabBarIcon: ({ focused }) => <Icon name="shopping-cart" size={26} color={focused ? '#7D1F1F' : '#cacaca'} />, tabBarLabelStyle: { color: '999' },
+        tabBarBadge: pedido.length > 0 ? <CartBadge pedidoLength={pedido.length} /> : null,
       }} />
-      <Tab.Screen name="Orders" component={Orders} options={{
-        tabBarIcon: ({ focused }) => <Icon name="list-ul" size={26} color={focused ? '#7D1F1F' : '#cacaca'} />,
+      <Tab.Screen name="Pedidos" component={Orders} options={{
+        tabBarIcon: ({ focused }) => <Icon name="list-ul" size={26} color={focused ? '#7D1F1F' : '#cacaca'} />, tabBarLabelStyle: { color: '999' }
       }} />
-      <Tab.Screen name="Profile" component={Profile} options={{
-        tabBarIcon: ({ focused }) => <Icon name="user-alt" size={26} color={focused ? '#7D1F1F' : '#cacaca'} />,
+      <Tab.Screen name="Perfil" component={Profile} options={{
+        tabBarIcon: ({ focused }) => <Icon name="user-alt" size={26} color={focused ? '#7D1F1F' : '#cacaca'} />, tabBarLabelStyle: { color: '999' }
       }} />
+
+
     </Tab.Navigator>
+  );
+}
+
+function CartBadge({ pedidoLength }) {
+  return (
+    <View style={styles.cartBadge}>
+      <Text style={styles.cartBadgeText}>{pedidoLength}</Text>
+    </View>
   );
 }
 
 export default function App() {
   return (
-    <NavigationContainer>
+    <NavigationContainer
+
+
+    >
       <MainTabs />
     </NavigationContainer>
   );
 }
+
+const styles = StyleSheet.create({
+
+  cartBadgeText: {
+    color: 'white',
+    fontSize: 12,
+    fontWeight: 'bold',
+  },
+});

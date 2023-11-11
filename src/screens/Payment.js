@@ -1,8 +1,13 @@
 import React, { useState } from 'react';
-import { View, Text, TextInput, Button, StyleSheet, Modal } from 'react-native';
-import { TouchableOpacity } from 'react-native-web';
+import { View, Text, TextInput, StyleSheet, Modal, TouchableOpacity } from 'react-native';
+import Icon from 'react-native-vector-icons/FontAwesome5';
 
-const PaymentScreen = () => {
+const Payment = ({ route, pedido, setPedido, navigation }) => {
+
+  const [total, setTotal] = useState(route.params.valor)
+  
+  
+
   const [cardNumber, setCardNumber] = useState('');
   const [cardHolder, setCardHolder] = useState('');
   const [expiryDate, setExpiryDate] = useState('');
@@ -45,7 +50,10 @@ const PaymentScreen = () => {
   };
 
   const closeModal = () => {
+    route.params.setPedido([])
+    setTotal(0)
     setIsPaymentSuccess(false);
+    navigation.navigate('Home');
   };
 
   return (
@@ -88,8 +96,13 @@ const PaymentScreen = () => {
 
       {errorMessage ? <Text style={styles.errorText}>{errorMessage}</Text> : null}
 
+      <View style={styles.totalContainer}>
+        <Text style={styles.totalText}>Total:</Text>
+        <Text style={styles.totalAmount}>R$ {total}</Text>
+      </View>
+
       <TouchableOpacity style={styles.button} title="Pagar" onPress={handlePayment} >
-      <Text style={styles.buttonText}>Finalizar</Text>
+        <Text style={styles.buttonText}>Comprar</Text>
       </TouchableOpacity>
 
       {/* Modal de Pagamento Bem-Sucedido */}
@@ -101,8 +114,12 @@ const PaymentScreen = () => {
       >
         <View style={styles.modalContainer}>
           <View style={styles.modalContent}>
-            <Text style={styles.successText}>Pagamento Bem-Sucedido</Text>
-            <TouchableOpacity  style={styles.button} title="Fechar" onPress={closeModal}/>
+            <Icon name="check-circle" size={80} color="white" /> {/* Add a checkmark icon */}
+            <Text style={styles.successText}>Pagamento Concluído</Text>
+            <Text style={styles.successSubtext}>Obrigado pela sua compra!</Text>
+            <TouchableOpacity style={styles.closeButton} onPress={closeModal}>
+              <Text style={styles.closeButtonText}>Fechar</Text>
+            </TouchableOpacity>
           </View>
         </View>
       </Modal>
@@ -124,7 +141,7 @@ const styles = StyleSheet.create({
     padding: 10,
   },
   button: {
-    backgroundColor: '#7E3030',
+    backgroundColor: '#edc967',
     padding: 10,
     borderRadius: 5,
   },
@@ -155,6 +172,48 @@ const styles = StyleSheet.create({
     color: 'white',
     marginBottom: 10,
   },
+  totalContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+    marginBottom: 10,
+  },
+  totalText: {
+    fontSize: 18,
+    fontWeight: 'bold',
+  },
+  totalAmount: {
+    fontSize: 18,
+    color: '#7E3030',
+  },
+  modalContent: {
+    width: 300,
+    padding: 20,
+    backgroundColor: '#4CAF50',
+    borderRadius: 10,
+    alignItems: 'center',
+  },
+  successText: {
+    fontSize: 24,
+    color: 'white',
+    fontWeight: 'bold',
+    marginBottom: 10,
+  },
+  successSubtext: {
+    fontSize: 18,
+    color: 'white',
+    marginBottom: 20,
+  },
+  closeButton: {
+    backgroundColor: '#7E3030',
+    padding: 10,
+    borderRadius: 5,
+    width: '100%',
+  },
+  closeButtonText: {
+    color: 'white',
+    fontWeight: 'bold',
+    textAlign: 'center',
+  },
 });
 
-export default PaymentScreen;
+export default Payment;
