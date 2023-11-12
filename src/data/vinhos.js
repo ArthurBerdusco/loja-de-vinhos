@@ -1,106 +1,119 @@
 export const tintos = [
     {
-      nome: 'Tinto Moriet',
-      preco: 299.99,
-      teorAlcool: 13.5,
-      imagem: require('../assets/img/vinhos/tinto/1.png'),
-      bandeira: require('../assets/img/paises/china.png'),
-      pais: 'China',
-      cidade: 'Baoshan',
-      descricao: 'Originado na pitoresca cidade de Baoshan, China. Vinho excepcional com teor alcoólico de 13.5%. Avaliado com 5 estrelas, inigualável para apreciadores de vinhos sofisticados.',
-      rating: 5
+        nome: 'Tinto Moriet',
+        preco: 299.99,
+        teorAlcool: 13.5,
+        imagem: require('../assets/img/vinhos/tinto/1.png'),
+        bandeira: require('../assets/img/paises/china.png'),
+        pais: 'China',
+        cidade: 'Baoshan',
+        descricao: 'Originado na pitoresca cidade de Baoshan, China. Vinho excepcional com teor alcoólico de 13.5%. Avaliado com 5 estrelas, inigualável para apreciadores de vinhos sofisticados.',
+        rating: 5
     },
     {
-      nome: 'Sauvignon',
-      preco: 25.99,
-      teorAlcool: 13.8,
-      imagem: require('../assets/img/vinhos/tinto/2.png'),
-      bandeira: require('../assets/img/paises/france.png'),
-      pais: 'França',
-      cidade: 'Bordeaux',
-      descricao: 'Descubra a elegância francesa com o Sauvignon de Bordeaux. Com um teor alcoólico de 13.8%, este vinho encantador destaca-se com uma classificação de 4.7, oferecendo uma experiência memorável para os amantes de vinhos.',
-      rating: 4.7
+        nome: 'Sauvignon',
+        preco: 25.99,
+        teorAlcool: 13.8,
+        imagem: require('../assets/img/vinhos/tinto/2.png'),
+        bandeira: require('../assets/img/paises/france.png'),
+        pais: 'França',
+        cidade: 'Bordeaux',
+        descricao: 'Descubra a elegância francesa com o Sauvignon de Bordeaux. Com um teor alcoólico de 13.8%, este vinho encantador destaca-se com uma classificação de 4.7, oferecendo uma experiência memorável para os amantes de vinhos.',
+        rating: 4.7
     },
     {
-      nome: 'Merlot Reserva',
-      preco: 189.50,
-      teorAlcool: 14.2,
-      imagem: require('../assets/img/vinhos/tinto/3.png'),
-      bandeira: require('../assets/img/paises/italy.png'),
-      pais: 'Itália',
-      cidade: 'Toscana',
-      descricao: 'Delicie-se com o Merlot Reserva da Toscana, Itália. Teor alcoólico de 14.2%, uma experiência rica em sabores e aromas. Avaliado com 4.2, escolha sofisticada para apreciadores de vinhos.',
-      rating: 4.2
+        nome: 'Merlot Reserva',
+        preco: 189.50,
+        teorAlcool: 14.2,
+        imagem: require('../assets/img/vinhos/tinto/3.png'),
+        bandeira: require('../assets/img/paises/italy.png'),
+        pais: 'Itália',
+        cidade: 'Toscana',
+        descricao: 'Delicie-se com o Merlot Reserva da Toscana, Itália. Teor alcoólico de 14.2%, uma experiência rica em sabores e aromas. Avaliado com 4.2, escolha sofisticada para apreciadores de vinhos.',
+        rating: 4.2
     },
     {
-      nome: 'Pinot Elegance',
-      preco: 129.99,
-      teorAlcool: 12.5,
-      imagem: require('../assets/img/vinhos/tinto/4.png'),
-      bandeira: require('../assets/img/paises/new.png'),
-      pais: 'Nova Zelândia',
-      cidade: 'Marlborough',
-      descricao: 'Descubra a elegância do Novo Mundo com o Pinot Elegance da Nova Zelândia. Teor alcoólico de 12.5%, vinho encantador com classificação de 4.8, proporcionando uma experiência inigualável.',
-      rating: 4.8
+        nome: 'Pinot Elegance',
+        preco: 129.99,
+        teorAlcool: 12.5,
+        imagem: require('../assets/img/vinhos/tinto/4.png'),
+        bandeira: require('../assets/img/paises/new.png'),
+        pais: 'Nova Zelândia',
+        cidade: 'Marlborough',
+        descricao: 'Descubra a elegância do Novo Mundo com o Pinot Elegance da Nova Zelândia. Teor alcoólico de 12.5%, vinho encantador com classificação de 4.8, proporcionando uma experiência inigualável.',
+        rating: 4.8
     },
     {
-      nome: 'Malbec Intenso',
-      preco: 79.90,
-      teorAlcool: 15.0,
-      imagem: require('../assets/img/vinhos/tinto/5.png'),
-      bandeira: require('../assets/img/paises/argentina.png'),
-      pais: 'Argentina',
-      cidade: 'Mendoza',
-      descricao: 'Explore a intensidade da Argentina com o Malbec Intenso de Mendoza. Teor alcoólico de 15.0%, vinho cativante com classificação de 4.5, proporcionando uma experiência memorável.',
-      rating: 4.5
+        nome: 'Malbec Intenso',
+        preco: 79.90,
+        teorAlcool: 15.0,
+        imagem: require('../assets/img/vinhos/tinto/5.png'),
+        bandeira: require('../assets/img/paises/argentina.png'),
+        pais: 'Argentina',
+        cidade: 'Mendoza',
+        descricao: 'Explore a intensidade da Argentina com o Malbec Intenso de Mendoza. Teor alcoólico de 15.0%, vinho cativante com classificação de 4.5, proporcionando uma experiência memorável.',
+        rating: 4.5
     }
-  ];
-  
-  export const roses = [
+];
+
+export const roses = [
     {
-      nome: 'Rosé Seco',
-      preco: 190.39,
-      teorAlcool: 11.5,
-      imagem: require('../assets/img/vinhos/rose/1.png'),
-      bandeira: require('../assets/img/paises/south-korea.png'),
-      pais: 'Coreia do Sul',
-      cidade: 'Geoje',
-      descricao: 'Experimente a suavidade do Rosé Seco da Coreia do Sul, originado na encantadora cidade de Geoje. Teor alcoólico de 11.5%, vinho refrescante e equilibrado. Avaliado com 4.3, escolha encantadora para momentos especiais.',
-      rating: 4.3
+        nome: 'Rosé Seco',
+        preco: 190.39,
+        teorAlcool: 11.5,
+        imagem: require('../assets/img/vinhos/rose/1.png'),
+        bandeira: require('../assets/img/paises/south-korea.png'),
+        pais: 'Coreia do Sul',
+        cidade: 'Geoje',
+        descricao: 'Experimente a suavidade do Rosé Seco da Coreia do Sul, originado na encantadora cidade de Geoje. Teor alcoólico de 11.5%, vinho refrescante e equilibrado. Avaliado com 4.3, escolha encantadora para momentos especiais.',
+        rating: 4.3
     },
     {
-      nome: 'Provence Rosé',
-      preco: 35.50,
-      teorAlcool: 12.0,
-      imagem: require('../assets/img/vinhos/rose/2.png'),
-      bandeira: require('../assets/img/paises/france.png'),
-      pais: 'França',
-      cidade: 'Provence',
-      descricao: 'Descubra a elegância do Provence Rosé da França. Teor alcoólico de 12.0%, vinho sofisticado com classificação de 4.8, proporcionando uma experiência refinada de sabores frutados e aromas delicados.',
-      rating: 4.8
+        nome: 'Provence Rosé',
+        preco: 35.50,
+        teorAlcool: 12.0,
+        imagem: require('../assets/img/vinhos/rose/2.png'),
+        bandeira: require('../assets/img/paises/france.png'),
+        pais: 'França',
+        cidade: 'Provence',
+        descricao: 'Descubra a elegância do Provence Rosé da França. Teor alcoólico de 12.0%, vinho sofisticado com classificação de 4.8, proporcionando uma experiência refinada de sabores frutados e aromas delicados.',
+        rating: 4.8
     },
     {
-      nome: 'Rosé Elegance',
-      preco: 89.99,
-      teorAlcool: 11.8,
-      imagem: require('../assets/img/vinhos/rose/3.png'),
-      bandeira: require('../assets/img/paises/spain.png'),
-      pais: 'Espanha',
-      cidade: 'Rioja',
-      descricao: 'Desfrute da elegância do Rosé Elegance da Espanha, originado na região de Rioja. Teor alcoólico de 11.8%, vinho cativante com uma experiência sofisticada. Classificação de 4.5 para garantir sua satisfação.',
-      rating: 4.5
+        nome: 'Rosé Elegance',
+        preco: 89.99,
+        teorAlcool: 11.8,
+        imagem: require('../assets/img/vinhos/rose/3.png'),
+        bandeira: require('../assets/img/paises/spain.png'),
+        pais: 'Espanha',
+        cidade: 'Rioja',
+        descricao: 'Desfrute da elegância do Rosé Elegance da Espanha, originado na região de Rioja. Teor alcoólico de 11.8%, vinho cativante com uma experiência sofisticada. Classificação de 4.5 para garantir sua satisfação.',
+        rating: 4.5
     },
     {
-      nome: 'Rosé do Vale',
-      preco: 120.75,
-      teorAlcool: 12.5,
-      imagem: require('../assets/img/vinhos/rose/4.png'),
-      bandeira: require('../assets/img/paises/china.png'),
-      pais: 'China',
-      cidade: 'Douro',
-      descricao: 'Explore a qualidade do Rosé do Vale da China, originado na região do Douro. Teor alcoólico de 12.5%, vinho encantador com',
-      rating:4.6
-    }]  
+        nome: 'Rosé do Vale',
+        preco: 120.75,
+        teorAlcool: 12.5,
+        imagem: require('../assets/img/vinhos/rose/4.png'),
+        bandeira: require('../assets/img/paises/china.png'),
+        pais: 'China',
+        cidade: 'Douro',
+        descricao: 'Explore a qualidade do Rosé do Vale da China, originado na região do Douro. Teor alcoólico de 12.5%, vinho encantador com',
+        rating: 4.6
+    },
+    {
+        nome: 'Rosé Refrescante',
+        preco: 55.00,
+        teorAlcool: 10.5,
+        imagem: require('../assets/img/vinhos/rose/5.png'),
+        bandeira: require('../assets/img/paises/italy.png'),
+        pais: 'Itália',
+        cidade: 'Sicília',
+        descricao: 'Sinta a refrescância do Rosé Refrescante da Itália, originado na ensolarada Sicília. Com um teor alcoólico de 10.5%, este vinho oferece uma experiência leve e agradável. Avaliado com 4.6, é uma escolha perfeita para momentos descontraídos.',
+        rating: 4.6
+    }
+
+]
 
 export const espumantes = [
     {
