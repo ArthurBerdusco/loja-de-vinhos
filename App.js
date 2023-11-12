@@ -27,7 +27,7 @@ function HomeStack({ setPedido, pedido }) {
         headerStyle: {
           backgroundColor: '#7E3030', // Specify your desired background color
         },
-        headerTintColor: 'white', // Text color
+        headerTitleStyle: { color: 'white' }, // Text color
       }}
     >
       <Stack.Screen
@@ -35,16 +35,25 @@ function HomeStack({ setPedido, pedido }) {
         component={Home}
         options={{
           headerRight: () => (
-                <NotificationButton navigation={useNavigation()} />
-          ),}}
+            <NotificationButton navigation={useNavigation()} />
+          ),
+        }}
       />
 
-      <Stack.Screen name="Review" component={() => {
-        return <Review route={useRoute()} setPedido={setPedido} pedido={pedido} />;
-      }} options={{ headerTitle: 'Informações' }} />
+      <Stack.Screen
+        name="Review"
+        options={{ headerTitle: 'Informações' }}
+      >
+        {() => <Review route={useRoute()} setPedido={setPedido} pedido={pedido} />}
+      </Stack.Screen>
       <Stack.Screen name="OrderDetail" component={OrderDetail} options={{ headerTitle: 'Detalhe do Pedido' }} />
 
-      <Stack.Screen name="Payment" component={() => <Payment navigation={useNavigation()} route={useRoute()} />} options={{ headerTitle: 'Pagamento', headerLeft: null }} />
+      <Stack.Screen
+        name="Payment"
+        options={{ headerTitle: 'Pagamento', headerLeft: null }}
+      >
+        {() => <Payment navigation={useNavigation()} route={useRoute()} />}
+      </Stack.Screen>
 
       <Stack.Screen name="Notifications" component={Notifications} options={{ headerRight: null, headerTitle: 'Notificações' }} />
 
@@ -62,31 +71,40 @@ function MainTabs() {
     <Tab.Navigator
       screenOptions={{
         headerStyle: {
-          backgroundColor: '#7E3030', // Specify your desired background color
+          backgroundColor: '#7E3030',
         },
-        headerTintColor: 'white', // Text color
+        headerTitleStyle: { color: 'white' },
       }}
     >
       <Tab.Screen
-        name="Home"
-        component={() => <HomeStack setPedido={setPedido} pedido={pedido} />}
+        name="HomeTab"
         options={{
           tabBarIcon: ({ focused }) => (
             <Icon name="home" size={26} color={focused ? '#7D1F1F' : '#cacaca'} />
           ),
           headerShown: false,
-          tabBarLabelStyle: { color: '999' }
+          tabBarLabelStyle: { color: '#999' }
         }}
-      />
-      <Tab.Screen name={'Carrinho'} component={() => <Cart navigation={useNavigation()} pedido={pedido} setPedido={setPedido} />} options={{
-        tabBarIcon: ({ focused }) => <Icon name="shopping-cart" size={26} color={focused ? '#7D1F1F' : '#cacaca'} />, tabBarLabelStyle: { color: '999' },
-        tabBarBadge: pedido.length > 0 ? <CartBadge pedidoLength={pedido.length} /> : null,
-      }} />
+      >
+        {() => <HomeStack setPedido={setPedido} pedido={pedido} />}
+      </Tab.Screen>
+      <Tab.Screen
+        name={'Carrinho'}
+        options={{
+          tabBarIcon: ({ focused }) => (
+            <Icon name="shopping-cart" size={26} color={focused ? '#7D1F1F' : '#cacaca'} />
+          ),
+          tabBarLabelStyle: { color: '#999' },
+          tabBarBadge: pedido.length > 0 ? <CartBadge pedidoLength={pedido.length} /> : null,
+        }}
+      >
+        {() => <Cart navigation={useNavigation()} pedido={pedido} setPedido={setPedido} />}
+      </Tab.Screen>
       <Tab.Screen name="Pedidos" component={Orders} options={{
-        tabBarIcon: ({ focused }) => <Icon name="list-ul" size={26} color={focused ? '#7D1F1F' : '#cacaca'} />, tabBarLabelStyle: { color: '999' }
+        tabBarIcon: ({ focused }) => <Icon name="list-ul" size={26} color={focused ? '#7D1F1F' : '#cacaca'} />, tabBarLabelStyle: { color: '#999' }
       }} />
       <Tab.Screen name="Perfil" component={Profile} options={{
-        tabBarIcon: ({ focused }) => <Icon name="user-alt" size={26} color={focused ? '#7D1F1F' : '#cacaca'} />, tabBarLabelStyle: { color: '999' }
+        tabBarIcon: ({ focused }) => <Icon name="user-alt" size={26} color={focused ? '#7D1F1F' : '#cacaca'} />, tabBarLabelStyle: { color: '#999' }
       }} />
 
 
