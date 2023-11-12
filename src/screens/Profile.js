@@ -200,11 +200,14 @@ const styles = StyleSheet.create({
         elevation: 5
     },
     modalInput: {
-        margin: 20,
+        height: 40,
+        width: 250,
         borderBottomColor: '#7E3030',
-        borderBottomWidth: '2px'
-
-    }
+        borderBottomWidth: 1, 
+        borderRadius: 5, 
+        marginBottom: 10,
+        paddingLeft: 10, 
+    },
 });
 
 export default Profile;

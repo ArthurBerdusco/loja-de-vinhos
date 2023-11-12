@@ -95,7 +95,7 @@ const styles = StyleSheet.create({
     padding: 16,
   },
   image: {
-    width: '100%',
+
     height: 200,
     resizeMode: 'contain',
     borderRadius: 10,

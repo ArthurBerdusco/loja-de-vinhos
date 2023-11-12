@@ -150,6 +150,7 @@ const styles = StyleSheet.create({
     marginTop: 4,
   },
   priceContainer: {
+    justifyContent: 'space-between',
     flexDirection: 'row',
     alignItems: 'center',
     marginTop: 8,
