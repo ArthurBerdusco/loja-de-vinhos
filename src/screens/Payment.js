@@ -1,13 +1,16 @@
-import React, { useState } from 'react';
-import { View, Text, TextInput, StyleSheet, Modal, TouchableOpacity } from 'react-native';
+import Rect, { useState } from 'react';
+import {
+  View,
+  Text,
+  TextInput,
+  StyleSheet,
+  Modal,
+  TouchableOpacity,
+} from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome5';
 
-const Payment = ({ route, pedido, setPedido, navigation }) => {
-
-  const [total, setTotal] = useState(route.params.valor)
-
-
-
+const Payment = ({ route, navigation }) => {
+  const [total, setTotal] = useState(route.params.valor);
   const [cardNumber, setCardNumber] = useState('');
   const [cardHolder, setCardHolder] = useState('');
   const [expiryDate, setExpiryDate] = useState('');
@@ -44,14 +47,37 @@ const Payment = ({ route, pedido, setPedido, navigation }) => {
       setErrorMessage('CVV inválido. Deve ter 3 dígitos.');
       return;
     }
-
     // Lógica de pagamento
     setIsPaymentSuccess(true);
   };
 
+  const generateRandomId = () => {
+    const min = 1000000000; // 7 dígitos
+    const max = 9999999999;
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+  };
+
+  const getCurrentDate = () => {
+    const today = new Date();
+    const day = today.getDate().toString().padStart(2, '0');
+    const month = (today.getMonth() + 1).toString().padStart(2, '0');
+    const year = today.getFullYear();
+    return `${day}/${month}/${year}`;
+  };
+
   const closeModal = () => {
-    route.params.setPedido([])
-    setTotal(0)
+    const nf = {
+      orderID: generateRandomId().toString(),
+      orderDate: getCurrentDate(),
+      orderValue: '12345',
+      orderWines: route.params.pedido,
+      deliveryStatus: 'Em separação',
+    };
+
+    route.params.setOrderList([nf, ...route.params.orderList]);
+
+    route.params.setPedido([]);
+    setTotal(0);
     setIsPaymentSuccess(false);
     navigation.navigate('Home');
   };
@@ -94,14 +120,19 @@ const Payment = ({ route, pedido, setPedido, navigation }) => {
         maxLength={3}
       />
 
-      {errorMessage ? <Text style={styles.errorText}>{errorMessage}</Text> : null}
+      {errorMessage ? (
+        <Text style={styles.errorText}>{errorMessage}</Text>
+      ) : null}
 
       <View style={styles.totalContainer}>
         <Text style={styles.totalText}>Total:</Text>
         <Text style={styles.totalAmount}>R$ {total}</Text>
       </View>
 
-      <TouchableOpacity style={styles.button} title="Pagar" onPress={handlePayment}>
+      <TouchableOpacity
+        style={styles.button}
+        title="Pagar"
+        onPress={handlePayment}>
         <Text style={styles.buttonText}>Comprar</Text>
       </TouchableOpacity>
 
@@ -110,13 +141,13 @@ const Payment = ({ route, pedido, setPedido, navigation }) => {
         transparent={true}
         animationType="slide"
         visible={isPaymentSuccess}
-        onRequestClose={closeModal}
-      >
+        onRequestClose={closeModal}>
         <View style={styles.modalContainer}>
           <View style={styles.modalContent}>
-            <Icon name="check-circle" size={80} color="white" /> {/* Add a checkmark icon */}
+            <Icon name="check-circle" size={80} color="white" />{' '}
+            {/* Add a checkmark icon */}
             <Text style={styles.successText}>Pagamento Concluído</Text>
-            <Text style={styles.successSubtext}>Obrigado pela preferencia!</Text>
+            <Text style={styles.successSubtext}>Obrigado pela sua compra!</Text>
             <TouchableOpacity style={styles.closeButton} onPress={closeModal}>
               <Text style={styles.closeButtonText}>Fechar</Text>
             </TouchableOpacity>
@@ -131,7 +162,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     padding: 20,
-    backgroundColor: '#eaeaea'
+    backgroundColor: '#eaeaea',
   },
   input: {
     height: 40,
@@ -160,13 +191,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     backgroundColor: 'rgba(0, 0, 0, 0.5)',
   },
-  modalContent: {
-    width: 300,
-    padding: 20,
-    backgroundColor: 'green', // Cor de fundo verde
-    borderRadius: 10,
-    alignItems: 'center',
-  },
   successText: {
     fontSize: 20,
     color: 'white',
@@ -192,12 +216,7 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     alignItems: 'center',
   },
-  successText: {
-    fontSize: 24,
-    color: 'white',
-    fontWeight: 'bold',
-    marginBottom: 10,
-  },
+
   successSubtext: {
     fontSize: 18,
     color: 'white',

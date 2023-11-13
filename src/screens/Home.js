@@ -101,7 +101,7 @@ const Vinho = (props) => {
           </View>
         </View>
         <View style={styles.teorContainer}>
-          <Text style={styles.text}>Teor Alcóolico:</Text>
+          <Text style={styles.text}>Teor Alcoólico:</Text>
           <Text style={styles.text}>{props.teorAlcool}%</Text>
         </View>
         <View style={styles.priceContainer}>

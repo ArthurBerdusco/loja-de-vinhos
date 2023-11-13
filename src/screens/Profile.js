@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 import { View, Image, Text, StyleSheet, TouchableOpacity, Modal, Button, TextInput } from "react-native";
 import Icon from 'react-native-vector-icons/FontAwesome5';
-import BottomMenu from "../components/BottomMenu";
+
 
 const Profile = ({ navigation }) => {
 
-    const [nome, setNome] = useState('Antonio Facundes');
+    const [nome, setNome] = useState('Carlos Alberto');
     const [telefone, setTelefone] = useState('(11) 93204-5718');
     const [endereco, setEndereco] = useState({ rua: 'Marechal Souza', numero: '203', complemento: 'Casa 3' });
 
@@ -200,14 +200,11 @@ const styles = StyleSheet.create({
         elevation: 5
     },
     modalInput: {
-        height: 40,
-        width: 250,
+        margin: 20,
         borderBottomColor: '#7E3030',
-        borderBottomWidth: 1, 
-        borderRadius: 5, 
-        marginBottom: 10,
-        paddingLeft: 10, 
-    },
+        borderBottomWidth: '2px'
+
+    }
 });
 
 export default Profile;

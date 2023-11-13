@@ -6,7 +6,7 @@ import Home from './src/screens/Home';
 import Notifications from './src/screens/Notifications';
 import Review from './src/screens/Review';
 import Cart from './src/screens/Cart';
-
+import { orderList } from "./src/data/pedidos";
 import NotificationButton from './src/components/NotificationButton';
 import { View, StyleSheet, Text } from 'react-native';
 import Notification1 from './src/components/notifications/Notification1';
@@ -66,6 +66,8 @@ function HomeStack({ setPedido, pedido }) {
 function MainTabs() {
 
   const [pedido, setPedido] = useState([]);
+  const [pedidos, setPedidos] = useState(orderList);
+
 
   return (
     <Tab.Navigator
@@ -86,7 +88,7 @@ function MainTabs() {
           tabBarLabelStyle: { color: '#999' }
         }}
       >
-        {() => <HomeStack setPedido={setPedido} pedido={pedido} />}
+        {() => <HomeStack setPedido={setPedido} pedido={pedido}  />}
       </Tab.Screen>
       <Tab.Screen
         name={'Carrinho'}
@@ -98,11 +100,13 @@ function MainTabs() {
           tabBarBadge: pedido.length > 0 ? <CartBadge pedidoLength={pedido.length} /> : null,
         }}
       >
-        {() => <Cart navigation={useNavigation()} pedido={pedido} setPedido={setPedido} />}
+        {() => <Cart navigation={useNavigation()} pedido={pedido} setPedido={setPedido} orderList={pedidos} setOrderList={setPedidos} />}
       </Tab.Screen>
-      <Tab.Screen name="Pedidos" component={Orders} options={{
+      <Tab.Screen name="Pedidos" options={{
         tabBarIcon: ({ focused }) => <Icon name="list-ul" size={26} color={focused ? '#7D1F1F' : '#cacaca'} />, tabBarLabelStyle: { color: '#999' }
-      }} />
+      }} >
+        {() => <Orders orderList={pedidos} navigation={useNavigation()} /> }
+      </Tab.Screen>
       <Tab.Screen name="Perfil" component={Profile} options={{
         tabBarIcon: ({ focused }) => <Icon name="user-alt" size={26} color={focused ? '#7D1F1F' : '#cacaca'} />, tabBarLabelStyle: { color: '#999' }
       }} />

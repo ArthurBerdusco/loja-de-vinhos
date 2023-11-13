@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { View, StyleSheet, Text, TouchableOpacity, FlatList, Image } from "react-native";
 
-const Cart = ({ navigation, pedido, setPedido }) => {
+const Cart = ({ navigation, pedido, setPedido, orderList, setOrderList }) => {
   const [total, setTotal] = useState(0);
 
   useEffect(() => {
@@ -10,7 +10,7 @@ const Cart = ({ navigation, pedido, setPedido }) => {
   }, [pedido]);
 
   const handleFinalizar = () => {
-    navigation.navigate('Payment', { valor: total, pedido, setPedido });
+    navigation.navigate('Payment', { valor: total, pedido, setPedido, orderList, setOrderList });
   };
 
   const handleClearCart = () => {
@@ -57,7 +57,7 @@ const ItemCart = ({ item }) => {
 
   return (
     <View style={styles.cartItem}>
-      <Image source={{ uri: vinho.imagem }} style={styles.itemImage} />
+      <Image source={ vinho.imagem } style={styles.itemImage} />
       <View style={styles.itemInfo}>
         <Text style={styles.itemName}>{vinho.nome}</Text>
         <View>
