@@ -1,10 +1,7 @@
 import { useNavigation } from "@react-navigation/native";
 import { Text, StyleSheet, FlatList, TouchableOpacity } from "react-native";
-import { orderList } from "../data/pedidos";
 
 const Order = ({ order }) => {
-
-    
     const navigation = useNavigation();
 
     const calculateTotalValue = (wines) => {
@@ -29,10 +26,7 @@ const Order = ({ order }) => {
 }
 
 
-const Orders = ({ navigation }) => {
-
-
-
+const Orders = ({ navigation, orderList}) => {
     return (
         <>
             <FlatList

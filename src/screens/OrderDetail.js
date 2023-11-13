@@ -1,14 +1,14 @@
 import React from "react";
-import { View, Text, Image, StyleSheet, ScrollView, FlatList } from "react-native";
+import { View, Text, Image, StyleSheet, ScrollView, FlatList, Dimensions, TouchableOpacity } from "react-native";
 
-const OrderDetail = ({ route }) => {
+const OrderDetail = ({ route, navigation }) => {
     const order = route.params.order;
 
     const renderWineItem = ({ item }) => {
         if (item) {
             const vinho = item[0]
             return (
-                <View style={styles.wineItemContainer}>
+                <TouchableOpacity style={styles.wineItemContainer} onPress={()=>{navigation.navigate('Review', {vinho})}}>
                     <Image source={vinho.imagem} style={styles.wineImage} />
                     <View style={styles.wineInfo}>
                         <Text style={styles.wineName}>{vinho.nome}</Text>
@@ -19,9 +19,9 @@ const OrderDetail = ({ route }) => {
                     <View style={styles.wineDetails}>
                         <Text style={styles.winePrice}>{`R$: ${vinho.preco}`}</Text>
                         <Text style={styles.wineQuantity}>{`Qnt: ${item[1]}`}</Text>
-                        <Text style={styles.wineTotal}>{`Total: ${vinho.preco * item[1]}`}</Text>
+                        <Text style={styles.wineTotal}>{`Total: R$ ${parseFloat((vinho.preco * item[1]).toFixed(2))}`}</Text>
                     </View>
-                </View>
+                </TouchableOpacity>
             );
         } else {
             return null;
@@ -47,9 +47,11 @@ const OrderDetail = ({ route }) => {
     );
 };
 
+const { width } = Dimensions.get("window");
+
 const styles = StyleSheet.create({
     container: {
-        flex: 1,
+        flexGrow: 1,
         padding: 16,
         backgroundColor: '#eaeaea'
     },
@@ -60,40 +62,42 @@ const styles = StyleSheet.create({
         borderRadius: 10,
     },
     orderInfo: {
-        fontSize: 24,
+        fontSize: 20,
         fontWeight: "bold",
         color: "#333",
         marginBottom: 8,
     },
     orderID: {
-        fontSize: 18,
+        fontSize: 16,
         color: "#333",
         marginBottom: 8,
     },
     orderDate: {
-        fontSize: 18,
+        fontSize: 16,
         marginBottom: 8,
     },
     orderValue: {
-        fontSize: 18,
+        fontSize: 16,
         marginBottom: 8,
     },
     deliveryStatus: {
-        fontSize: 18,
+        fontSize: 16,
         marginBottom: 16,
     },
     wineItemContainer: {
-        padding: 14,
+      paddingVertical: 16,
+      paddingRight: 16,
         backgroundColor: 'white',
         flexDirection: "row",
         justifyContent: 'space-between',
         alignItems: "center",
         marginBottom: 16,
         borderRadius: 10,
+
     },
     wineImage: {
-        width: 100,
-        height: 100,
+        width: 60,
+        height: 80,
         resizeMode: 'contain',
         marginRight: 16,
     },
@@ -106,18 +110,18 @@ const styles = StyleSheet.create({
         alignItems: 'flex-end',
     },
     wineName: {
-        fontSize: 18,
+        fontSize: 16,
         fontWeight: "bold",
     },
     winePrice: {
-        fontSize: 16,
+        fontSize: 14,
     },
     wineQuantity: {
-        fontSize: 16,
+        fontSize: 14,
         marginBottom: 4,
     },
     wineTotal: {
-        fontSize: 16,
+        fontSize: 14,
         fontWeight: 'bold',
     },
 });

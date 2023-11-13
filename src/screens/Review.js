@@ -62,8 +62,7 @@ const Review = ({ route, pedido, setPedido }) => {
           </View>
 
           <View style={styles.rowContainer}>
-            <Text style={styles.label}>Descrição:</Text>
-            <Text style={styles.content}>{vinho.classificacao} Sobre o vinho...</Text>
+            <Text style={styles.content}>{vinho.descricao}</Text>
           </View>
         </View>
 
@@ -95,7 +94,7 @@ const styles = StyleSheet.create({
     padding: 16,
   },
   image: {
-
+    width: '100%',
     height: 200,
     resizeMode: 'contain',
     borderRadius: 10,
