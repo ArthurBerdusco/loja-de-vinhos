@@ -1,12 +1,5 @@
 import Rect, { useState } from 'react';
-import {
-  View,
-  Text,
-  TextInput,
-  StyleSheet,
-  Modal,
-  TouchableOpacity,
-} from 'react-native';
+import { View, Text, TextInput, StyleSheet, Modal, TouchableOpacity } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome5';
 
 const Payment = ({ route, navigation }) => {
@@ -144,8 +137,7 @@ const Payment = ({ route, navigation }) => {
         onRequestClose={closeModal}>
         <View style={styles.modalContainer}>
           <View style={styles.modalContent}>
-            <Icon name="check-circle" size={80} color="white" />{' '}
-            {/* Add a checkmark icon */}
+            <Icon name="check-circle" size={80} color="white" />
             <Text style={styles.successText}>Pagamento Concluído</Text>
             <Text style={styles.successSubtext}>Obrigado pela sua compra!</Text>
             <TouchableOpacity style={styles.closeButton} onPress={closeModal}>
