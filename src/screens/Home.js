@@ -57,7 +57,11 @@ const Banner = ({ wine, navigation }) => {
   }, [timer]);
 
   return (
-    <TouchableOpacity title="Comprar" color="black" onPress={() => navigation.navigate('Review', { vinho: { ...wine } })}>
+    <TouchableOpacity title="Comprar" color="black"
+      onPress={() => {
+        navigation.navigate('Review', { vinho: wine });
+      }}
+    >
       <View style={styles.bannerContainer}>
         <Image source={wine.imagem} style={styles.bannerImage} resizeMode="contain" />
         <Text style={styles.bannerName}>{wine.nome}</Text>

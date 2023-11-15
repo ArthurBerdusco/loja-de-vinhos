@@ -1,14 +1,13 @@
 import React from "react";
-import { View, Text, Image, StyleSheet, ScrollView, FlatList, Dimensions, TouchableOpacity } from "react-native";
+import { View, Text, Image, StyleSheet, FlatList, TouchableOpacity } from "react-native";
 
 const OrderDetail = ({ route, navigation }) => {
     const order = route.params.order;
-
     const renderWineItem = ({ item }) => {
         if (item) {
             const vinho = item[0]
             return (
-                <TouchableOpacity style={styles.wineItemContainer} onPress={()=>{navigation.navigate('Review', {vinho})}}>
+                <TouchableOpacity style={styles.wineItemContainer} onPress={() => { navigation.navigate('Review', { vinho }) }}>
                     <Image source={vinho.imagem} style={styles.wineImage} />
                     <View style={styles.wineInfo}>
                         <Text style={styles.wineName}>{vinho.nome}</Text>
@@ -29,7 +28,7 @@ const OrderDetail = ({ route, navigation }) => {
     };
 
     return (
-        <ScrollView contentContainerStyle={styles.container}>
+        <View style={styles.container}>
             <View style={styles.orderInfoContainer}>
                 <Text style={styles.orderInfo}>Informações do pedido:</Text>
                 <Text style={styles.orderID}>{`ID: ${order.orderID}`}</Text>
@@ -37,17 +36,15 @@ const OrderDetail = ({ route, navigation }) => {
                 <Text style={styles.orderValue}>{`Valor: ${order.orderValue}`}</Text>
                 <Text style={styles.deliveryStatus}>{`Status de Entrega: ${order.deliveryStatus}`}</Text>
             </View>
-           
             <FlatList
                 data={order.orderWines}
                 keyExtractor={(item, index) => index.toString()}
                 renderItem={renderWineItem}
+                style={{marginBottom: 55}}
             />
-        </ScrollView>
+        </View>
     );
 };
-
-const { width } = Dimensions.get("window");
 
 const styles = StyleSheet.create({
     container: {
@@ -85,8 +82,8 @@ const styles = StyleSheet.create({
         marginBottom: 16,
     },
     wineItemContainer: {
-      paddingVertical: 16,
-      paddingRight: 16,
+        paddingVertical: 16,
+        paddingRight: 16,
         backgroundColor: 'white',
         flexDirection: "row",
         justifyContent: 'space-between',

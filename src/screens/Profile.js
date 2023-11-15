@@ -202,7 +202,7 @@ const styles = StyleSheet.create({
     modalInput: {
         margin: 20,
         borderBottomColor: '#7E3030',
-        borderBottomWidth: '2px'
+        borderBottomWidth: 2
 
     }
 });

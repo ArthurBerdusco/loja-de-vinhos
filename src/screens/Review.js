@@ -1,7 +1,10 @@
 import React, { useState } from "react";
 import { View, Text, Image, StyleSheet, ScrollView, TouchableOpacity } from "react-native";
+import { useRoute } from '@react-navigation/native';
 
-const Review = ({ route, pedido, setPedido }) => {
+const Review = ({ pedido, setPedido }) => {
+
+  const route = useRoute();
 
   const vinho = route.params.vinho;
   const [quantity, setQuantity] = useState(1);
@@ -9,17 +12,20 @@ const Review = ({ route, pedido, setPedido }) => {
 
 
   const handleAddToCart = () => {
-    // Verifique se o vinho já está no carrinho
+    console.log(vinho)
     const existingItem = pedido.find(item => item[0] === vinho);
 
     if (existingItem) {
       // Se o vinho já estiver no carrinho, atualize a quantidade
       const updatedCart = pedido.map(item =>
         item[0] === vinho ? [vinho, item[1] + quantity] : item
+
       );
+
       setPedido(updatedCart);
+
     } else {
-      // Se o vinho não estiver no carrinho, adicione como um novo item
+
       const newItem = [vinho, quantity];
       setPedido([...pedido, newItem]);
     }
@@ -127,15 +133,15 @@ const styles = StyleSheet.create({
     marginBottom: 16,
   },
   quantitySelector: {
-   
+
     flexDirection: 'row',
     alignItems: 'center',
-    justifyContent: 'center', 
+    justifyContent: 'center',
     margin: 15,
   },
 
   quantityButton: {
-    
+
     fontSize: 20,
     fontWeight: 'bold',
     paddingHorizontal: 10,
@@ -146,7 +152,7 @@ const styles = StyleSheet.create({
     width: 30,
   },
   quantityText: {
-    
+
     fontSize: 18,
     marginHorizontal: 10,
   },

@@ -19,15 +19,14 @@ import Icon from 'react-native-vector-icons/FontAwesome5';
 const Tab = createBottomTabNavigator();
 const Stack = createNativeStackNavigator();
 
-function HomeStack({ setPedido, pedido }) {
-
+function HomeStack({ pedido, setPedido }) {
   return (
     <Stack.Navigator
       screenOptions={{
         headerStyle: {
-          backgroundColor: '#7E3030', // Specify your desired background color
+          backgroundColor: '#7E3030', 
         },
-        headerTitleStyle: { color: 'white' }, // Text color
+        headerTitleStyle: { color: 'white' }, 
       }}
     >
       <Stack.Screen
@@ -67,7 +66,6 @@ function MainTabs() {
 
   const [pedido, setPedido] = useState([]);
   const [pedidos, setPedidos] = useState(orderList);
-
 
   return (
     <Tab.Navigator
@@ -126,10 +124,7 @@ function CartBadge({ pedidoLength }) {
 
 export default function App() {
   return (
-    <NavigationContainer
-
-
-    >
+    <NavigationContainer>
       <MainTabs />
     </NavigationContainer>
   );

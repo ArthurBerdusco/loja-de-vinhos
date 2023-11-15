@@ -1,5 +1,5 @@
 import { useNavigation } from "@react-navigation/native";
-import { Text, StyleSheet, FlatList, TouchableOpacity } from "react-native";
+import { View, Text, StyleSheet, FlatList, TouchableOpacity } from "react-native";
 
 const Order = ({ order }) => {
     const navigation = useNavigation();
@@ -11,7 +11,6 @@ const Order = ({ order }) => {
         }
         return totalValue.toFixed(2);
     };
-
 
     return (
         <TouchableOpacity style={styles.orderContainer}
@@ -26,16 +25,16 @@ const Order = ({ order }) => {
 }
 
 
-const Orders = ({ navigation, orderList}) => {
+const Orders = ({ orderList}) => {
     return (
-        <>
+        <View>
             <FlatList
                 data={orderList}
                 keyExtractor={(item, index) => index.toString()}
                 style={styles.container}
                 renderItem={({ item }) => <Order order={item} />}
             />
-        </>
+        </View>
     );
 };
 

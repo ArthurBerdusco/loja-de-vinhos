@@ -1,4 +1,4 @@
-import { tintos, roses, espumantes, brancos, promocao } from "../data/vinhos";
+import { tintos, roses, espumantes, brancos } from "../data/vinhos";
 
 export const orderList = [
     { orderID: '918239182', orderDate: '01/10/2023', orderValue: '', orderWines: [[tintos[1], 4], [roses[3], 1], [tintos[4], 1]], deliveryStatus: 'Em trânsito' },
